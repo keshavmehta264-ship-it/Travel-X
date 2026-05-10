@@ -185,7 +185,7 @@
       .nav-menu a {
         position: relative;
         z-index: 1;
-        padding: 9px 15px;
+        padding: 9px 12px;
         border-radius: 999px;
       }
 
@@ -1273,11 +1273,16 @@
         padding-top: 4px;
       }
 
-      .about-promise div {
+      .about-promise > div {
         display: grid;
         grid-template-columns: 28px 1fr;
         gap: 12px;
         align-items: start;
+      }
+
+      .about-promise > div > div {
+        display: block;
+        min-width: 0;
       }
 
       .about-promise i {
@@ -1801,6 +1806,7 @@
           <a href="#destinations">Destinations</a>
           <a href="#featured">Packages</a>
           <a href="#why-travelx">Why Us</a>
+          <a href="#about">About Us</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
           <span class="nav-cursor" aria-hidden="true"></span>
@@ -2146,7 +2152,7 @@
         </div>
       </section>
 
-      <section class="about">
+      <section id="about" class="about">
         <div class="about-intro">
           <p class="eyebrow">About us</p>
           <h2>India journeys designed with quiet precision</h2>
