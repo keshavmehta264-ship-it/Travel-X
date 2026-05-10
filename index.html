@@ -37,6 +37,16 @@ body {
   line-height: 1.5;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: var(--paper);
+  animation: pageCurtain 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 img {
   display: block;
   width: 100%;
@@ -72,6 +82,26 @@ select {
   background: rgba(255, 253, 248, 0.94);
   border-bottom: 1px solid rgba(34, 48, 47, 0.1);
   backdrop-filter: blur(16px);
+  animation: headerDrop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 760ms cubic-bezier(0.22, 1, 0.36, 1), transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-fade {
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  animation: softRise 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .utility-bar,
@@ -222,6 +252,8 @@ select {
   background:
     linear-gradient(90deg, rgba(10, 28, 26, 0.78), rgba(10, 28, 26, 0.35), rgba(10, 28, 26, 0.1)),
     url("https://images.unsplash.com/photo-1475688621402-4257c812d6db?auto=format&fit=crop&w=1800&q=82") center / cover;
+  animation: heroKenBurns 18s ease-in-out infinite alternate;
+  transform-origin: center;
 }
 
 .hero-content {
@@ -231,6 +263,32 @@ select {
   margin: 0 auto;
   padding: 96px 0 46px;
   color: #fff;
+}
+
+.hero .eyebrow,
+.hero h1,
+.hero-copy,
+.hero-actions,
+.search-panel {
+  opacity: 0;
+  transform: translateY(26px);
+  animation: heroContentRise 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero h1 {
+  animation-delay: 90ms;
+}
+
+.hero-copy {
+  animation-delay: 180ms;
+}
+
+.hero-actions {
+  animation-delay: 270ms;
+}
+
+.search-panel {
+  animation-delay: 380ms;
 }
 
 .eyebrow {
@@ -333,6 +391,7 @@ select:focus {
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   box-shadow: var(--shadow);
+  animation: resultPanelIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .search-results[hidden] {
@@ -374,6 +433,8 @@ select:focus {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 8px;
+  animation: resultCascade 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .search-result-card img {
@@ -381,6 +442,17 @@ select:focus {
   height: 100%;
   min-height: 124px;
   object-fit: cover;
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.search-result-card:hover {
+  border-color: rgba(197, 101, 61, 0.3);
+  box-shadow: 0 18px 34px rgba(30, 48, 44, 0.12);
+  transform: translateY(-3px);
+}
+
+.search-result-card:hover img {
+  transform: scale(1.06);
 }
 
 .search-result-copy {
@@ -482,14 +554,14 @@ h2 {
   cursor: pointer;
   font-weight: 750;
   box-shadow: 0 8px 22px rgba(30, 48, 44, 0.06);
-  transition: transform 160ms ease, border-color 160ms ease, color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  transition: transform 220ms ease, border-color 220ms ease, color 220ms ease, background 220ms ease, box-shadow 220ms ease;
 }
 
 .collection-list button:hover,
 .destination-list a:hover {
   border-color: var(--clay);
   color: var(--clay);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .collection-list button.is-active {
@@ -555,12 +627,24 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 12px 26px rgba(30, 48, 44, 0.08);
-  animation: resultFade 260ms ease both;
+  animation: resultCascade 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .collection-result-card img {
   height: 190px;
   object-fit: cover;
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.collection-result-card:hover {
+  border-color: rgba(197, 101, 61, 0.3);
+  box-shadow: 0 22px 48px rgba(30, 48, 44, 0.14);
+  transform: translateY(-4px);
+}
+
+.collection-result-card:hover img {
+  transform: scale(1.06);
 }
 
 .collection-result-copy {
@@ -607,6 +691,77 @@ h2 {
   }
 }
 
+@keyframes pageCurtain {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes headerDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes heroContentRise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softRise {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes resultPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes resultCascade {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .with-action {
   align-items: center;
 }
@@ -627,6 +782,7 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 16px 34px rgba(30, 48, 44, 0.09);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
 }
 
 .tour-card[hidden] {
@@ -636,6 +792,18 @@ h2 {
 .tour-card img {
   height: 245px;
   object-fit: cover;
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
+}
+
+.tour-card:hover {
+  border-color: rgba(197, 101, 61, 0.26);
+  box-shadow: 0 28px 60px rgba(30, 48, 44, 0.17);
+  transform: translateY(-6px);
+}
+
+.tour-card:hover img {
+  filter: saturate(1.05) contrast(1.02);
+  transform: scale(1.055);
 }
 
 .tour-content {
@@ -671,6 +839,12 @@ h2 {
   margin-top: 4px;
   color: var(--clay);
   font-weight: 850;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.tour-content a:hover {
+  color: var(--forest-dark);
+  transform: translateX(3px);
 }
 
 .empty-state {
@@ -1023,13 +1197,49 @@ cite {
 }
 
 .footer {
+  position: relative;
+  display: block;
+  width: min(100%, 1200px);
+  margin-top: 28px;
+  margin-bottom: 28px;
+  padding: 0;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.78);
+  background: #0f1715;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgba(9, 29, 25, 0.22);
+}
+
+.footer,
+.footer * {
+  min-width: 0;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.footer-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(125% 125% at 50% 10%, rgba(15, 17, 17, 0.38) 48%, rgba(31, 93, 80, 0.24) 76%, rgba(217, 157, 52, 0.22) 100%),
+    linear-gradient(135deg, rgba(9, 33, 29, 0.98), rgba(18, 62, 55, 0.96) 52%, rgba(10, 24, 22, 0.98));
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(38px, 4.8vw, 56px) clamp(28px, 4.8vw, 56px) 0;
+}
+
+.footer-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.8fr 1.1fr;
-  gap: 40px;
-  padding-top: 48px;
-  padding-bottom: 48px;
-  color: rgba(255, 255, 255, 0.84);
-  background: var(--forest-dark);
+  grid-template-columns: minmax(260px, 1.25fr) minmax(130px, 0.72fr) minmax(150px, 0.8fr) minmax(250px, 1.05fr);
+  gap: clamp(28px, 3.6vw, 44px);
+  padding-bottom: 36px;
 }
 
 .footer-brand {
@@ -1040,25 +1250,86 @@ cite {
   background: var(--clay);
 }
 
-.footer-links {
+.footer-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.footer-brand-block p {
+  max-width: 330px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.98rem;
+  overflow-wrap: break-word;
+}
+
+.footer-column h3,
+.footer-contact h3 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.footer-column ul,
+.footer-contact ul {
   display: grid;
-  gap: 10px;
-  align-content: start;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-column a,
+.footer-contact a,
+.footer-contact span {
+  overflow-wrap: anywhere;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.footer-column a:hover,
+.footer-contact a:hover {
+  color: var(--gold);
+}
+
+.footer-contact li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: start;
+  gap: 12px;
+}
+
+.footer-contact svg {
+  color: var(--gold);
+  margin-top: 2px;
 }
 
 .footer-whatsapp {
   width: fit-content;
   min-height: 44px;
   padding: 0 16px;
+  background: linear-gradient(135deg, #c5653d, #d99d34);
+  box-shadow: 0 14px 30px rgba(197, 101, 61, 0.24);
+  white-space: nowrap;
 }
 
 .footer-form {
-  align-content: start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+  align-items: center;
+  gap: 24px;
+  padding: 26px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .footer-form label {
-  margin-bottom: 10px;
-  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 720;
+  line-height: 1.35;
 }
 
 .footer-form div {
@@ -1068,24 +1339,142 @@ cite {
 }
 
 .footer-form input {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
+  min-height: 48px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
   color: #fff;
 }
 
 .footer-form input::placeholder {
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.52);
 }
 
 .footer-form button {
   min-height: 48px;
   padding: 0 18px;
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 0 0;
+  font-size: 0.92rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.45;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.footer-socials a:hover {
+  color: var(--gold);
+  border-color: rgba(217, 157, 52, 0.5);
+  transform: translateY(-2px);
+}
+
+.footer-hover-word {
+  position: relative;
+  z-index: 1;
+  height: clamp(180px, 22vw, 250px);
+  margin: clamp(-64px, -5vw, -40px) 28px clamp(-78px, -6vw, -48px);
+  pointer-events: auto;
+}
+
+.footer-word-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.footer-word-shadow,
+.footer-word-stroke,
+.footer-word-reveal {
+  fill: transparent;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-size: clamp(3.35rem, 7vw, 4.75rem);
+  font-weight: 850;
+  letter-spacing: 0;
+  stroke-width: 0.45;
+  text-transform: uppercase;
+}
+
+.footer-word-shadow {
+  stroke: rgba(255, 255, 255, 0.16);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.footer-word-stroke {
+  stroke: rgba(215, 237, 241, 0.7);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: footerDrawText 4s ease-in-out forwards;
+}
+
+.footer-word-reveal {
+  stroke: url("#footerTextGradient");
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.footer-hover-word:hover .footer-word-shadow,
+.footer-hover-word:hover .footer-word-reveal {
+  opacity: 0.9;
+}
+
+@keyframes footerDrawText {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 svg {
   width: 18px;
   height: 18px;
   stroke-width: 2.2;
+}
+
+@media (max-width: 1180px) {
+  .footer-grid {
+    grid-template-columns: minmax(260px, 1.2fr) minmax(180px, 0.8fr) minmax(180px, 0.8fr);
+  }
+
+  .footer-contact {
+    grid-column: 1 / -1;
+  }
+
+  .footer-contact ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .footer-form {
+    grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.75fr);
+  }
 }
 
 @media (max-width: 980px) {
@@ -1155,6 +1544,37 @@ svg {
     grid-template-columns: 1fr;
   }
 
+  .footer-content {
+    padding: 44px 34px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .footer-brand-block,
+  .footer-contact {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand-block p {
+    max-width: 640px;
+  }
+
+  .footer-contact ul {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-form {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-hover-word {
+    height: 190px;
+    margin: -38px 18px -62px;
+  }
+
   .why-image {
     min-height: 390px;
   }
@@ -1174,6 +1594,12 @@ svg {
   .destinations,
   .footer {
     padding-inline: 18px;
+  }
+
+  .footer {
+    margin: 0 14px 24px;
+    padding-inline: 0;
+    border-radius: 22px;
   }
 
   .hero {
@@ -1229,8 +1655,147 @@ svg {
     padding-inline: 18px;
   }
 
+  .footer-content {
+    padding: 34px 22px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-bottom: 28px;
+  }
+
+  .footer-brand-block,
+  .footer-contact {
+    grid-column: auto;
+  }
+
+  .footer-contact ul {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-whatsapp {
+    width: 100%;
+  }
+
+  .footer-form {
+    padding: 22px 0;
+  }
+
   .footer-form div {
     grid-template-columns: 1fr;
+  }
+
+  .footer-form button {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .footer-hover-word {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    margin-inline: 12px;
+    border-radius: 18px;
+  }
+
+  .footer-content {
+    padding: 28px 18px 0;
+  }
+
+  .footer-brand {
+    font-size: 1.28rem;
+  }
+
+  .footer .brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer-brand-block {
+    gap: 16px;
+  }
+
+  .footer-column h3,
+  .footer-contact h3 {
+    margin-bottom: 12px;
+  }
+
+  .footer-column ul,
+  .footer-contact ul {
+    gap: 10px;
+  }
+
+  .footer-contact li {
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+  }
+
+  .footer-form label {
+    font-size: 0.88rem;
+  }
+
+  .footer-form input,
+  .footer-form button,
+  .footer-whatsapp {
+    min-height: 46px;
+  }
+
+  .footer-socials {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer-socials a {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer {
+    margin-inline: 8px;
+  }
+
+  .footer-content {
+    padding-inline: 16px;
+  }
+
+  .footer-whatsapp {
+    padding-inline: 12px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .motion-reveal,
+  .hero .eyebrow,
+  .hero h1,
+  .hero-copy,
+  .hero-actions,
+  .search-panel,
+  .testimonials-copy,
+  .testimonial-stage,
+  .trusted-destinations {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -1446,7 +2011,7 @@ svg {
           </article>
 
           <article class="tour-card" data-destination="rajasthan" data-style="wildlife" data-collections="wildlife,luxury,private,family" data-months="january,february,march,april,may,october,november,december" data-keywords="rajasthan ranthambore safari tiger udaipur jaipur wildlife luxury lodge family private" data-title="Ranthambore & Royal Rajasthan Safari" data-price="105000" data-days="6">
-            <img src="https://images.unsplash.com/photo-1549366021-9f761d040a94?auto=format&fit=crop&w=900&q=80" alt="Tiger walking through dry forest">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Tiger_at_Ranthambore_National_Park.jpg/1280px-Tiger_at_Ranthambore_National_Park.jpg" alt="Tiger at Ranthambore National Park in Rajasthan">
             <div class="tour-content">
               <div class="tour-meta">
                 <span>6 days from INR 1,05,000</span>
@@ -1674,29 +2239,103 @@ svg {
       </section>
     </main>
 
-    <footer id="contact" class="footer">
-      <div>
-        <a class="brand footer-brand" href="#">
-          <span class="brand-mark">TX</span>
-          <span>TravelX</span>
-        </a>
-        <p>Curated active holidays with thoughtful planning and dependable local support.</p>
-      </div>
-      <div class="footer-links">
-        <a class="footer-whatsapp" href="https://wa.me/919451100275">
-          <i data-lucide="message-circle"></i>
-          Chat on WhatsApp
-        </a>
-        <a href="mailto:hello@travelx.example">hello@travelx.example</a>
-        <a href="#collections">Collections</a>
-      </div>
-      <form class="footer-form" aria-label="Request a trip plan">
-        <label for="email">Get a trip idea in your inbox</label>
-        <div>
-          <input id="email" type="email" placeholder="you@example.com">
-          <button type="submit">Send</button>
+    <footer id="contact" class="footer" aria-label="TravelX footer">
+      <div class="footer-gradient" aria-hidden="true"></div>
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div class="footer-brand-block">
+            <a class="brand footer-brand" href="#" aria-label="TravelX home">
+              <span class="brand-mark">TX</span>
+              <span>TravelX</span>
+            </a>
+            <p>Private India journeys shaped with quiet luxury, thoughtful pacing, and dependable local support from first call to final checkout.</p>
+            <a class="footer-whatsapp" href="https://wa.me/919451100275" aria-label="Chat with TravelX on WhatsApp">
+              <i data-lucide="message-circle"></i>
+              WhatsApp TravelX
+            </a>
+          </div>
+
+          <div class="footer-column">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="#destinations">Destinations</a></li>
+              <li><a href="#featured">Packages</a></li>
+              <li><a href="#collections">Collections</a></li>
+              <li><a href="#testimonials">Guest Stories</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>TravelX</h3>
+            <ul>
+              <li><a href="#why-travelx">Why Us</a></li>
+              <li><a href="#featured">Luxury Escapes</a></li>
+              <li><a href="#collections">Tailor-made Trips</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h3>Contact</h3>
+            <ul>
+              <li>
+                <i data-lucide="mail"></i>
+                <a href="mailto:info.travelxindia@gmail.com">info.travelxindia@gmail.com</a>
+              </li>
+              <li>
+                <i data-lucide="map-pin"></i>
+                <span>India private tours, crafted nationwide</span>
+              </li>
+              <li>
+                <i data-lucide="sparkles"></i>
+                <span>Kashmir, Kerala, Goa, Rajasthan, Ladakh, Andaman</span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </form>
+
+        <form class="footer-form" aria-label="Request a trip plan">
+          <label for="email">Get a polished trip idea in your inbox</label>
+          <div>
+            <input id="email" type="email" placeholder="you@example.com">
+            <button type="submit">Send</button>
+          </div>
+        </form>
+
+        <div class="footer-bottom">
+          <div class="footer-socials" aria-label="TravelX social links">
+            <a href="#" aria-label="TravelX travel gallery"><i data-lucide="camera"></i></a>
+            <a href="#" aria-label="TravelX updates"><i data-lucide="send"></i></a>
+            <a href="#" aria-label="TravelX stories"><i data-lucide="messages-square"></i></a>
+            <a href="#" aria-label="TravelX website"><i data-lucide="globe-2"></i></a>
+          </div>
+          <p>&copy; 2026 TravelX India. Crafted for premium private travel.</p>
+        </div>
+      </div>
+
+      <div class="footer-hover-word" aria-hidden="true">
+        <svg class="footer-word-svg" viewBox="0 0 300 100" role="img">
+          <defs>
+            <linearGradient id="footerTextGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="100">
+              <stop offset="0%" stop-color="#d99d34"></stop>
+              <stop offset="26%" stop-color="#c5653d"></stop>
+              <stop offset="52%" stop-color="#8fd5c8"></stop>
+              <stop offset="78%" stop-color="#d7edf1"></stop>
+              <stop offset="100%" stop-color="#f7efe0"></stop>
+            </linearGradient>
+            <radialGradient id="footerRevealMask" gradientUnits="userSpaceOnUse" cx="50%" cy="50%" r="22%">
+              <stop offset="0%" stop-color="white"></stop>
+              <stop offset="100%" stop-color="black"></stop>
+            </radialGradient>
+            <mask id="footerTextMask">
+              <rect x="0" y="0" width="100%" height="100%" fill="url(#footerRevealMask)"></rect>
+            </mask>
+          </defs>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="footer-word-shadow">TravelX</text>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="footer-word-stroke">TravelX</text>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="footer-word-reveal" mask="url(#footerTextMask)">TravelX</text>
+        </svg>
+      </div>
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -1772,6 +2411,35 @@ const collectionRelations = {
 
 if (window.lucide) {
   window.lucide.createIcons();
+}
+
+const animatedElements = [
+  ...document.querySelectorAll(
+    ".collections, .section-heading, .collection-intro, .collection-list, .tour-card, .why-section, .about, .destinations, .destination-list, .footer, .principle"
+  )
+];
+
+animatedElements.forEach((element, index) => {
+  element.classList.add("motion-reveal");
+  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+});
+
+if ("IntersectionObserver" in window) {
+  const motionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          motionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+  );
+
+  animatedElements.forEach((element) => motionObserver.observe(element));
+} else {
+  animatedElements.forEach((element) => element.classList.add("is-visible"));
 }
 
 tourCards.forEach((card, index) => {
@@ -1953,6 +2621,9 @@ function renderSearchResults(tours, filters, exactMatch) {
     : `No exact match found, here are similar tours for ${summary}.`;
 
   searchResultGrid.innerHTML = tours.map(renderResultCard).join("");
+  searchResultGrid.querySelectorAll(".search-result-card").forEach((card, index) => {
+    card.style.animationDelay = `${index * 70}ms`;
+  });
   searchResults.hidden = false;
 }
 
@@ -1998,6 +2669,9 @@ function renderCollectionResults(collection) {
     : `No exact ${label.toLowerCase()} match is available yet, so here are similar premium TravelX tours.`;
 
   collectionResultGrid.innerHTML = tours.map(renderCollectionCard).join("");
+  collectionResultGrid.querySelectorAll(".collection-result-card").forEach((card, index) => {
+    card.style.animationDelay = `${index * 70}ms`;
+  });
   collectionResults.hidden = false;
 }
 
@@ -2052,7 +2726,13 @@ function applyFilters({ forceResults = false } = {}) {
   const visibleCards = new Set(visibleTours.map((tour) => tour.card));
 
   tourCards.forEach((card) => {
-    card.hidden = !visibleCards.has(card);
+    const shouldShow = visibleCards.has(card);
+    card.hidden = !shouldShow;
+
+    if (shouldShow) {
+      card.classList.remove("motion-fade");
+      window.requestAnimationFrame(() => card.classList.add("motion-fade"));
+    }
   });
 
   emptyState.hidden = exactMatch || !active;
@@ -2079,6 +2759,11 @@ function applySort() {
   });
 
   tourCards.forEach((card) => tourGrid.appendChild(card));
+  tourCards.forEach((card, index) => {
+    card.classList.remove("motion-fade");
+    card.style.animationDelay = `${Math.min(index, 8) * 45}ms`;
+    window.requestAnimationFrame(() => card.classList.add("motion-fade"));
+  });
   refreshTourData();
   applyFilters();
 }
@@ -2126,6 +2811,21 @@ if (testimonialSection) {
   startTestimonialRotation();
 }
 
+const footerHoverWord = document.querySelector(".footer-hover-word");
+const footerWordSvg = document.querySelector(".footer-word-svg");
+const footerRevealMask = document.querySelector("#footerRevealMask");
+
+if (footerHoverWord && footerWordSvg && footerRevealMask) {
+  footerHoverWord.addEventListener("mousemove", (event) => {
+    const rect = footerWordSvg.getBoundingClientRect();
+    const cx = ((event.clientX - rect.left) / rect.width) * 100;
+    const cy = ((event.clientY - rect.top) / rect.height) * 100;
+
+    footerRevealMask.setAttribute("cx", `${Math.max(0, Math.min(100, cx))}%`);
+    footerRevealMask.setAttribute("cy", `${Math.max(0, Math.min(100, cy))}%`);
+  });
+}
+
 document.querySelector(".footer-form")?.addEventListener("submit", (event) => {
   event.preventDefault();
   const button = event.currentTarget.querySelector("button");
@@ -2140,3 +2840,4 @@ document.querySelector(".footer-form")?.addEventListener("submit", (event) => {
     </script>
   </body>
 </html>
+
