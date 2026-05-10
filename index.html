@@ -7,1815 +7,1787 @@
     <meta name="description" content="TravelX Agency plans premium India holidays across Kerala, Goa, Rajasthan, Ladakh, and curated private destinations.">
     <link rel="preconnect" href="https://images.unsplash.com">
     <style>
-:root {
-  --ink: #22302f;
-  --muted: #65716f;
-  --paper: #fffdf8;
-  --surface: #ffffff;
-  --line: #dfe6df;
-  --forest: #1f5d50;
-  --forest-dark: #123e37;
-  --clay: #c5653d;
-  --gold: #d99d34;
-  --sky: #d7edf1;
-  --shadow: 0 16px 45px rgba(30, 48, 44, 0.14);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.5;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  pointer-events: none;
-  background: var(--paper);
-  animation: pageCurtain 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-img {
-  display: block;
-  width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(255, 253, 248, 0.94);
-  border-bottom: 1px solid rgba(34, 48, 47, 0.1);
-  backdrop-filter: blur(16px);
-  animation: headerDrop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.motion-reveal {
-  opacity: 0;
-  transform: translateY(34px);
-  transition: opacity 760ms cubic-bezier(0.22, 1, 0.36, 1), transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
-}
-
-.motion-reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.motion-fade {
-  opacity: 0;
-  transform: translateY(18px) scale(0.985);
-  animation: softRise 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.utility-bar,
-.main-nav,
-.section,
-.collections,
-.why-section,
-.reviews,
-.about,
-.destinations,
-.footer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-inline: 24px;
-}
-
-.utility-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 38px;
-  gap: 20px;
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.rating-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.stars {
-  color: var(--gold);
-  letter-spacing: 1px;
-}
-
-.utility-links {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.main-nav {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  min-height: 72px;
-  gap: 26px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--forest-dark);
-  font-weight: 800;
-  font-size: 1.45rem;
-}
-
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  color: #fff;
-  background: var(--forest);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  letter-spacing: 0;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 26px;
-  color: var(--ink);
-  font-size: 0.96rem;
-  font-weight: 650;
-}
-
-.nav-menu a,
-.utility-links a,
-.footer-links a {
-  transition: color 160ms ease;
-}
-
-.nav-menu a:hover,
-.utility-links a:hover,
-.footer-links a:hover {
-  color: var(--clay);
-}
-
-.nav-cta,
-.hero-call,
-.search-button,
-.footer-whatsapp,
-.footer-form button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 0;
-  color: #fff;
-  background: var(--clay);
-  border-radius: 6px;
-  font-weight: 750;
-  cursor: pointer;
-  transition: transform 160ms ease, background 160ms ease;
-}
-
-.nav-cta {
-  min-height: 44px;
-  padding: 0 16px;
-}
-
-.nav-cta:hover,
-.hero-call:hover,
-.search-button:hover,
-.footer-whatsapp:hover,
-.footer-form button:hover {
-  background: #a84e2c;
-  transform: translateY(-1px);
-}
-
-.menu-toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #fff;
-  color: var(--ink);
-}
-
-.hero {
-  position: relative;
-  min-height: 690px;
-  display: grid;
-  align-items: end;
-  overflow: hidden;
-}
-
-.hero-media {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(10, 28, 26, 0.78), rgba(10, 28, 26, 0.35), rgba(10, 28, 26, 0.1)),
-    url("https://images.unsplash.com/photo-1475688621402-4257c812d6db?auto=format&fit=crop&w=1800&q=82") center / cover;
-  animation: heroKenBurns 18s ease-in-out infinite alternate;
-  transform-origin: center;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  width: min(1160px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 96px 0 46px;
-  color: #fff;
-}
-
-.hero .eyebrow,
-.hero h1,
-.hero-copy,
-.hero-actions,
-.search-panel {
-  opacity: 0;
-  transform: translateY(26px);
-  animation: heroContentRise 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero h1 {
-  animation-delay: 90ms;
-}
-
-.hero-copy {
-  animation-delay: 180ms;
-}
-
-.hero-actions {
-  animation-delay: 270ms;
-}
-
-.search-panel {
-  animation-delay: 380ms;
-}
-
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--clay);
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.hero .eyebrow {
-  color: #ffd38e;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  max-width: 740px;
-  margin-bottom: 16px;
-  font-size: clamp(3.4rem, 9vw, 7.4rem);
-  line-height: 0.92;
-  letter-spacing: 0;
-}
-
-.hero-copy {
-  max-width: 630px;
-  margin-bottom: 18px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.15rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
-.hero-call {
-  min-height: 46px;
-  padding: 0 18px;
-}
-
-.search-panel {
-  display: grid;
-  grid-template-columns: minmax(250px, 1.35fr) minmax(170px, 0.8fr) minmax(150px, 0.65fr) auto;
-  gap: 12px;
-  padding: 16px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-}
-
-label {
-  display: grid;
-  gap: 7px;
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 750;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-input,
-select {
-  width: 100%;
-  min-height: 48px;
-  padding: 0 12px;
-  color: var(--ink);
-  background: #f8faf7;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  outline: 0;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--forest);
-  box-shadow: 0 0 0 3px rgba(31, 93, 80, 0.14);
-}
-
-.search-button {
-  min-height: 48px;
-  align-self: end;
-  padding: 0 22px;
-}
-
-.search-results {
-  margin-top: 14px;
-  padding: 18px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  animation: resultPanelIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.search-results[hidden] {
-  display: none;
-}
-
-.search-results-heading {
-  display: grid;
-  gap: 4px;
-  margin-bottom: 14px;
-}
-
-.search-results-heading .eyebrow {
-  margin-bottom: 0;
-}
-
-.search-results-heading h2 {
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
-  line-height: 1.1;
-}
-
-.search-results-heading p:last-child {
-  margin: 0;
-  color: var(--muted);
-}
-
-.search-result-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.search-result-card {
-  display: grid;
-  grid-template-columns: 112px 1fr;
-  gap: 12px;
-  min-height: 124px;
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  animation: resultCascade 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-}
-
-.search-result-card img {
-  width: 112px;
-  height: 100%;
-  min-height: 124px;
-  object-fit: cover;
-  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.search-result-card:hover {
-  border-color: rgba(197, 101, 61, 0.3);
-  box-shadow: 0 18px 34px rgba(30, 48, 44, 0.12);
-  transform: translateY(-3px);
-}
-
-.search-result-card:hover img {
-  transform: scale(1.06);
-}
-
-.search-result-copy {
-  display: grid;
-  align-content: center;
-  gap: 6px;
-  padding: 12px 12px 12px 0;
-}
-
-.search-result-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 750;
-  text-transform: uppercase;
-}
-
-.search-result-card h3 {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.2;
-}
-
-.search-result-card p {
-  display: -webkit-box;
-  margin: 0;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 0.88rem;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.search-result-card a {
-  width: fit-content;
-  color: var(--clay);
-  font-size: 0.88rem;
-  font-weight: 850;
-}
-
-.section,
-.collections,
-.why-section,
-.reviews,
-.about,
-.destinations {
-  padding-top: 76px;
-  padding-bottom: 76px;
-}
-
-.section-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 26px;
-}
-
-h2 {
-  margin-bottom: 0;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1.02;
-  letter-spacing: 0;
-}
-
-.collections {
-  display: grid;
-  grid-template-columns: 0.9fr 1.5fr;
-  gap: 52px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.collection-intro p:last-child {
-  margin: 18px 0 0;
-  color: var(--muted);
-}
-
-.collection-list,
-.destination-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-content: start;
-}
-
-.collection-list button,
-.destination-list a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0 16px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--forest-dark);
-  cursor: pointer;
-  font-weight: 750;
-  box-shadow: 0 8px 22px rgba(30, 48, 44, 0.06);
-  transition: transform 220ms ease, border-color 220ms ease, color 220ms ease, background 220ms ease, box-shadow 220ms ease;
-}
-
-.collection-list button:hover,
-.destination-list a:hover {
-  border-color: var(--clay);
-  color: var(--clay);
-  transform: translateY(-2px);
-}
-
-.collection-list button.is-active {
-  color: #fff;
-  background: var(--forest);
-  border-color: var(--forest);
-  box-shadow: 0 14px 28px rgba(31, 93, 80, 0.18);
-}
-
-.collection-results {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 18px;
-  padding: 24px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 18px 36px rgba(30, 48, 44, 0.08);
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 220ms ease, transform 220ms ease;
-}
-
-.collection-results[hidden] {
-  display: none;
-}
-
-.collection-results.is-switching {
-  opacity: 0.1;
-  transform: translateY(8px);
-}
-
-.collection-results-heading {
-  display: grid;
-  gap: 6px;
-}
-
-.collection-results-heading .eyebrow {
-  margin-bottom: 0;
-}
-
-.collection-results-heading h3 {
-  margin: 0;
-  font-size: clamp(1.35rem, 2.5vw, 2.1rem);
-  line-height: 1.1;
-}
-
-.collection-results-heading p:last-child {
-  max-width: 780px;
-  margin: 0;
-  color: var(--muted);
-}
-
-.collection-result-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.collection-result-card {
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 12px 26px rgba(30, 48, 44, 0.08);
-  animation: resultCascade 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-}
-
-.collection-result-card img {
-  height: 190px;
-  object-fit: cover;
-  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.collection-result-card:hover {
-  border-color: rgba(197, 101, 61, 0.3);
-  box-shadow: 0 22px 48px rgba(30, 48, 44, 0.14);
-  transform: translateY(-4px);
-}
-
-.collection-result-card:hover img {
-  transform: scale(1.06);
-}
-
-.collection-result-copy {
-  padding: 16px;
-}
-
-.collection-result-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 8px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 750;
-  text-transform: uppercase;
-}
-
-.collection-result-card h4 {
-  margin: 0 0 8px;
-  font-size: 1.08rem;
-  line-height: 1.18;
-}
-
-.collection-result-card p {
-  margin-bottom: 12px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.collection-result-card a {
-  color: var(--clay);
-  font-weight: 850;
-}
-
-@keyframes resultFade {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pageCurtain {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes headerDrop {
-  from {
-    opacity: 0;
-    transform: translateY(-18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroKenBurns {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(1.08);
-  }
-}
-
-@keyframes heroContentRise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes softRise {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes resultPanelIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.985);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes resultCascade {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.985);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.with-action {
-  align-items: center;
-}
-
-.sort-control {
-  min-width: 190px;
-}
-
-.tour-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.tour-card {
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 16px 34px rgba(30, 48, 44, 0.09);
-  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
-}
-
-.tour-card[hidden] {
-  display: none;
-}
-
-.tour-card img {
-  height: 245px;
-  object-fit: cover;
-  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
-}
-
-.tour-card:hover {
-  border-color: rgba(197, 101, 61, 0.26);
-  box-shadow: 0 28px 60px rgba(30, 48, 44, 0.17);
-  transform: translateY(-6px);
-}
-
-.tour-card:hover img {
-  filter: saturate(1.05) contrast(1.02);
-  transform: scale(1.055);
-}
-
-.tour-content {
-  padding: 18px;
-}
-
-.tour-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 10px;
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 750;
-}
-
-.tour-meta span:last-child {
-  color: var(--forest);
-}
-
-.tour-content h3 {
-  margin-bottom: 9px;
-  font-size: 1.24rem;
-  line-height: 1.2;
-}
-
-.tour-content p {
-  color: var(--muted);
-}
-
-.tour-content a {
-  display: inline-flex;
-  margin-top: 4px;
-  color: var(--clay);
-  font-weight: 850;
-  transition: color 180ms ease, transform 180ms ease;
-}
-
-.tour-content a:hover {
-  color: var(--forest-dark);
-  transform: translateX(3px);
-}
-
-.empty-state {
-  margin: 24px 0 0;
-  padding: 18px;
-  color: var(--muted);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-
-.testimonials-luxury {
-  position: relative;
-  overflow: hidden;
-  color: #f8fbf7;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(197, 101, 61, 0.16), transparent 26%),
-    linear-gradient(135deg, #08201d 0%, #123e37 48%, #071716 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.testimonials-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
-  gap: 64px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 96px 24px 72px;
-}
-
-.testimonials-copy,
-.testimonial-stage,
-.trusted-destinations {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 650ms ease, transform 650ms ease;
-}
-
-.testimonials-luxury.is-visible .testimonials-copy,
-.testimonials-luxury.is-visible .testimonial-stage,
-.testimonials-luxury.is-visible .trusted-destinations {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.testimonials-luxury.is-visible .testimonial-stage {
-  transition-delay: 120ms;
-}
-
-.testimonials-luxury.is-visible .trusted-destinations {
-  transition-delay: 220ms;
-}
-
-.testimonials-copy {
-  display: grid;
-  align-content: center;
-  gap: 22px;
-}
-
-.testimonial-badge {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  min-height: 34px;
-  padding: 0 12px;
-  color: #ffd38e;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  font-size: 0.86rem;
-  font-weight: 750;
-}
-
-.testimonial-badge svg {
-  width: 15px;
-  height: 15px;
-  margin-right: 6px;
-  fill: currentColor;
-}
-
-.testimonials-copy h2 {
-  color: #fff;
-  font-size: clamp(2.35rem, 5vw, 4.5rem);
-  line-height: 0.98;
-}
-
-.testimonials-copy > p {
-  max-width: 610px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 1.08rem;
-}
-
-.testimonial-dots {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-top: 10px;
-}
-
-.testimonial-dot {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.28);
-  cursor: pointer;
-  transition: width 260ms ease, background 260ms ease;
-}
-
-.testimonial-dot.is-active {
-  width: 42px;
-  background: var(--clay);
-}
-
-.testimonial-stage {
-  position: relative;
-  min-height: 420px;
-  margin-right: 34px;
-}
-
-.testimonial-card {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 32px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 12px;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
-  color: var(--ink);
-  opacity: 0;
-  transform: translateX(80px) scale(0.94);
-  pointer-events: none;
-  transition: opacity 480ms ease, transform 480ms ease;
-}
-
-.testimonial-card.is-active {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  pointer-events: auto;
-  z-index: 2;
-}
-
-.testimonial-rating {
-  margin-bottom: 22px;
-  color: #d99d34;
-  font-size: 1.05rem;
-  letter-spacing: 0.12em;
-}
-
-.testimonial-quote {
-  position: relative;
-  flex: 1;
-}
-
-.testimonial-quote svg {
-  position: absolute;
-  top: -12px;
-  left: -10px;
-  width: 34px;
-  height: 34px;
-  color: rgba(197, 101, 61, 0.18);
-  transform: rotate(180deg);
-}
-
-.testimonial-quote p {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(1.16rem, 2vw, 1.42rem);
-  font-weight: 650;
-  line-height: 1.5;
-}
-
-.testimonial-separator {
-  height: 1px;
-  margin: 26px 0;
-  background: var(--line);
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.testimonial-author img {
-  width: 56px;
-  height: 56px;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-}
-
-.testimonial-author h3 {
-  margin-bottom: 2px;
-  font-size: 1rem;
-}
-
-.testimonial-author p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.testimonial-decor {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.decor-one {
-  right: -26px;
-  top: -26px;
-}
-
-.decor-two {
-  left: -26px;
-  bottom: -26px;
-}
-
-.trusted-destinations {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px 88px;
-  text-align: center;
-}
-
-.trusted-destinations h3 {
-  margin-bottom: 24px;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.9rem;
-  font-weight: 650;
-}
-
-.trusted-destinations div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 22px 44px;
-}
-
-.trusted-destinations span {
-  color: rgba(255, 255, 255, 0.42);
-  font-size: clamp(1.15rem, 3vw, 1.8rem);
-  font-weight: 850;
-}
-
-.why-section {
-  display: grid;
-  grid-template-columns: 0.85fr 1fr;
-  gap: 52px;
-  align-items: stretch;
-  background: var(--sky);
-}
-
-.why-image {
-  min-height: 620px;
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(18, 62, 55, 0.05), rgba(18, 62, 55, 0.2)),
-    url("https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=82") center / cover;
-}
-
-.why-copy {
-  align-self: center;
-}
-
-.principle {
-  padding: 22px 0;
-  border-bottom: 1px solid rgba(18, 62, 55, 0.18);
-}
-
-.principle h3 {
-  margin-bottom: 8px;
-  font-size: 1.3rem;
-}
-
-.principle p,
-.about p,
-.footer p {
-  color: var(--muted);
-}
-
-.reviews {
-  display: grid;
-  grid-template-columns: 0.45fr 1fr;
-  gap: 46px;
-  align-items: center;
-}
-
-.review-score {
-  padding: 26px;
-  color: #fff;
-  background: var(--forest-dark);
-  border-radius: 8px;
-}
-
-.review-score span {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 2.8rem;
-  font-weight: 850;
-  line-height: 1;
-}
-
-.review-score p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-blockquote {
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(1.35rem, 3vw, 2.2rem);
-  line-height: 1.22;
-}
-
-cite {
-  display: block;
-  margin-top: 18px;
-  color: var(--muted);
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 750;
-}
-
-.about {
-  display: grid;
-  grid-template-columns: 0.85fr 1fr;
-  gap: 52px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.about > p {
-  margin: 0;
-  font-size: 1.08rem;
-}
-
-.destinations {
-  padding-bottom: 96px;
-}
-
-.footer {
-  position: relative;
-  display: block;
-  width: min(100%, 1200px);
-  margin-top: 28px;
-  margin-bottom: 28px;
-  padding: 0;
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.78);
-  background: #0f1715;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 28px;
-  box-shadow: 0 24px 70px rgba(9, 29, 25, 0.22);
-}
-
-.footer,
-.footer * {
-  min-width: 0;
-}
-
-.footer p {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.footer-gradient {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(125% 125% at 50% 10%, rgba(15, 17, 17, 0.38) 48%, rgba(31, 93, 80, 0.24) 76%, rgba(217, 157, 52, 0.22) 100%),
-    linear-gradient(135deg, rgba(9, 33, 29, 0.98), rgba(18, 62, 55, 0.96) 52%, rgba(10, 24, 22, 0.98));
-}
-
-.footer-content {
-  position: relative;
-  z-index: 2;
-  padding: clamp(38px, 4.8vw, 56px) clamp(28px, 4.8vw, 56px) 0;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: minmax(260px, 1.25fr) minmax(130px, 0.72fr) minmax(150px, 0.8fr) minmax(250px, 1.05fr);
-  gap: clamp(28px, 3.6vw, 44px);
-  padding-bottom: 36px;
-}
-
-.footer-brand {
-  color: #fff;
-}
-
-.footer .brand-mark {
-  background: var(--clay);
-}
-
-.footer-brand-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
-}
-
-.footer-brand-block p {
-  max-width: 330px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 0.98rem;
-  overflow-wrap: break-word;
-}
-
-.footer-column h3,
-.footer-contact h3 {
-  margin: 0 0 18px;
-  color: #fff;
-  font-size: 1rem;
-  letter-spacing: 0;
-}
-
-.footer-column ul,
-.footer-contact ul {
-  display: grid;
-  gap: 12px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.footer-column a,
-.footer-contact a,
-.footer-contact span {
-  overflow-wrap: anywhere;
-  transition: color 160ms ease, transform 160ms ease;
-}
-
-.footer-column a:hover,
-.footer-contact a:hover {
-  color: var(--gold);
-}
-
-.footer-contact li {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  align-items: start;
-  gap: 12px;
-}
-
-.footer-contact svg {
-  color: var(--gold);
-  margin-top: 2px;
-}
-
-.footer-whatsapp {
-  width: fit-content;
-  min-height: 44px;
-  padding: 0 16px;
-  background: linear-gradient(135deg, #c5653d, #d99d34);
-  box-shadow: 0 14px 30px rgba(197, 101, 61, 0.24);
-  white-space: nowrap;
-}
-
-.footer-form {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
-  align-items: center;
-  gap: 24px;
-  padding: 26px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.footer-form label {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.82);
-  font-weight: 720;
-  line-height: 1.35;
-}
-
-.footer-form div {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-}
-
-.footer-form input {
-  min-height: 48px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.16);
-  color: #fff;
-}
-
-.footer-form input::placeholder {
-  color: rgba(255, 255, 255, 0.52);
-}
-
-.footer-form button {
-  min-height: 48px;
-  padding: 0 18px;
-  white-space: nowrap;
-}
-
-.footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 26px 0 0;
-  font-size: 0.92rem;
-}
-
-.footer-bottom p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.58);
-  line-height: 1.45;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 14px;
-}
-
-.footer-socials a {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  color: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
-}
-
-.footer-socials a:hover {
-  color: var(--gold);
-  border-color: rgba(217, 157, 52, 0.5);
-  transform: translateY(-2px);
-}
-
-.footer-hover-word {
-  position: relative;
-  z-index: 1;
-  height: clamp(180px, 22vw, 250px);
-  margin: clamp(-64px, -5vw, -40px) 28px clamp(-78px, -6vw, -48px);
-  pointer-events: auto;
-}
-
-.footer-word-svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  user-select: none;
-}
-
-.footer-word-shadow,
-.footer-word-stroke,
-.footer-word-reveal {
-  fill: transparent;
-  font-family: Inter, Helvetica, Arial, sans-serif;
-  font-size: clamp(3.35rem, 7vw, 4.75rem);
-  font-weight: 850;
-  letter-spacing: 0;
-  stroke-width: 0.45;
-  text-transform: uppercase;
-}
-
-.footer-word-shadow {
-  stroke: rgba(255, 255, 255, 0.16);
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-
-.footer-word-stroke {
-  stroke: rgba(215, 237, 241, 0.7);
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: footerDrawText 4s ease-in-out forwards;
-}
-
-.footer-word-reveal {
-  stroke: url("#footerTextGradient");
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-
-.footer-hover-word:hover .footer-word-shadow,
-.footer-hover-word:hover .footer-word-reveal {
-  opacity: 0.9;
-}
-
-@keyframes footerDrawText {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.2;
-}
-
-@media (max-width: 1180px) {
-  .footer-grid {
-    grid-template-columns: minmax(260px, 1.2fr) minmax(180px, 0.8fr) minmax(180px, 0.8fr);
-  }
-
-  .footer-contact {
-    grid-column: 1 / -1;
-  }
-
-  .footer-contact ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .footer-form {
-    grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.75fr);
-  }
-}
-
-@media (max-width: 980px) {
-  .main-nav {
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-  }
-
-  .menu-toggle {
-    display: grid;
-    place-items: center;
-  }
-
-  .nav-menu,
-  .nav-cta {
-    display: none;
-  }
-
-  .main-nav.is-open {
-    align-items: start;
-  }
-
-  .main-nav.is-open .nav-menu {
-    grid-column: 1 / -1;
-    display: grid;
-    width: 100%;
-    justify-items: start;
-    gap: 14px;
-    padding: 18px 0 8px;
-    border-top: 1px solid var(--line);
-  }
-
-  .search-panel {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .search-button {
-    grid-column: 1 / -1;
-  }
-
-  .search-result-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .collection-result-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .tour-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .testimonials-inner {
-    grid-template-columns: 1fr;
-    gap: 42px;
-  }
-
-  .testimonial-stage {
-    margin-right: 0;
-  }
-
-  .collections,
-  .why-section,
-  .reviews,
-  .about,
-  .footer {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    padding: 44px 34px 0;
-  }
-
-  .footer-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 36px;
-  }
-
-  .footer-brand-block,
-  .footer-contact {
-    grid-column: 1 / -1;
-  }
-
-  .footer-brand-block p {
-    max-width: 640px;
-  }
-
-  .footer-contact ul {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-form {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-hover-word {
-    height: 190px;
-    margin: -38px 18px -62px;
-  }
-
-  .why-image {
-    min-height: 390px;
-  }
-}
-
-@media (max-width: 680px) {
-  .utility-bar {
-    display: none;
-  }
-
-  .main-nav,
-  .section,
-  .collections,
-  .why-section,
-  .reviews,
-  .about,
-  .destinations,
-  .footer {
-    padding-inline: 18px;
-  }
-
-  .footer {
-    margin: 0 14px 24px;
-    padding-inline: 0;
-    border-radius: 22px;
-  }
-
-  .hero {
-    min-height: 920px;
-  }
-
-  .hero-content {
-    width: calc(100% - 36px);
-    padding-bottom: 28px;
-  }
-
-  h1 {
-    font-size: clamp(3.1rem, 16vw, 4.8rem);
-  }
-
-  .search-panel,
-  .collection-result-grid,
-  .tour-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .search-result-card {
-    grid-template-columns: 96px 1fr;
-  }
-
-  .search-result-card img {
-    width: 96px;
-  }
-
-  .section-heading,
-  .with-action {
-    display: grid;
-    align-items: start;
-  }
-
-  .tour-card img {
-    height: 220px;
-  }
-
-  .testimonials-inner {
-    padding: 72px 18px 56px;
-  }
-
-  .testimonial-stage {
-    min-height: 520px;
-  }
-
-  .testimonial-card {
-    padding: 24px;
-  }
-
-  .trusted-destinations {
-    padding-inline: 18px;
-  }
-
-  .footer-content {
-    padding: 34px 22px 0;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding-bottom: 28px;
-  }
-
-  .footer-brand-block,
-  .footer-contact {
-    grid-column: auto;
-  }
-
-  .footer-contact ul {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-whatsapp {
-    width: 100%;
-  }
-
-  .footer-form {
-    padding: 22px 0;
-  }
-
-  .footer-form div {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-form button {
-    width: 100%;
-  }
-
-  .footer-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .footer-hover-word {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    margin-inline: 12px;
-    border-radius: 18px;
-  }
-
-  .footer-content {
-    padding: 28px 18px 0;
-  }
-
-  .footer-brand {
-    font-size: 1.28rem;
-  }
-
-  .footer .brand-mark {
-    width: 36px;
-    height: 36px;
-  }
-
-  .footer-brand-block {
-    gap: 16px;
-  }
-
-  .footer-column h3,
-  .footer-contact h3 {
-    margin-bottom: 12px;
-  }
-
-  .footer-column ul,
-  .footer-contact ul {
-    gap: 10px;
-  }
-
-  .footer-contact li {
-    grid-template-columns: 18px 1fr;
-    gap: 10px;
-  }
-
-  .footer-form label {
-    font-size: 0.88rem;
-  }
-
-  .footer-form input,
-  .footer-form button,
-  .footer-whatsapp {
-    min-height: 46px;
-  }
-
-  .footer-socials {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .footer-socials a {
-    width: 38px;
-    height: 38px;
-  }
-}
-
-@media (max-width: 360px) {
-  .footer {
-    margin-inline: 8px;
-  }
-
-  .footer-content {
-    padding-inline: 16px;
-  }
-
-  .footer-whatsapp {
-    padding-inline: 12px;
-    font-size: 0.92rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-
-  .motion-reveal,
-  .hero .eyebrow,
-  .hero h1,
-  .hero-copy,
-  .hero-actions,
-  .search-panel,
-  .testimonials-copy,
-  .testimonial-stage,
-  .trusted-destinations {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
+      :root {
+        --ink: #22302f;
+        --muted: #65716f;
+        --paper: #fffdf8;
+        --surface: #ffffff;
+        --line: #dfe6df;
+        --forest: #1f5d50;
+        --forest-dark: #123e37;
+        --clay: #c5653d;
+        --gold: #d99d34;
+        --sky: #d7edf1;
+        --shadow: 0 16px 45px rgba(30, 48, 44, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        pointer-events: none;
+        background: var(--paper);
+        animation: pageCurtain 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 253, 248, 0.94);
+        border-bottom: 1px solid rgba(34, 48, 47, 0.1);
+        backdrop-filter: blur(16px);
+        animation: headerDrop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .main-nav,
+      .section,
+      .collections,
+      .why-section,
+      .about,
+      .destinations,
+      .footer {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-inline: 24px;
+      }
+
+      .brand,
+      .nav-cta,
+      .hero-call,
+      .search-button,
+      .footer-whatsapp {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .stars,
+      .testimonial-rating {
+        color: var(--gold);
+        letter-spacing: 1px;
+      }
+
+      .main-nav {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        min-height: 72px;
+        gap: 26px;
+      }
+
+      .brand {
+        gap: 10px;
+        color: var(--forest-dark);
+        font-weight: 800;
+        font-size: 1.45rem;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        color: #fff;
+        background: var(--forest);
+        border-radius: 8px;
+        font-size: 0.9rem;
+      }
+
+      .nav-menu {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        gap: 0;
+        padding: 4px;
+        color: rgba(255, 255, 255, 0.86);
+        background: rgba(18, 62, 55, 0.94);
+        border: 1px solid rgba(217, 157, 52, 0.22);
+        border-radius: 999px;
+        backdrop-filter: blur(14px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 42px rgba(18, 62, 55, 0.14);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        isolation: isolate;
+      }
+
+      .nav-menu::before,
+      .nav-menu::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        z-index: 0;
+        width: 78%;
+        height: 1px;
+        pointer-events: none;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.78), rgba(215, 237, 241, 0.46), transparent);
+      }
+
+      .nav-menu::before {
+        top: -1px;
+        opacity: 0.82;
+      }
+
+      .nav-menu::after {
+        bottom: -1px;
+        opacity: 0.3;
+      }
+
+      .nav-menu a {
+        position: relative;
+        z-index: 1;
+        padding: 9px 15px;
+        border-radius: 999px;
+      }
+
+      .nav-cursor {
+        position: absolute;
+        z-index: 0;
+        left: var(--nav-cursor-left, 0);
+        top: 50%;
+        width: var(--nav-cursor-width, 0);
+        height: 34px;
+        pointer-events: none;
+        opacity: var(--nav-cursor-opacity, 0);
+        border: 1px solid rgba(217, 157, 52, 0.5);
+        border-radius: 999px;
+        background: rgba(255, 253, 248, 0.1);
+        box-shadow: inset 0 0 0 1px rgba(215, 237, 241, 0.16), 0 12px 26px rgba(8, 32, 29, 0.18);
+        transform: translateY(-50%);
+        transition: left 260ms ease, width 260ms ease, opacity 180ms ease;
+      }
+
+      .nav-menu a,
+      .footer-column a {
+        transition: color 160ms ease;
+      }
+
+      .nav-menu a:hover,
+      .footer-column a:hover {
+        color: var(--gold);
+      }
+
+      .nav-cta,
+      .hero-call,
+      .search-button,
+      .footer-whatsapp,
+      .footer-form button {
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+        gap: 8px;
+        border: 0;
+        color: #fff;
+        background: var(--clay);
+        border-radius: 6px;
+        font-weight: 750;
+        cursor: pointer;
+        transition: transform 160ms ease, background 160ms ease;
+      }
+
+      .nav-cta::before,
+      .hero-call::before,
+      .search-button::before,
+      .footer-whatsapp::before,
+      .footer-form button::before,
+      .nav-cta::after,
+      .hero-call::after,
+      .search-button::after,
+      .footer-whatsapp::after,
+      .footer-form button::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: 76%;
+        height: 1px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.9), rgba(215, 237, 241, 0.78), transparent);
+        transition: opacity 500ms ease-in-out;
+      }
+
+      .nav-cta::before,
+      .hero-call::before,
+      .search-button::before,
+      .footer-whatsapp::before,
+      .footer-form button::before {
+        top: 0;
+      }
+
+      .nav-cta::after,
+      .hero-call::after,
+      .search-button::after,
+      .footer-whatsapp::after,
+      .footer-form button::after {
+        bottom: 0;
+      }
+
+      .nav-cta:hover::before,
+      .hero-call:hover::before,
+      .search-button:hover::before,
+      .footer-whatsapp:hover::before,
+      .footer-form button:hover::before,
+      .nav-cta:focus-visible::before,
+      .hero-call:focus-visible::before,
+      .search-button:focus-visible::before,
+      .footer-whatsapp:focus-visible::before,
+      .footer-form button:focus-visible::before {
+        opacity: 1;
+      }
+
+      .nav-cta:hover::after,
+      .hero-call:hover::after,
+      .search-button:hover::after,
+      .footer-whatsapp:hover::after,
+      .footer-form button:hover::after,
+      .nav-cta:focus-visible::after,
+      .hero-call:focus-visible::after,
+      .search-button:focus-visible::after,
+      .footer-whatsapp:focus-visible::after,
+      .footer-form button:focus-visible::after {
+        opacity: 0.42;
+      }
+
+      .nav-cta {
+        min-height: 44px;
+        padding: 0 16px;
+      }
+
+      .nav-cta:hover,
+      .hero-call:hover,
+      .search-button:hover,
+      .footer-whatsapp:hover,
+      .footer-form button:hover {
+        background: #a84e2c;
+        transform: translateY(-1px);
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 690px;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(10, 28, 26, 0.78), rgba(10, 28, 26, 0.35), rgba(10, 28, 26, 0.1)),
+          url("https://images.unsplash.com/photo-1475688621402-4257c812d6db?auto=format&fit=crop&w=1800&q=82") center / cover;
+        animation: heroKenBurns 18s ease-in-out infinite alternate;
+        transform-origin: center;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        width: min(1160px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 96px 0 46px;
+        color: #fff;
+      }
+
+      .hero .eyebrow,
+      .hero h1,
+      .hero-copy,
+      .hero-actions,
+      .search-panel {
+        opacity: 0;
+        transform: translateY(26px);
+        animation: heroContentRise 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .hero h1 {
+        animation-delay: 90ms;
+      }
+
+      .hero-copy {
+        animation-delay: 180ms;
+      }
+
+      .hero-actions {
+        animation-delay: 270ms;
+      }
+
+      .search-panel {
+        animation-delay: 380ms;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--clay);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero .eyebrow {
+        color: #ffd38e;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 740px;
+        margin-bottom: 16px;
+        font-size: clamp(3.4rem, 9vw, 7.4rem);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 630px;
+        margin-bottom: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.15rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .hero-call {
+        min-height: 46px;
+        padding: 0 18px;
+      }
+
+      .search-panel {
+        display: grid;
+        grid-template-columns: minmax(250px, 1.35fr) minmax(170px, 0.8fr) minmax(150px, 0.65fr) auto;
+        gap: 12px;
+        padding: 16px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      label {
+        display: grid;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 750;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 12px;
+        color: var(--ink);
+        background: #f8faf7;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        outline: 0;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--forest);
+        box-shadow: 0 0 0 3px rgba(31, 93, 80, 0.14);
+      }
+
+      .search-button {
+        min-height: 48px;
+        align-self: end;
+        padding: 0 22px;
+      }
+
+      .search-results,
+      .collection-results,
+      .empty-state {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      .search-results {
+        margin-top: 14px;
+        padding: 18px;
+        color: var(--ink);
+        animation: resultPanelIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .search-results[hidden],
+      .collection-results[hidden],
+      .tour-card[hidden],
+      .empty-state[hidden] {
+        display: none;
+      }
+
+      .search-results-heading,
+      .collection-results-heading {
+        display: grid;
+        gap: 4px;
+        margin-bottom: 14px;
+      }
+
+      .search-results-heading .eyebrow,
+      .collection-results-heading .eyebrow {
+        margin-bottom: 0;
+      }
+
+      .search-results-heading h2,
+      .collection-results-heading h3 {
+        font-size: clamp(1.35rem, 2.2vw, 2rem);
+        line-height: 1.1;
+      }
+
+      .search-results-heading p:last-child,
+      .collection-results-heading p:last-child {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .search-result-grid,
+      .collection-result-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .search-result-card,
+      .collection-result-card,
+      .tour-card {
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      }
+
+      .search-result-card {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        min-height: 124px;
+      }
+
+      .search-result-card img {
+        width: 112px;
+        height: 100%;
+        min-height: 124px;
+        object-fit: cover;
+      }
+
+      .search-result-copy {
+        display: grid;
+        align-content: center;
+        gap: 6px;
+        padding: 12px 12px 12px 14px;
+      }
+
+      .search-result-meta,
+      .collection-result-meta,
+      .tour-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 750;
+        text-transform: uppercase;
+      }
+
+      .search-result-card h3,
+      .collection-result-card h4 {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      .search-result-card p,
+      .collection-result-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .search-result-card a,
+      .collection-result-card a,
+      .tour-content a {
+        width: fit-content;
+        color: var(--clay);
+        font-weight: 850;
+      }
+
+      .section,
+      .collections,
+      .why-section,
+      .about,
+      .destinations {
+        padding-top: 76px;
+        padding-bottom: 76px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 26px;
+      }
+
+      .collections {
+        display: grid;
+        grid-template-columns: 0.9fr 1.5fr;
+        gap: 52px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .collection-intro p:last-child {
+        margin: 18px 0 0;
+        color: var(--muted);
+      }
+
+      .collection-list,
+      .destination-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .collection-list button,
+      .destination-list a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 16px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--forest-dark);
+        cursor: pointer;
+        font-weight: 750;
+        box-shadow: 0 8px 22px rgba(30, 48, 44, 0.06);
+        transition: transform 220ms ease, border-color 220ms ease, color 220ms ease, background 220ms ease;
+      }
+
+      .collection-list button:hover,
+      .destination-list a:hover {
+        border-color: var(--clay);
+        color: var(--clay);
+        transform: translateY(-2px);
+      }
+
+      .collection-list button.is-active {
+        color: #fff;
+        background: var(--forest);
+        border-color: var(--forest);
+      }
+
+      .collection-results {
+        grid-column: 1 / -1;
+        display: grid;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      .collection-result-card img {
+        height: 190px;
+        object-fit: cover;
+      }
+
+      .collection-result-copy {
+        padding: 16px;
+      }
+
+      .with-action {
+        align-items: center;
+      }
+
+      .sort-control {
+        min-width: 190px;
+      }
+
+      .tour-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+
+      .tour-card {
+        box-shadow: 0 16px 34px rgba(30, 48, 44, 0.09);
+      }
+
+      .tour-card img {
+        height: 245px;
+        object-fit: cover;
+        transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .tour-card:hover,
+      .collection-result-card:hover,
+      .search-result-card:hover {
+        border-color: rgba(197, 101, 61, 0.3);
+        box-shadow: 0 22px 48px rgba(30, 48, 44, 0.14);
+        transform: translateY(-4px);
+      }
+
+      .tour-card:hover img,
+      .collection-result-card:hover img,
+      .search-result-card:hover img {
+        transform: scale(1.055);
+      }
+
+      .tour-content {
+        padding: 18px;
+      }
+
+      .tour-meta {
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .tour-meta span:last-child {
+        color: var(--forest);
+      }
+
+      .tour-content h3 {
+        margin-bottom: 9px;
+        font-size: 1.24rem;
+        line-height: 1.2;
+      }
+
+      .tour-content p,
+      .about p,
+      .footer p {
+        color: var(--muted);
+      }
+
+      .empty-state {
+        margin: 24px 0 0;
+        padding: 18px;
+        color: var(--muted);
+      }
+
+      .scroll-showcase {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 82px 24px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 253, 248, 0), rgba(215, 237, 241, 0.36) 48%, rgba(255, 253, 248, 0));
+      }
+
+      .scroll-showcase-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.62fr);
+        align-items: end;
+        gap: 32px;
+        margin-bottom: 28px;
+      }
+
+      .scroll-showcase-heading p:last-child {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .scroll-track-wrap {
+        position: relative;
+        margin-inline: -24px;
+      }
+
+      .scroll-track-wrap::before,
+      .scroll-track-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        width: 72px;
+        pointer-events: none;
+      }
+
+      .scroll-track-wrap::before {
+        left: 0;
+        background: linear-gradient(90deg, var(--paper), rgba(255, 253, 248, 0));
+      }
+
+      .scroll-track-wrap::after {
+        right: 0;
+        background: linear-gradient(270deg, var(--paper), rgba(255, 253, 248, 0));
+      }
+
+      .scroll-track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(320px, 43%);
+        gap: 18px;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        padding: 4px 24px 18px;
+        scroll-behavior: smooth;
+        scroll-padding-inline: 24px;
+        scroll-snap-type: inline mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(197, 101, 61, 0.48) rgba(18, 62, 55, 0.08);
+      }
+
+      .scroll-track::-webkit-scrollbar {
+        height: 9px;
+      }
+
+      .scroll-track::-webkit-scrollbar-track {
+        background: rgba(18, 62, 55, 0.08);
+        border-radius: 999px;
+      }
+
+      .scroll-track::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, rgba(197, 101, 61, 0.72), rgba(217, 157, 52, 0.66));
+        border-radius: 999px;
+      }
+
+      .scroll-card {
+        position: relative;
+        min-height: 430px;
+        overflow: hidden;
+        color: #fff;
+        background: #0f1715;
+        border: 1px solid rgba(217, 157, 52, 0.18);
+        border-radius: 10px;
+        box-shadow: 0 22px 58px rgba(30, 48, 44, 0.15);
+        scroll-snap-align: start;
+        isolation: isolate;
+      }
+
+      .scroll-card::before,
+      .scroll-card::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        z-index: 3;
+        width: 76%;
+        height: 1px;
+        pointer-events: none;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.72), rgba(215, 237, 241, 0.4), transparent);
+      }
+
+      .scroll-card::before {
+        top: 0;
+      }
+
+      .scroll-card::after {
+        bottom: 0;
+        opacity: 0.34;
+      }
+
+      .scroll-card img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
+        z-index: -2;
+      }
+
+      .scroll-card::marker {
+        display: none;
+      }
+
+      .scroll-card-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(180deg, rgba(7, 23, 22, 0.06), rgba(7, 23, 22, 0.88)),
+          linear-gradient(90deg, rgba(7, 23, 22, 0.58), rgba(7, 23, 22, 0.12));
+      }
+
+      .scroll-card-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 430px;
+        padding: 28px;
+      }
+
+      .scroll-card-kicker {
+        width: fit-content;
+        margin-bottom: 12px;
+        padding: 7px 10px;
+        color: #ffd38e;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .scroll-card h3 {
+        max-width: 440px;
+        margin-bottom: 10px;
+        color: #fff;
+        font-size: clamp(1.6rem, 3vw, 2.35rem);
+        line-height: 1;
+      }
+
+      .scroll-card p {
+        max-width: 430px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .scroll-card:hover img {
+        filter: saturate(1.06) contrast(1.03);
+        transform: scale(1.055);
+      }
+
+      .testimonials-luxury {
+        position: relative;
+        overflow: hidden;
+        color: #f8fbf7;
+        background: linear-gradient(135deg, #08201d 0%, #123e37 48%, #071716 100%);
+      }
+
+      .testimonials-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
+        gap: 64px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 96px 24px 72px;
+      }
+
+      .testimonial-badge {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-height: 34px;
+        padding: 0 12px;
+        color: #ffd38e;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        font-size: 0.86rem;
+        font-weight: 750;
+      }
+
+      .testimonials-copy {
+        display: grid;
+        align-content: center;
+        gap: 22px;
+      }
+
+      .testimonials-copy h2 {
+        color: #fff;
+        font-size: clamp(2.35rem, 5vw, 4.5rem);
+        line-height: 0.98;
+      }
+
+      .testimonials-copy > p {
+        max-width: 610px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 1.08rem;
+      }
+
+      .testimonial-dots {
+        display: flex;
+        gap: 10px;
+      }
+
+      .testimonial-dot {
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.28);
+        cursor: pointer;
+        transition: width 260ms ease, background 260ms ease;
+      }
+
+      .testimonial-dot.is-active {
+        width: 42px;
+        background: var(--clay);
+      }
+
+      .testimonial-stage {
+        position: relative;
+        min-height: 420px;
+      }
+
+      .testimonial-card {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(217, 157, 52, 0.18);
+        border-radius: 12px;
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+        color: var(--ink);
+        opacity: 0;
+        transform: translateX(80px) scale(0.94);
+        pointer-events: none;
+        transition: opacity 480ms ease, transform 480ms ease;
+      }
+
+      .testimonial-card::before,
+      .testimonial-card::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: 78%;
+        height: 1px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.78), rgba(197, 101, 61, 0.5), transparent);
+        transition: opacity 500ms ease-in-out;
+      }
+
+      .testimonial-card::before {
+        top: -1px;
+      }
+
+      .testimonial-card::after {
+        bottom: -1px;
+      }
+
+      .testimonial-card.is-active {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        pointer-events: auto;
+        z-index: 2;
+      }
+
+      .testimonial-card.is-active::before {
+        opacity: 0.88;
+      }
+
+      .testimonial-card.is-active::after {
+        opacity: 0.28;
+      }
+
+      .testimonial-quote {
+        flex: 1;
+      }
+
+      .testimonial-quote p {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(1.16rem, 2vw, 1.42rem);
+        font-weight: 650;
+        line-height: 1.5;
+      }
+
+      .testimonial-separator {
+        height: 1px;
+        margin: 26px 0;
+        background: var(--line);
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .testimonial-author img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 999px;
+      }
+
+      .testimonial-author h3 {
+        margin-bottom: 2px;
+        font-size: 1rem;
+      }
+
+      .trusted-destinations {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px 88px;
+        text-align: center;
+      }
+
+      .trusted-destinations h3 {
+        margin-bottom: 24px;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 0.9rem;
+      }
+
+      .trusted-destinations div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 22px 44px;
+      }
+
+      .trusted-destinations span {
+        color: rgba(255, 255, 255, 0.42);
+        font-size: clamp(1.15rem, 3vw, 1.8rem);
+        font-weight: 850;
+      }
+
+      .why-section {
+        display: grid;
+        grid-template-columns: 0.85fr 1fr;
+        gap: 52px;
+        align-items: stretch;
+        background: var(--sky);
+      }
+
+      .why-image {
+        min-height: 620px;
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(18, 62, 55, 0.05), rgba(18, 62, 55, 0.2)),
+          url("https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=82") center / cover;
+      }
+
+      .why-copy {
+        align-self: center;
+      }
+
+      .principle {
+        padding: 22px 0;
+        border-bottom: 1px solid rgba(18, 62, 55, 0.18);
+      }
+
+      .principle h3 {
+        margin-bottom: 8px;
+        font-size: 1.3rem;
+      }
+
+      .about {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+        gap: 46px;
+        align-items: stretch;
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0.8);
+        background:
+          linear-gradient(135deg, rgba(8, 32, 29, 0.98), rgba(18, 62, 55, 0.96) 54%, rgba(7, 23, 22, 0.98)),
+          #0f1715;
+        border-top: 1px solid rgba(217, 157, 52, 0.18);
+        border-bottom: 1px solid rgba(217, 157, 52, 0.18);
+      }
+
+      .about::before,
+      .about::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: min(76%, 820px);
+        height: 1px;
+        pointer-events: none;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.72), rgba(215, 237, 241, 0.34), transparent);
+      }
+
+      .about::before {
+        top: 0;
+      }
+
+      .about::after {
+        bottom: 0;
+        opacity: 0.34;
+      }
+
+      .about-intro,
+      .about-panel {
+        position: relative;
+        z-index: 1;
+      }
+
+      .about .eyebrow {
+        color: #ffd38e;
+      }
+
+      .about h2 {
+        max-width: 620px;
+        color: #fff;
+        font-size: clamp(2.4rem, 5vw, 4.65rem);
+        line-height: 0.96;
+      }
+
+      .about-lede {
+        max-width: 620px;
+        margin: 22px 0 0;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 1.08rem;
+      }
+
+      .about-signature {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .about-signature span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 12px;
+        color: rgba(255, 255, 255, 0.78);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 760;
+      }
+
+      .about-panel {
+        display: grid;
+        gap: 18px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(14px);
+      }
+
+      .about-panel > p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 1.05rem;
+      }
+
+      .about-proof-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .about-proof {
+        min-height: 118px;
+        padding: 16px;
+        background: rgba(7, 23, 22, 0.36);
+        border: 1px solid rgba(217, 157, 52, 0.16);
+        border-radius: 8px;
+      }
+
+      .about-proof strong {
+        display: block;
+        margin-bottom: 7px;
+        color: #ffd38e;
+        font-size: clamp(1.5rem, 3vw, 2.05rem);
+        line-height: 1;
+      }
+
+      .about-proof span {
+        display: block;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.86rem;
+        font-weight: 650;
+        line-height: 1.35;
+      }
+
+      .about-promise {
+        display: grid;
+        gap: 14px;
+        padding-top: 4px;
+      }
+
+      .about-promise div {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .about-promise i {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        color: var(--gold);
+        background: rgba(217, 157, 52, 0.12);
+        border: 1px solid rgba(217, 157, 52, 0.18);
+        border-radius: 999px;
+      }
+
+      .about-promise h3 {
+        margin: 0 0 3px;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      .about-promise p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.64);
+        font-size: 0.94rem;
+      }
+
+      .destinations {
+        padding-bottom: 96px;
+      }
+
+      .footer {
+        position: relative;
+        display: block;
+        width: min(100%, 1200px);
+        margin-top: 28px;
+        margin-bottom: 28px;
+        padding: 0;
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0.78);
+        background: #0f1715;
+        border-radius: 28px;
+        box-shadow: 0 24px 70px rgba(9, 29, 25, 0.22);
+      }
+
+      .footer::before,
+      .footer::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        z-index: 1;
+        width: min(74%, 820px);
+        height: 1px;
+        pointer-events: none;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.7), rgba(215, 237, 241, 0.38), transparent);
+      }
+
+      .footer::before {
+        top: 0;
+        opacity: 0.78;
+      }
+
+      .footer::after {
+        bottom: 0;
+        opacity: 0.32;
+      }
+
+      .footer,
+      .footer * {
+        min-width: 0;
+      }
+
+      .footer-gradient {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(125% 125% at 50% 10%, rgba(15, 17, 17, 0.38) 48%, rgba(31, 93, 80, 0.24) 76%, rgba(217, 157, 52, 0.22) 100%),
+          linear-gradient(135deg, rgba(9, 33, 29, 0.98), rgba(18, 62, 55, 0.96) 52%, rgba(10, 24, 22, 0.98));
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 2;
+        padding: clamp(38px, 4.8vw, 56px) clamp(28px, 4.8vw, 56px);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: minmax(260px, 1.25fr) minmax(130px, 0.72fr) minmax(150px, 0.8fr) minmax(250px, 1.05fr);
+        gap: clamp(28px, 3.6vw, 44px);
+        padding-bottom: 36px;
+      }
+
+      .footer .brand,
+      .footer-column h3,
+      .footer-contact h3 {
+        color: #fff;
+      }
+
+      .footer .brand-mark {
+        background: var(--clay);
+      }
+
+      .footer-brand-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .footer-brand-block p {
+        max-width: 330px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.74);
+      }
+
+      .footer-column ul,
+      .footer-contact ul {
+        display: grid;
+        gap: 12px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .footer-contact li {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 12px;
+      }
+
+      .footer-contact svg {
+        color: var(--gold);
+        margin-top: 2px;
+      }
+
+      .footer-whatsapp {
+        width: fit-content;
+        min-height: 44px;
+        padding: 0 16px;
+        background: linear-gradient(135deg, #c5653d, #d99d34);
+        white-space: nowrap;
+      }
+
+      .footer-form {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+        align-items: center;
+        gap: 24px;
+        padding: 26px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .footer-form label {
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .footer-form div {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+      }
+
+      .footer-form input {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.16);
+        color: #fff;
+      }
+
+      .footer-form button {
+        min-height: 48px;
+        padding: 0 18px;
+        white-space: nowrap;
+      }
+
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 26px;
+        font-size: 0.92rem;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.58);
+      }
+
+      .footer-socials {
+        display: flex;
+        gap: 14px;
+      }
+
+      .footer-socials a {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        color: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .motion-reveal {
+        opacity: 0;
+        transform: translateY(34px);
+        transition: opacity 760ms cubic-bezier(0.22, 1, 0.36, 1), transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      .motion-reveal.is-visible,
+      .motion-fade {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .motion-fade {
+        animation: softRise 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+        stroke-width: 2.2;
+      }
+
+      @keyframes pageCurtain {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      @keyframes headerDrop {
+        from {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes heroKenBurns {
+        to {
+          transform: scale(1.08);
+        }
+      }
+
+      @keyframes heroContentRise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes softRise {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(0.985);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes resultPanelIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.985);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .main-nav {
+          grid-template-columns: auto auto;
+          justify-content: space-between;
+        }
+
+        .menu-toggle {
+          display: grid;
+          place-items: center;
+        }
+
+        .nav-menu,
+        .nav-cta {
+          display: none;
+        }
+
+        .main-nav.is-open .nav-menu {
+          grid-column: 1 / -1;
+          display: grid;
+          width: 100%;
+          justify-items: start;
+          gap: 8px;
+          padding: 14px;
+          background: rgba(18, 62, 55, 0.96);
+          border: 1px solid rgba(217, 157, 52, 0.18);
+          border-radius: 14px;
+          box-shadow: 0 18px 40px rgba(18, 62, 55, 0.14);
+        }
+
+        .main-nav.is-open .nav-menu::before,
+        .main-nav.is-open .nav-menu::after {
+          width: calc(100% - 28px);
+        }
+
+        .main-nav.is-open .nav-menu a {
+          width: 100%;
+          padding: 11px 12px;
+        }
+
+        .main-nav.is-open .nav-cta {
+          grid-column: 1 / -1;
+          display: inline-flex;
+          width: 100%;
+          min-height: 48px;
+        }
+
+        .nav-cursor {
+          display: none;
+        }
+
+        .search-panel {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .search-button {
+          grid-column: 1 / -1;
+        }
+
+        .search-result-grid,
+        .collection-result-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tour-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .scroll-showcase-heading {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .scroll-track {
+          grid-auto-columns: minmax(300px, 62%);
+        }
+
+        .testimonials-inner,
+        .collections,
+        .why-section,
+        .about {
+          grid-template-columns: 1fr;
+        }
+
+        .about {
+          gap: 32px;
+        }
+
+        .footer-grid {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        }
+
+        .footer-brand-block,
+        .footer-contact {
+          grid-column: 1 / -1;
+        }
+
+        .footer-form {
+          grid-template-columns: 1fr;
+        }
+
+        .why-image {
+          min-height: 390px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .main-nav,
+        .section,
+        .collections,
+        .why-section,
+        .about,
+        .destinations {
+          padding-inline: 18px;
+        }
+
+        .footer {
+          margin: 0 14px 24px;
+          border-radius: 22px;
+        }
+
+        .hero {
+          min-height: 920px;
+        }
+
+        .hero-content {
+          width: calc(100% - 36px);
+          padding-bottom: 28px;
+        }
+
+        h1 {
+          font-size: clamp(3.1rem, 16vw, 4.8rem);
+        }
+
+        .search-panel,
+        .collection-result-grid,
+        .tour-grid,
+        .footer-grid,
+        .footer-form div {
+          grid-template-columns: 1fr;
+        }
+
+        .scroll-showcase {
+          padding: 68px 18px;
+        }
+
+        .scroll-track-wrap {
+          margin-inline: -18px;
+        }
+
+        .scroll-track-wrap::before,
+        .scroll-track-wrap::after {
+          width: 36px;
+        }
+
+        .scroll-track {
+          grid-auto-columns: minmax(278px, 86%);
+          padding-inline: 18px;
+          scroll-padding-inline: 18px;
+        }
+
+        .scroll-card,
+        .scroll-card-copy {
+          min-height: 390px;
+        }
+
+        .scroll-card-copy {
+          padding: 22px;
+        }
+
+        .about {
+          padding-top: 68px;
+          padding-bottom: 68px;
+        }
+
+        .about-panel {
+          padding: 22px;
+        }
+
+        .about-proof-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-heading,
+        .with-action {
+          display: grid;
+          align-items: start;
+        }
+
+        .testimonial-stage {
+          min-height: 540px;
+        }
+
+        .testimonial-card {
+          padding: 24px;
+        }
+
+        .footer-content {
+          padding: 34px 22px;
+        }
+
+        .footer-whatsapp,
+        .footer-form button {
+          width: 100%;
+        }
+
+        .footer-bottom {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
     </style>
   </head>
   <body>
     <header class="site-header">
-      <div class="utility-bar">
-        <a class="rating-pill" href="#testimonials" aria-label="TravelX customer reviews">
-          <span class="stars">5/5</span>
-          <span>4.8 based on 2,940 reviews</span>
-        </a>
-        <nav class="utility-links" aria-label="Quick links">
-          <a href="tel:+919451100275">Call TravelX</a>
-          <a href="#contact">Contact</a>
-          <a href="#login">Login</a>
-          <a href="#destinations">Map</a>
-        </nav>
-      </div>
-
       <div class="main-nav">
         <a class="brand" href="#" aria-label="TravelX home">
           <span class="brand-mark">TX</span>
@@ -1826,14 +1798,16 @@ svg {
           <span class="sr-only">Open menu</span>
         </button>
         <nav id="nav-menu" class="nav-menu" aria-label="Primary navigation">
-          <a href="#collections">Collections</a>
-          <a href="#featured">Featured Tours</a>
-          <a href="#why-travelx">Why TravelX</a>
           <a href="#destinations">Destinations</a>
+          <a href="#featured">Packages</a>
+          <a href="#why-travelx">Why Us</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+          <span class="nav-cursor" aria-hidden="true"></span>
         </nav>
         <a class="nav-cta" href="https://wa.me/919451100275">
-          <i data-lucide="message-circle"></i>
-          Ask an expert
+          <i data-lucide="map"></i>
+          Plan My Trip
         </a>
       </div>
     </header>
@@ -1948,10 +1922,7 @@ svg {
           <article class="tour-card" data-destination="kerala" data-style="wellness" data-collections="new,luxury,private,family" data-months="january,february,march,april,october,november,december" data-keywords="kerala alleppey kochi kumarakom ayurveda backwaters houseboat wellness private luxury family new" data-title="Kerala Backwaters Private Wellness Escape" data-price="78900" data-days="7">
             <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80" alt="Kerala backwaters with palms and boats">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>7 days from INR 78,900</span>
-                <span>4.9</span>
-              </div>
+              <div class="tour-meta"><span>7 days from INR 78,900</span><span>4.9</span></div>
               <h3>Kerala Backwaters Private Wellness Escape</h3>
               <p>Private houseboat night, Ayurveda spa time, spice-garden dining, and boutique waterfront stays.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -1961,10 +1932,7 @@ svg {
           <article class="tour-card" data-destination="kerala" data-style="culture" data-collections="food-culture,luxury,private,family" data-months="january,february,march,april,may,october,november,december" data-keywords="kerala munnar thekkady tea hills houseboat kochi culture luxury food family private" data-title="Kerala Tea Hills & Houseboat Journey" data-price="92500" data-days="8">
             <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Green hills and calm water in Kerala style landscape">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>8 days from INR 92,500</span>
-                <span>4.8</span>
-              </div>
+              <div class="tour-meta"><span>8 days from INR 92,500</span><span>4.8</span></div>
               <h3>Kerala Tea Hills & Houseboat Journey</h3>
               <p>Tea estates, forest lodges, Cochin heritage, and a slow private cruise through the backwaters.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -1974,10 +1942,7 @@ svg {
           <article class="tour-card" data-destination="goa" data-style="beach" data-collections="new,food-culture,luxury,private,weekend" data-months="january,february,march,april,november,december" data-keywords="goa beach villa food trail portuguese old goa luxury coastal private weekend new" data-title="Goa Coastal Villa & Food Trail" data-price="64900" data-days="5">
             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Bright blue coastline and mountains">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>5 days from INR 64,900</span>
-                <span>5.0</span>
-              </div>
+              <div class="tour-meta"><span>5 days from INR 64,900</span><span>5.0</span></div>
               <h3>Goa Coastal Villa & Food Trail</h3>
               <p>Private villa stay, chef-led seafood tastings, quiet beaches, and Old Goa heritage walks.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -1987,10 +1952,7 @@ svg {
           <article class="tour-card" data-destination="goa" data-style="wellness" data-collections="luxury,private,weekend,family" data-months="january,february,march,april,november,december" data-keywords="goa wellness beach retreat yoga spa private luxury south goa weekend family" data-title="Goa Wellness Beach Retreat" data-price="84000" data-days="6">
             <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80" alt="Tropical beach with palm trees and clear water">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>6 days from INR 84,000</span>
-                <span>4.9</span>
-              </div>
+              <div class="tour-meta"><span>6 days from INR 84,000</span><span>4.9</span></div>
               <h3>Goa Wellness Beach Retreat</h3>
               <p>Sea-facing wellness resort, yoga mornings, spa rituals, and soft-paced coastal dining.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -2000,10 +1962,7 @@ svg {
           <article class="tour-card" data-destination="rajasthan" data-style="culture" data-collections="new,luxury,food-culture,private,family" data-months="january,february,march,october,november,december" data-keywords="rajasthan jaipur udaipur jodhpur jaisalmer palaces desert luxury heritage culture food family private new" data-title="Rajasthan Palaces & Desert Luxury Circuit" data-price="118000" data-days="8">
             <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=80" alt="Rajasthan palace architecture in warm light">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>8 days from INR 1,18,000</span>
-                <span>4.9</span>
-              </div>
+              <div class="tour-meta"><span>8 days from INR 1,18,000</span><span>4.9</span></div>
               <h3>Rajasthan Palaces & Desert Luxury Circuit</h3>
               <p>Heritage palace hotels, private guides, desert sundowners, craft studios, and royal dining.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -2013,10 +1972,7 @@ svg {
           <article class="tour-card" data-destination="rajasthan" data-style="wildlife" data-collections="wildlife,luxury,private,family" data-months="january,february,march,april,may,october,november,december" data-keywords="rajasthan ranthambore safari tiger udaipur jaipur wildlife luxury lodge family private" data-title="Ranthambore & Royal Rajasthan Safari" data-price="105000" data-days="6">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Tiger_at_Ranthambore_National_Park.jpg/1280px-Tiger_at_Ranthambore_National_Park.jpg" alt="Tiger at Ranthambore National Park in Rajasthan">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>6 days from INR 1,05,000</span>
-                <span>4.8</span>
-              </div>
+              <div class="tour-meta"><span>6 days from INR 1,05,000</span><span>4.8</span></div>
               <h3>Ranthambore & Royal Rajasthan Safari</h3>
               <p>Luxury jungle lodge, private safari drives, Jaipur heritage, and relaxed palace-hotel evenings.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -2026,10 +1982,7 @@ svg {
           <article class="tour-card" data-destination="ladakh" data-style="adventure" data-collections="new,luxury,private,ebike" data-months="june,july,august,september" data-keywords="ladakh leh nubra pangong high passes himalaya adventure private expedition luxury camp electric bike ebike e-bike new" data-title="Ladakh High Passes Private Expedition" data-price="142000" data-days="9">
             <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Dramatic mountain road landscape">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>9 days from INR 1,42,000</span>
-                <span>4.9</span>
-              </div>
+              <div class="tour-meta"><span>9 days from INR 1,42,000</span><span>4.9</span></div>
               <h3>Ladakh High Passes Private Expedition</h3>
               <p>Private 4x4 route through Leh, Nubra, Pangong, curated camps, and expert acclimatization.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -2039,10 +1992,7 @@ svg {
           <article class="tour-card" data-destination="ladakh" data-style="culture" data-collections="luxury,private,food-culture,ebike" data-months="june,july,august,september,october" data-keywords="ladakh leh monasteries nubra valley pangong culture himalaya luxury private electric bike ebike e-bike" data-title="Ladakh Monasteries & Nubra Valley Retreat" data-price="128000" data-days="8">
             <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Snowy Himalayan mountains under a clear sky">
             <div class="tour-content">
-              <div class="tour-meta">
-                <span>8 days from INR 1,28,000</span>
-                <span>4.8</span>
-              </div>
+              <div class="tour-meta"><span>8 days from INR 1,28,000</span><span>4.8</span></div>
               <h3>Ladakh Monasteries & Nubra Valley Retreat</h3>
               <p>Monastery visits, slow acclimatized drives, boutique Leh stays, and Nubra Valley stargazing.</p>
               <a href="https://wa.me/919451100275">Plan this trip</a>
@@ -2052,13 +2002,64 @@ svg {
         <p class="empty-state" id="emptyState" hidden>No exact match found, here are similar tours.</p>
       </section>
 
+      <section class="scroll-showcase" aria-label="Premium TravelX travel moments">
+        <div class="scroll-showcase-heading">
+          <div>
+            <p class="eyebrow">Travel moments</p>
+            <h2>Cinematic routes, paced beautifully</h2>
+          </div>
+          <p>Swipe or scroll through signature TravelX experiences shaped around scenery, comfort, and the quiet rhythm of private travel.</p>
+        </div>
+
+        <div class="scroll-track-wrap">
+          <div class="scroll-track" tabindex="0" aria-label="Scrollable TravelX experience cards">
+            <article class="scroll-card">
+              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=82" alt="High mountain road through dramatic Himalayan scenery">
+              <div class="scroll-card-overlay"></div>
+              <div class="scroll-card-copy">
+                <span class="scroll-card-kicker">Ladakh</span>
+                <h3>High passes with calm private support</h3>
+                <p>Acclimatized routes, expert drivers, boutique Leh stays, and slow days between the big landscapes.</p>
+              </div>
+            </article>
+
+            <article class="scroll-card">
+              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=82" alt="Kerala backwaters lined with coconut palms">
+              <div class="scroll-card-overlay"></div>
+              <div class="scroll-card-copy">
+                <span class="scroll-card-kicker">Kerala</span>
+                <h3>Backwater evenings and wellness mornings</h3>
+                <p>Houseboat nights, Ayurveda rituals, spice-garden meals, and soft transfers between water and tea country.</p>
+              </div>
+            </article>
+
+            <article class="scroll-card">
+              <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=82" alt="Rajasthan palace architecture glowing in warm light">
+              <div class="scroll-card-overlay"></div>
+              <div class="scroll-card-copy">
+                <span class="scroll-card-kicker">Rajasthan</span>
+                <h3>Palace stays with desert light</h3>
+                <p>Private guides, craft studios, heritage hotels, and evenings designed for unhurried arrival.</p>
+              </div>
+            </article>
+
+            <article class="scroll-card">
+              <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=82" alt="Goa beach with palm trees and clear tropical water">
+              <div class="scroll-card-overlay"></div>
+              <div class="scroll-card-copy">
+                <span class="scroll-card-kicker">Goa</span>
+                <h3>Coastal villas beyond the usual beach plan</h3>
+                <p>Quiet stays, seafood-led dining, Old Goa walks, and room in the schedule for doing very little.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="testimonials" class="testimonials-luxury" aria-label="TravelX client testimonials">
         <div class="testimonials-inner">
           <div class="testimonials-copy">
-            <div class="testimonial-badge">
-              <i data-lucide="star"></i>
-              Trusted by private travelers
-            </div>
+            <div class="testimonial-badge"><i data-lucide="star"></i> Trusted by private travelers</div>
             <h2>Journeys remembered long after checkout</h2>
             <p>Real TravelX guests on private India escapes shaped around comfort, pacing, and the kind of details that make a trip feel quietly exceptional.</p>
             <div class="testimonial-dots" aria-label="Choose testimonial">
@@ -2066,110 +2067,49 @@ svg {
               <button type="button" class="testimonial-dot" data-testimonial-index="1" aria-label="View Kerala testimonial"></button>
               <button type="button" class="testimonial-dot" data-testimonial-index="2" aria-label="View Goa testimonial"></button>
               <button type="button" class="testimonial-dot" data-testimonial-index="3" aria-label="View Rajasthan testimonial"></button>
-              <button type="button" class="testimonial-dot" data-testimonial-index="4" aria-label="View Ladakh testimonial"></button>
-              <button type="button" class="testimonial-dot" data-testimonial-index="5" aria-label="View Andaman testimonial"></button>
             </div>
           </div>
 
           <div class="testimonial-stage">
             <article class="testimonial-card is-active">
               <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote">
-                <i data-lucide="quote"></i>
-                <p>The Kashmir itinerary felt incredibly considered. The houseboat evening, the quiet driver, the walnut-wood stay in Gulmarg, every handoff was calm and polished.</p>
-              </div>
+              <div class="testimonial-quote"><p>The Kashmir itinerary felt incredibly considered. Every handoff was calm and polished.</p></div>
               <div class="testimonial-separator"></div>
               <div class="testimonial-author">
                 <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=200&q=80" alt="Aman Verma travel portrait">
-                <div>
-                  <h3>Aman Verma</h3>
-                  <p>Delhi, Kashmir private escape</p>
-                </div>
+                <div><h3>Aman Verma</h3><p>Delhi, Kashmir private escape</p></div>
               </div>
             </article>
 
             <article class="testimonial-card">
               <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote">
-                <i data-lucide="quote"></i>
-                <p>Kerala was slow in the best way. TravelX balanced the Ayurveda resort, the backwater cruise, and the tea hills so it felt premium without feeling staged.</p>
-              </div>
+              <div class="testimonial-quote"><p>Kerala was slow in the best way. TravelX balanced the Ayurveda resort, backwater cruise, and tea hills beautifully.</p></div>
               <div class="testimonial-separator"></div>
               <div class="testimonial-author">
                 <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80" alt="Riya Kapoor travel portrait">
-                <div>
-                  <h3>Riya Kapoor</h3>
-                  <p>Mumbai, Kerala wellness journey</p>
-                </div>
+                <div><h3>Riya Kapoor</h3><p>Mumbai, Kerala wellness journey</p></div>
               </div>
             </article>
 
             <article class="testimonial-card">
               <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote">
-                <i data-lucide="quote"></i>
-                <p>Our Goa weekend was not the usual crowded beach plan. Private villa, excellent seafood, old Portuguese lanes, and no rushed schedule. Exactly what we needed.</p>
-              </div>
+              <div class="testimonial-quote"><p>Our Goa weekend was not the usual crowded beach plan. Private villa, excellent seafood, and no rushed schedule.</p></div>
               <div class="testimonial-separator"></div>
               <div class="testimonial-author">
                 <img src="https://images.unsplash.com/photo-1492447166138-50c3889fccb1?auto=format&fit=crop&w=200&q=80" alt="Arjun Mehta travel portrait">
-                <div>
-                  <h3>Arjun Mehta</h3>
-                  <p>Bangalore, Goa coastal villa stay</p>
-                </div>
+                <div><h3>Arjun Mehta</h3><p>Bangalore, Goa coastal villa stay</p></div>
               </div>
             </article>
 
             <article class="testimonial-card">
               <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote">
-                <i data-lucide="quote"></i>
-                <p>Rajasthan felt cinematic. Palace hotels, craft ateliers, a desert dinner under clear skies, and guides who knew when to talk and when to let the place speak.</p>
-              </div>
+              <div class="testimonial-quote"><p>Rajasthan felt cinematic. Palace hotels, craft ateliers, and guides who knew when to let the place speak.</p></div>
               <div class="testimonial-separator"></div>
               <div class="testimonial-author">
                 <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=200&q=80" alt="Naina Sethi travel portrait">
-                <div>
-                  <h3>Naina Sethi</h3>
-                  <p>Pune, Rajasthan palace circuit</p>
-                </div>
+                <div><h3>Naina Sethi</h3><p>Pune, Rajasthan palace circuit</p></div>
               </div>
             </article>
-
-            <article class="testimonial-card">
-              <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote">
-                <i data-lucide="quote"></i>
-                <p>Ladakh can be difficult to plan well, but this was seamless. Acclimatization days, beautiful camps, safe drives, and enough quiet time to actually absorb the landscape.</p>
-              </div>
-              <div class="testimonial-separator"></div>
-              <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Kabir Malhotra travel portrait">
-                <div>
-                  <h3>Kabir Malhotra</h3>
-                  <p>Chandigarh, Ladakh high passes</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote">
-                <i data-lucide="quote"></i>
-                <p>The Andaman plan was beautifully paced. A quiet beach resort, private boat day, clear snorkeling windows, and no unnecessary transfers. It felt effortless.</p>
-              </div>
-              <div class="testimonial-separator"></div>
-              <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Meera Iyer travel portrait">
-                <div>
-                  <h3>Meera Iyer</h3>
-                  <p>Hyderabad, Andaman island retreat</p>
-                </div>
-              </div>
-            </article>
-
-            <div class="testimonial-decor decor-one"></div>
-            <div class="testimonial-decor decor-two"></div>
           </div>
         </div>
 
@@ -2193,25 +2133,63 @@ svg {
           <h2>Travel should feel personal before it feels premium</h2>
           <div class="principle">
             <h3>Passion for Travel</h3>
-            <p>We design trips for people who want to engage with places, not just pass through them. Every route is built around movement, culture, food, and the small moments that make a journey stick.</p>
+            <p>We design trips for people who want to engage with places, not just pass through them.</p>
           </div>
           <div class="principle">
             <h3>Quality partners</h3>
-            <p>Our local operators know their own backyards deeply. We balance good value with dependable stays, clear routes, thoughtful pacing, and real support while you travel.</p>
+            <p>Our local operators balance good value with dependable stays, clear routes, thoughtful pacing, and real support.</p>
           </div>
           <div class="principle">
             <h3>Human service</h3>
-            <p>Talk to a traveler, not a ticket counter. TravelX advisors help you compare routes, plan dates, tune difficulty, and smooth out the details before departure.</p>
+            <p>TravelX advisors help you compare routes, plan dates, tune difficulty, and smooth out the details before departure.</p>
           </div>
         </div>
       </section>
 
       <section class="about">
-        <div>
+        <div class="about-intro">
           <p class="eyebrow">About us</p>
-          <h2>Premium holidays across India's most memorable destinations</h2>
+          <h2>India journeys designed with quiet precision</h2>
+          <p class="about-lede">TravelX curates private holidays for travelers who want India to feel effortless, deeply personal, and beautifully paced from the first conversation to the final checkout.</p>
+          <div class="about-signature" aria-label="TravelX service highlights">
+            <span>Private-first planning</span>
+            <span>Premium stays</span>
+            <span>Local specialists</span>
+          </div>
         </div>
-        <p>TravelX Agency curates private India journeys across wellness retreats, coastal escapes, palace stays, Himalayan adventures, wildlife lodges, and tailor-made itineraries. We help first-time explorers and seasoned travelers choose the right pace, comfort level, and destination for the way they actually like to travel.</p>
+        <div class="about-panel">
+          <p>We build high-touch India itineraries across Kerala, Goa, Rajasthan, Ladakh, Kashmir, Andaman, wildlife reserves, and culture-rich city routes. Every journey is shaped around comfort, season, transfer rhythm, trusted partners, and the moments that make a destination feel alive without making the trip feel busy.</p>
+          <div class="about-proof-grid" aria-label="TravelX trust markers">
+            <div class="about-proof">
+              <strong>15+</strong>
+              <span>signature India destinations curated for private travel</span>
+            </div>
+            <div class="about-proof">
+              <strong>24/7</strong>
+              <span>on-trip coordination through dependable local partners</span>
+            </div>
+            <div class="about-proof">
+              <strong>1:1</strong>
+              <span>advisor-led planning for pace, comfort, and style</span>
+            </div>
+          </div>
+          <div class="about-promise">
+            <div>
+              <i data-lucide="shield-check"></i>
+              <div>
+                <h3>Trusted ground network</h3>
+                <p>Hotels, drivers, guides, and experience partners are chosen for reliability, discretion, and destination knowledge.</p>
+              </div>
+            </div>
+            <div>
+              <i data-lucide="route"></i>
+              <div>
+                <h3>Itineraries that breathe</h3>
+                <p>We balance headline experiences with quieter windows, smooth transfers, and enough space to actually enjoy the place.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="destinations" class="destinations">
@@ -2278,18 +2256,9 @@ svg {
           <div class="footer-contact">
             <h3>Contact</h3>
             <ul>
-              <li>
-                <i data-lucide="mail"></i>
-                <a href="mailto:info.travelxindia@gmail.com">info.travelxindia@gmail.com</a>
-              </li>
-              <li>
-                <i data-lucide="map-pin"></i>
-                <span>India private tours, crafted nationwide</span>
-              </li>
-              <li>
-                <i data-lucide="sparkles"></i>
-                <span>Kashmir, Kerala, Goa, Rajasthan, Ladakh, Andaman</span>
-              </li>
+              <li><i data-lucide="mail"></i><a href="mailto:info.travelxindia@gmail.com">info.travelxindia@gmail.com</a></li>
+              <li><i data-lucide="map-pin"></i><span>India private tours, crafted nationwide</span></li>
+              <li><i data-lucide="sparkles"></i><span>Kashmir, Kerala, Goa, Rajasthan, Ladakh, Andaman</span></li>
             </ul>
           </div>
         </div>
@@ -2312,532 +2281,383 @@ svg {
           <p>&copy; 2026 TravelX India. Crafted for premium private travel.</p>
         </div>
       </div>
-
-      <div class="footer-hover-word" aria-hidden="true">
-        <svg class="footer-word-svg" viewBox="0 0 300 100" role="img">
-          <defs>
-            <linearGradient id="footerTextGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="100">
-              <stop offset="0%" stop-color="#d99d34"></stop>
-              <stop offset="26%" stop-color="#c5653d"></stop>
-              <stop offset="52%" stop-color="#8fd5c8"></stop>
-              <stop offset="78%" stop-color="#d7edf1"></stop>
-              <stop offset="100%" stop-color="#f7efe0"></stop>
-            </linearGradient>
-            <radialGradient id="footerRevealMask" gradientUnits="userSpaceOnUse" cx="50%" cy="50%" r="22%">
-              <stop offset="0%" stop-color="white"></stop>
-              <stop offset="100%" stop-color="black"></stop>
-            </radialGradient>
-            <mask id="footerTextMask">
-              <rect x="0" y="0" width="100%" height="100%" fill="url(#footerRevealMask)"></rect>
-            </mask>
-          </defs>
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="footer-word-shadow">TravelX</text>
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="footer-word-stroke">TravelX</text>
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="footer-word-reveal" mask="url(#footerTextMask)">TravelX</text>
-        </svg>
-      </div>
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>
-const menuButton = document.querySelector(".menu-toggle");
-const mainNav = document.querySelector(".main-nav");
-const searchForm = document.querySelector(".search-panel");
-const searchInput = document.querySelector("#searchInput");
-const styleSelect = document.querySelector("#styleSelect");
-const monthSelect = document.querySelector("#monthSelect");
-const searchResults = document.querySelector("#searchResults");
-const searchResultsTitle = document.querySelector("#searchResultsTitle");
-const searchResultsMessage = document.querySelector("#searchResultsMessage");
-const searchResultGrid = document.querySelector("#searchResultGrid");
-const collectionChips = Array.from(document.querySelectorAll(".collection-chip"));
-const collectionResults = document.querySelector("#collectionResults");
-const collectionResultsTitle = document.querySelector("#collectionResultsTitle");
-const collectionResultsMessage = document.querySelector("#collectionResultsMessage");
-const collectionResultGrid = document.querySelector("#collectionResultGrid");
-const testimonialSection = document.querySelector("#testimonials");
-const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
-const testimonialDots = Array.from(document.querySelectorAll(".testimonial-dot"));
-const sortSelect = document.querySelector("#sortSelect");
-const tourGrid = document.querySelector("#tourGrid");
-const emptyState = document.querySelector("#emptyState");
-let tourCards = Array.from(document.querySelectorAll(".tour-card"));
-let tourData = [];
-let hasSearched = false;
-let activeTestimonialIndex = 0;
-let testimonialInterval;
+      const menuButton = document.querySelector(".menu-toggle");
+      const mainNav = document.querySelector(".main-nav");
+      const navMenu = document.querySelector(".nav-menu");
+      const navLinks = Array.from(document.querySelectorAll(".nav-menu a"));
+      const navCta = document.querySelector(".nav-cta");
+      const searchForm = document.querySelector(".search-panel");
+      const searchInput = document.querySelector("#searchInput");
+      const styleSelect = document.querySelector("#styleSelect");
+      const monthSelect = document.querySelector("#monthSelect");
+      const searchResults = document.querySelector("#searchResults");
+      const searchResultsTitle = document.querySelector("#searchResultsTitle");
+      const searchResultsMessage = document.querySelector("#searchResultsMessage");
+      const searchResultGrid = document.querySelector("#searchResultGrid");
+      const collectionChips = Array.from(document.querySelectorAll(".collection-chip"));
+      const collectionResults = document.querySelector("#collectionResults");
+      const collectionResultsTitle = document.querySelector("#collectionResultsTitle");
+      const collectionResultsMessage = document.querySelector("#collectionResultsMessage");
+      const collectionResultGrid = document.querySelector("#collectionResultGrid");
+      const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
+      const testimonialDots = Array.from(document.querySelectorAll(".testimonial-dot"));
+      const sortSelect = document.querySelector("#sortSelect");
+      const tourGrid = document.querySelector("#tourGrid");
+      const emptyState = document.querySelector("#emptyState");
+      let tourCards = Array.from(document.querySelectorAll(".tour-card"));
+      let tourData = [];
+      let hasSearched = false;
+      let activeTestimonialIndex = 0;
+      let testimonialInterval;
 
-const styleLabels = {
-  all: "any style",
-  wellness: "wellness",
-  beach: "beach",
-  culture: "culture",
-  adventure: "adventure",
-  wildlife: "wildlife"
-};
+      const styleLabels = {
+        all: "any style",
+        wellness: "wellness",
+        beach: "beach",
+        culture: "culture",
+        adventure: "adventure",
+        wildlife: "wildlife"
+      };
 
-const collectionLabels = {
-  new: "New tours",
-  family: "Family friendly",
-  luxury: "Luxury escapes",
-  "food-culture": "Food + culture",
-  private: "Private + tailor-made",
-  ebike: "Electric bike tours",
-  wildlife: "Wildlife journeys",
-  weekend: "Weekend breaks"
-};
+      const collectionLabels = {
+        new: "New tours",
+        family: "Family friendly",
+        luxury: "Luxury escapes",
+        "food-culture": "Food + culture",
+        private: "Private + tailor-made",
+        ebike: "Electric bike tours",
+        wildlife: "Wildlife journeys",
+        weekend: "Weekend breaks"
+      };
 
-const collectionMessages = {
-  new: "Fresh premium journeys recently added to the TravelX India portfolio.",
-  family: "Comfortable, well-paced itineraries with stays and experiences that work across generations.",
-  luxury: "High-touch stays, private guides, premium transfers, and polished destination design.",
-  "food-culture": "Chef-led meals, heritage walks, craft studios, tea estates, and meaningful local culture.",
-  private: "Tailor-made routes with private vehicles, flexible pacing, and advisor-led planning.",
-  ebike: "Smooth active journeys with e-bike friendly routes, scenic roads, and soft-adventure support.",
-  wildlife: "Safari-led journeys with luxury lodges, naturalist support, and unhurried reserve time.",
-  weekend: "Short escapes with strong stays, simple transfers, and a premium long-weekend feel."
-};
+      const collectionMessages = {
+        new: "Fresh premium journeys recently added to the TravelX India portfolio.",
+        family: "Comfortable, well-paced itineraries that work across generations.",
+        luxury: "High-touch stays, private guides, premium transfers, and polished destination design.",
+        "food-culture": "Chef-led meals, heritage walks, craft studios, tea estates, and meaningful local culture.",
+        private: "Tailor-made routes with private vehicles, flexible pacing, and advisor-led planning.",
+        ebike: "Smooth active journeys with e-bike friendly routes, scenic roads, and soft-adventure support.",
+        wildlife: "Safari-led journeys with luxury lodges, naturalist support, and unhurried reserve time.",
+        weekend: "Short escapes with strong stays, simple transfers, and a premium long-weekend feel."
+      };
 
-const collectionRelations = {
-  new: ["luxury", "private", "weekend"],
-  family: ["private", "luxury", "weekend"],
-  luxury: ["private", "new", "food-culture"],
-  "food-culture": ["culture", "luxury", "private"],
-  private: ["luxury", "family", "new"],
-  ebike: ["adventure", "private", "new"],
-  wildlife: ["luxury", "private", "family"],
-  weekend: ["beach", "family", "luxury"]
-};
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
 
-if (window.lucide) {
-  window.lucide.createIcons();
-}
+      const animatedElements = [
+        ...document.querySelectorAll(".collections, .section-heading, .collection-intro, .collection-list, .tour-card, .scroll-showcase, .scroll-card, .why-section, .about, .destinations, .destination-list, .footer, .principle")
+      ];
 
-const animatedElements = [
-  ...document.querySelectorAll(
-    ".collections, .section-heading, .collection-intro, .collection-list, .tour-card, .why-section, .about, .destinations, .destination-list, .footer, .principle"
-  )
-];
+      animatedElements.forEach((element, index) => {
+        element.classList.add("motion-reveal");
+        element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+      });
 
-animatedElements.forEach((element, index) => {
-  element.classList.add("motion-reveal");
-  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
-});
+      if ("IntersectionObserver" in window) {
+        const motionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              motionObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
 
-if ("IntersectionObserver" in window) {
-  const motionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          motionObserver.unobserve(entry.target);
+        animatedElements.forEach((element) => motionObserver.observe(element));
+      } else {
+        animatedElements.forEach((element) => element.classList.add("is-visible"));
+      }
+
+      tourCards.forEach((card, index) => {
+        card.dataset.rank = String(index);
+      });
+
+      menuButton?.addEventListener("click", () => {
+        const isOpen = mainNav.classList.toggle("is-open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      function closeMobileNav() {
+        mainNav?.classList.remove("is-open");
+        menuButton?.setAttribute("aria-expanded", "false");
+      }
+
+      function setNavCursor(link) {
+        if (!navMenu || !link) return;
+
+        navMenu.style.setProperty("--nav-cursor-left", `${link.offsetLeft}px`);
+        navMenu.style.setProperty("--nav-cursor-width", `${link.offsetWidth}px`);
+        navMenu.style.setProperty("--nav-cursor-opacity", "1");
+      }
+
+      navMenu?.addEventListener("mouseleave", () => {
+        navMenu.style.setProperty("--nav-cursor-opacity", "0");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("mouseenter", () => setNavCursor(link));
+        link.addEventListener("focus", () => setNavCursor(link));
+        link.addEventListener("click", closeMobileNav);
+        link.addEventListener("blur", () => {
+          navMenu?.style.setProperty("--nav-cursor-opacity", "0");
+        });
+      });
+
+      navCta?.addEventListener("click", closeMobileNav);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMobileNav();
         }
       });
-    },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
-  );
-
-  animatedElements.forEach((element) => motionObserver.observe(element));
-} else {
-  animatedElements.forEach((element) => element.classList.add("is-visible"));
-}
-
-tourCards.forEach((card, index) => {
-  card.dataset.rank = String(index);
-});
-
-menuButton?.addEventListener("click", () => {
-  const isOpen = mainNav.classList.toggle("is-open");
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-});
-
-function normalize(value) {
-  return String(value || "").trim().toLowerCase();
-}
-
-function escapeHtml(value) {
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function refreshTourData() {
-  tourData = tourCards.map((card) => {
-    const image = card.querySelector("img");
-    const title = card.querySelector("h3")?.textContent.trim() || card.dataset.title;
-    const description = card.querySelector(".tour-content p")?.textContent.trim() || "";
-    const priceLine = card.querySelector(".tour-meta span")?.textContent.trim() || "";
-    const rating = card.querySelector(".tour-meta span:last-child")?.textContent.trim() || "";
-    const destination = normalize(card.dataset.destination);
-    const style = normalize(card.dataset.style);
-    const keywords = normalize(card.dataset.keywords);
-    const collections = normalize(card.dataset.collections).split(",").filter(Boolean);
-    const months = normalize(card.dataset.months).split(",").filter(Boolean);
-    const searchable = normalize(`${title} ${description} ${destination} ${style} ${keywords}`);
-
-    return {
-      card,
-      title,
-      description,
-      priceLine,
-      rating,
-      destination,
-      style,
-      keywords,
-      collections,
-      months,
-      searchable,
-      imageSrc: image?.src || "",
-      imageAlt: image?.alt || title
-    };
-  });
-}
-
-function getFilters() {
-  return {
-    query: normalize(searchInput?.value),
-    style: normalize(styleSelect?.value || "all"),
-    month: normalize(monthSelect?.value || "any")
-  };
-}
-
-function hasActiveFilters(filters) {
-  return Boolean(filters.query || filters.style !== "all" || filters.month !== "any");
-}
-
-function matchesExact(tour, filters) {
-  const queryTokens = filters.query.split(/\s+/).filter(Boolean);
-  const queryMatch = !queryTokens.length || queryTokens.every((token) => tour.searchable.includes(token));
-  const styleMatch = filters.style === "all" || tour.style === filters.style || tour.keywords.includes(filters.style);
-  const monthMatch = filters.month === "any" || tour.months.includes(filters.month);
-
-  return queryMatch && styleMatch && monthMatch;
-}
-
-function scoreSimilar(tour, filters) {
-  let score = 0;
-  const tokens = filters.query.split(/\s+/).filter(Boolean);
-
-  tokens.forEach((token) => {
-    if (tour.destination.includes(token)) score += 8;
-    if (normalize(tour.title).includes(token)) score += 5;
-    if (tour.searchable.includes(token)) score += 2;
-  });
-
-  if (filters.style !== "all" && (tour.style === filters.style || tour.keywords.includes(filters.style))) {
-    score += 4;
-  }
-
-  if (filters.month !== "any" && tour.months.includes(filters.month)) {
-    score += 3;
-  }
-
-  if (!tokens.length && filters.style === "all" && filters.month === "any") {
-    score = 1;
-  }
-
-  return score;
-}
-
-function getSimilarTours(filters) {
-  const scored = tourData
-    .map((tour) => ({ tour, score: scoreSimilar(tour, filters) }))
-    .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score || Number(a.tour.card.dataset.rank) - Number(b.tour.card.dataset.rank))
-    .map((item) => item.tour);
-
-  return scored.length ? scored.slice(0, 3) : tourData.slice(0, 3);
-}
-
-function monthLabel(value) {
-  if (value === "any") return "any month";
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
-function formatFilterSummary(filters) {
-  const parts = [];
-
-  if (filters.query) parts.push(`"${filters.query}"`);
-  if (filters.style !== "all") parts.push(styleLabels[filters.style] || filters.style);
-  if (filters.month !== "any") parts.push(monthLabel(filters.month));
-
-  return parts.length ? parts.join(" + ") : "all premium India tours";
-}
-
-function renderResultCard(tour) {
-  return `
-    <article class="search-result-card">
-      <img src="${escapeHtml(tour.imageSrc)}" alt="${escapeHtml(tour.imageAlt)}">
-      <div class="search-result-copy">
-        <div class="search-result-meta">
-          <span>${escapeHtml(tour.priceLine)}</span>
-          <span>${escapeHtml(styleLabels[tour.style] || tour.style)}</span>
-          <span>${escapeHtml(tour.rating)}</span>
-        </div>
-        <h3>${escapeHtml(tour.title)}</h3>
-        <p>${escapeHtml(tour.description)}</p>
-        <a href="https://wa.me/919451100275">Plan this trip</a>
-      </div>
-    </article>
-  `;
-}
-
-function renderCollectionCard(tour) {
-  return `
-    <article class="collection-result-card">
-      <img src="${escapeHtml(tour.imageSrc)}" alt="${escapeHtml(tour.imageAlt)}">
-      <div class="collection-result-copy">
-        <div class="collection-result-meta">
-          <span>${escapeHtml(tour.priceLine)}</span>
-          <span>${escapeHtml(styleLabels[tour.style] || tour.style)}</span>
-          <span>${escapeHtml(tour.rating)}</span>
-        </div>
-        <h4>${escapeHtml(tour.title)}</h4>
-        <p>${escapeHtml(tour.description)}</p>
-        <a href="https://wa.me/919451100275">Plan this trip</a>
-      </div>
-    </article>
-  `;
-}
-
-function renderSearchResults(tours, filters, exactMatch) {
-  if (!hasSearched && !hasActiveFilters(filters)) {
-    searchResults.hidden = true;
-    searchResultGrid.innerHTML = "";
-    return;
-  }
-
-  const summary = formatFilterSummary(filters);
-
-  searchResultsTitle.textContent = exactMatch
-    ? `${tours.length} matching tour${tours.length === 1 ? "" : "s"} found`
-    : "No exact match found";
-
-  searchResultsMessage.textContent = exactMatch
-    ? `Showing premium TravelX options for ${summary}.`
-    : `No exact match found, here are similar tours for ${summary}.`;
-
-  searchResultGrid.innerHTML = tours.map(renderResultCard).join("");
-  searchResultGrid.querySelectorAll(".search-result-card").forEach((card, index) => {
-    card.style.animationDelay = `${index * 70}ms`;
-  });
-  searchResults.hidden = false;
-}
-
-function scoreCollectionSimilarity(tour, collection) {
-  const relatedTerms = collectionRelations[collection] || [];
-  let score = 0;
-
-  relatedTerms.forEach((term) => {
-    if (tour.collections.includes(term)) score += 5;
-    if (tour.style === term) score += 4;
-    if (tour.keywords.includes(term)) score += 2;
-  });
-
-  if (collection === "ebike" && tour.style === "adventure") score += 4;
-  if (collection === "weekend" && Number(tour.card.dataset.days) <= 6) score += 3;
-  if (collection === "food-culture" && tour.style === "culture") score += 4;
-
-  return score;
-}
-
-function getSimilarCollectionTours(collection) {
-  const scored = tourData
-    .map((tour) => ({ tour, score: scoreCollectionSimilarity(tour, collection) }))
-    .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score || Number(a.tour.card.dataset.rank) - Number(b.tour.card.dataset.rank))
-    .map((item) => item.tour);
-
-  return scored.length ? scored.slice(0, 3) : tourData.slice(0, 3);
-}
-
-function renderCollectionResults(collection) {
-  const label = collectionLabels[collection] || "Selected collection";
-  const exactTours = tourData.filter((tour) => tour.collections.includes(collection));
-  const exactMatch = exactTours.length > 0;
-  const tours = exactMatch ? exactTours : getSimilarCollectionTours(collection);
-
-  collectionResultsTitle.textContent = exactMatch
-    ? `${label}: ${tours.length} curated option${tours.length === 1 ? "" : "s"}`
-    : `${label}: similar tours`;
-
-  collectionResultsMessage.textContent = exactMatch
-    ? collectionMessages[collection] || "Premium TravelX journeys matched to this collection."
-    : `No exact ${label.toLowerCase()} match is available yet, so here are similar premium TravelX tours.`;
-
-  collectionResultGrid.innerHTML = tours.map(renderCollectionCard).join("");
-  collectionResultGrid.querySelectorAll(".collection-result-card").forEach((card, index) => {
-    card.style.animationDelay = `${index * 70}ms`;
-  });
-  collectionResults.hidden = false;
-}
-
-function selectCollection(collection) {
-  collectionChips.forEach((chip) => {
-    const isActive = chip.dataset.collection === collection;
-    chip.classList.toggle("is-active", isActive);
-    chip.setAttribute("aria-pressed", String(isActive));
-  });
-
-  if (!collectionResults.hidden) {
-    collectionResults.classList.add("is-switching");
-    window.setTimeout(() => {
-      renderCollectionResults(collection);
-      collectionResults.classList.remove("is-switching");
-    }, 120);
-    return;
-  }
-
-  renderCollectionResults(collection);
-}
-
-function setActiveTestimonial(index) {
-  if (!testimonialCards.length) return;
-
-  activeTestimonialIndex = (index + testimonialCards.length) % testimonialCards.length;
-
-  testimonialCards.forEach((card, cardIndex) => {
-    card.classList.toggle("is-active", cardIndex === activeTestimonialIndex);
-  });
-
-  testimonialDots.forEach((dot, dotIndex) => {
-    dot.classList.toggle("is-active", dotIndex === activeTestimonialIndex);
-  });
-}
-
-function startTestimonialRotation() {
-  if (testimonialCards.length <= 1) return;
-
-  window.clearInterval(testimonialInterval);
-  testimonialInterval = window.setInterval(() => {
-    setActiveTestimonial(activeTestimonialIndex + 1);
-  }, 6000);
-}
-
-function applyFilters({ forceResults = false } = {}) {
-  const filters = getFilters();
-  const active = hasActiveFilters(filters);
-  const exactMatches = tourData.filter((tour) => matchesExact(tour, filters));
-  const exactMatch = !active || exactMatches.length > 0;
-  const visibleTours = exactMatch ? (active ? exactMatches : tourData) : getSimilarTours(filters);
-  const visibleCards = new Set(visibleTours.map((tour) => tour.card));
-
-  tourCards.forEach((card) => {
-    const shouldShow = visibleCards.has(card);
-    card.hidden = !shouldShow;
-
-    if (shouldShow) {
-      card.classList.remove("motion-fade");
-      window.requestAnimationFrame(() => card.classList.add("motion-fade"));
-    }
-  });
-
-  emptyState.hidden = exactMatch || !active;
-
-  if (forceResults || active) {
-    renderSearchResults(visibleTours, filters, exactMatch);
-  } else {
-    searchResults.hidden = true;
-    searchResultGrid.innerHTML = "";
-  }
-}
-
-function applySort() {
-  tourCards = [...tourCards].sort((a, b) => {
-    if (sortSelect.value === "price-low") {
-      return Number(a.dataset.price) - Number(b.dataset.price);
-    }
-
-    if (sortSelect.value === "days") {
-      return Number(a.dataset.days) - Number(b.dataset.days);
-    }
-
-    return Number(a.dataset.rank) - Number(b.dataset.rank);
-  });
-
-  tourCards.forEach((card) => tourGrid.appendChild(card));
-  tourCards.forEach((card, index) => {
-    card.classList.remove("motion-fade");
-    card.style.animationDelay = `${Math.min(index, 8) * 45}ms`;
-    window.requestAnimationFrame(() => card.classList.add("motion-fade"));
-  });
-  refreshTourData();
-  applyFilters();
-}
-
-refreshTourData();
-
-searchForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  hasSearched = true;
-  applyFilters({ forceResults: true });
-});
-
-searchInput?.addEventListener("input", () => applyFilters());
-styleSelect?.addEventListener("change", () => applyFilters());
-monthSelect?.addEventListener("change", () => applyFilters());
-sortSelect?.addEventListener("change", applySort);
-
-collectionChips.forEach((chip) => {
-  chip.addEventListener("click", () => {
-    selectCollection(chip.dataset.collection);
-  });
-});
-
-testimonialDots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    setActiveTestimonial(Number(dot.dataset.testimonialIndex));
-    startTestimonialRotation();
-  });
-});
-
-if (testimonialSection) {
-  const testimonialObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          testimonialSection.classList.add("is-visible");
-          testimonialObserver.disconnect();
+
+      function normalize(value) {
+        return String(value || "").trim().toLowerCase();
+      }
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function refreshTourData() {
+        tourData = tourCards.map((card) => {
+          const image = card.querySelector("img");
+          const title = card.querySelector("h3")?.textContent.trim() || card.dataset.title;
+          const description = card.querySelector(".tour-content p")?.textContent.trim() || "";
+          const priceLine = card.querySelector(".tour-meta span")?.textContent.trim() || "";
+          const rating = card.querySelector(".tour-meta span:last-child")?.textContent.trim() || "";
+          const destination = normalize(card.dataset.destination);
+          const style = normalize(card.dataset.style);
+          const keywords = normalize(card.dataset.keywords);
+          const collections = normalize(card.dataset.collections).split(",").filter(Boolean);
+          const months = normalize(card.dataset.months).split(",").filter(Boolean);
+          const searchable = normalize(`${title} ${description} ${destination} ${style} ${keywords}`);
+
+          return {
+            card,
+            title,
+            description,
+            priceLine,
+            rating,
+            destination,
+            style,
+            keywords,
+            collections,
+            months,
+            searchable,
+            imageSrc: image?.src || "",
+            imageAlt: image?.alt || title
+          };
+        });
+      }
+
+      function getFilters() {
+        return {
+          query: normalize(searchInput?.value),
+          style: normalize(styleSelect?.value || "all"),
+          month: normalize(monthSelect?.value || "any")
+        };
+      }
+
+      function hasActiveFilters(filters) {
+        return Boolean(filters.query || filters.style !== "all" || filters.month !== "any");
+      }
+
+      function matchesExact(tour, filters) {
+        const queryTokens = filters.query.split(/\s+/).filter(Boolean);
+        const queryMatch = !queryTokens.length || queryTokens.every((token) => tour.searchable.includes(token));
+        const styleMatch = filters.style === "all" || tour.style === filters.style || tour.keywords.includes(filters.style);
+        const monthMatch = filters.month === "any" || tour.months.includes(filters.month);
+        return queryMatch && styleMatch && monthMatch;
+      }
+
+      function scoreSimilar(tour, filters) {
+        let score = 0;
+        filters.query.split(/\s+/).filter(Boolean).forEach((token) => {
+          if (tour.destination.includes(token)) score += 8;
+          if (normalize(tour.title).includes(token)) score += 5;
+          if (tour.searchable.includes(token)) score += 2;
+        });
+        if (filters.style !== "all" && (tour.style === filters.style || tour.keywords.includes(filters.style))) score += 4;
+        if (filters.month !== "any" && tour.months.includes(filters.month)) score += 3;
+        return score;
+      }
+
+      function getSimilarTours(filters) {
+        const scored = tourData
+          .map((tour) => ({ tour, score: scoreSimilar(tour, filters) }))
+          .filter((item) => item.score > 0)
+          .sort((a, b) => b.score - a.score || Number(a.tour.card.dataset.rank) - Number(b.tour.card.dataset.rank))
+          .map((item) => item.tour);
+        return scored.length ? scored.slice(0, 3) : tourData.slice(0, 3);
+      }
+
+      function monthLabel(value) {
+        return value === "any" ? "any month" : value.charAt(0).toUpperCase() + value.slice(1);
+      }
+
+      function formatFilterSummary(filters) {
+        const parts = [];
+        if (filters.query) parts.push(`"${filters.query}"`);
+        if (filters.style !== "all") parts.push(styleLabels[filters.style] || filters.style);
+        if (filters.month !== "any") parts.push(monthLabel(filters.month));
+        return parts.length ? parts.join(" + ") : "all premium India tours";
+      }
+
+      function renderResultCard(tour) {
+        return `
+          <article class="search-result-card">
+            <img src="${escapeHtml(tour.imageSrc)}" alt="${escapeHtml(tour.imageAlt)}">
+            <div class="search-result-copy">
+              <div class="search-result-meta">
+                <span>${escapeHtml(tour.priceLine)}</span>
+                <span>${escapeHtml(styleLabels[tour.style] || tour.style)}</span>
+                <span>${escapeHtml(tour.rating)}</span>
+              </div>
+              <h3>${escapeHtml(tour.title)}</h3>
+              <p>${escapeHtml(tour.description)}</p>
+              <a href="https://wa.me/919451100275">Plan this trip</a>
+            </div>
+          </article>
+        `;
+      }
+
+      function renderSearchResults(tours, filters, exactMatch) {
+        const summary = formatFilterSummary(filters);
+        searchResultsTitle.textContent = exactMatch
+          ? `${tours.length} matching tour${tours.length === 1 ? "" : "s"} found`
+          : "No exact match found";
+        searchResultsMessage.textContent = exactMatch
+          ? `Showing premium TravelX options for ${summary}.`
+          : `No exact match found, here are similar tours for ${summary}.`;
+        searchResultGrid.innerHTML = tours.map(renderResultCard).join("");
+        searchResults.hidden = false;
+      }
+
+      function renderCollectionCard(tour) {
+        return `
+          <article class="collection-result-card">
+            <img src="${escapeHtml(tour.imageSrc)}" alt="${escapeHtml(tour.imageAlt)}">
+            <div class="collection-result-copy">
+              <div class="collection-result-meta">
+                <span>${escapeHtml(tour.priceLine)}</span>
+                <span>${escapeHtml(styleLabels[tour.style] || tour.style)}</span>
+                <span>${escapeHtml(tour.rating)}</span>
+              </div>
+              <h4>${escapeHtml(tour.title)}</h4>
+              <p>${escapeHtml(tour.description)}</p>
+              <a href="https://wa.me/919451100275">Plan this trip</a>
+            </div>
+          </article>
+        `;
+      }
+
+      function renderCollectionResults(collection) {
+        const label = collectionLabels[collection] || "Selected collection";
+        const tours = tourData.filter((tour) => tour.collections.includes(collection));
+        const visibleTours = tours.length ? tours : tourData.slice(0, 3);
+        collectionResultsTitle.textContent = `${label}: ${visibleTours.length} curated option${visibleTours.length === 1 ? "" : "s"}`;
+        collectionResultsMessage.textContent = collectionMessages[collection] || "Premium TravelX journeys matched to this collection.";
+        collectionResultGrid.innerHTML = visibleTours.map(renderCollectionCard).join("");
+        collectionResults.hidden = false;
+      }
+
+      function selectCollection(collection) {
+        collectionChips.forEach((chip) => {
+          const isActive = chip.dataset.collection === collection;
+          chip.classList.toggle("is-active", isActive);
+          chip.setAttribute("aria-pressed", String(isActive));
+        });
+        renderCollectionResults(collection);
+      }
+
+      function setActiveTestimonial(index) {
+        if (!testimonialCards.length) return;
+        activeTestimonialIndex = (index + testimonialCards.length) % testimonialCards.length;
+        testimonialCards.forEach((card, cardIndex) => card.classList.toggle("is-active", cardIndex === activeTestimonialIndex));
+        testimonialDots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === activeTestimonialIndex));
+      }
+
+      function startTestimonialRotation() {
+        if (testimonialCards.length <= 1) return;
+        window.clearInterval(testimonialInterval);
+        testimonialInterval = window.setInterval(() => setActiveTestimonial(activeTestimonialIndex + 1), 6000);
+      }
+
+      function applyFilters({ forceResults = false } = {}) {
+        const filters = getFilters();
+        const active = hasActiveFilters(filters);
+        const exactMatches = tourData.filter((tour) => matchesExact(tour, filters));
+        const exactMatch = !active || exactMatches.length > 0;
+        const visibleTours = exactMatch ? (active ? exactMatches : tourData) : getSimilarTours(filters);
+        const visibleCards = new Set(visibleTours.map((tour) => tour.card));
+
+        tourCards.forEach((card) => {
+          card.hidden = !visibleCards.has(card);
+          if (!card.hidden) {
+            card.classList.remove("motion-fade");
+            window.requestAnimationFrame(() => card.classList.add("motion-fade"));
+          }
+        });
+
+        emptyState.hidden = exactMatch || !active;
+        if (forceResults || active) {
+          renderSearchResults(visibleTours, filters, exactMatch);
+        } else {
+          searchResults.hidden = true;
+          searchResultGrid.innerHTML = "";
         }
+      }
+
+      function applySort() {
+        tourCards = [...tourCards].sort((a, b) => {
+          if (sortSelect.value === "price-low") return Number(a.dataset.price) - Number(b.dataset.price);
+          if (sortSelect.value === "days") return Number(a.dataset.days) - Number(b.dataset.days);
+          return Number(a.dataset.rank) - Number(b.dataset.rank);
+        });
+        tourCards.forEach((card) => tourGrid.appendChild(card));
+        refreshTourData();
+        applyFilters();
+      }
+
+      refreshTourData();
+      searchForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        hasSearched = true;
+        applyFilters({ forceResults: true });
       });
-    },
-    { threshold: 0.2 }
-  );
+      searchInput?.addEventListener("input", () => applyFilters());
+      styleSelect?.addEventListener("change", () => applyFilters());
+      monthSelect?.addEventListener("change", () => applyFilters());
+      sortSelect?.addEventListener("change", applySort);
+      collectionChips.forEach((chip) => chip.addEventListener("click", () => selectCollection(chip.dataset.collection)));
+      testimonialDots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          setActiveTestimonial(Number(dot.dataset.testimonialIndex));
+          startTestimonialRotation();
+        });
+      });
+      startTestimonialRotation();
 
-  testimonialObserver.observe(testimonialSection);
-  startTestimonialRotation();
-}
-
-const footerHoverWord = document.querySelector(".footer-hover-word");
-const footerWordSvg = document.querySelector(".footer-word-svg");
-const footerRevealMask = document.querySelector("#footerRevealMask");
-
-if (footerHoverWord && footerWordSvg && footerRevealMask) {
-  footerHoverWord.addEventListener("mousemove", (event) => {
-    const rect = footerWordSvg.getBoundingClientRect();
-    const cx = ((event.clientX - rect.left) / rect.width) * 100;
-    const cy = ((event.clientY - rect.top) / rect.height) * 100;
-
-    footerRevealMask.setAttribute("cx", `${Math.max(0, Math.min(100, cx))}%`);
-    footerRevealMask.setAttribute("cy", `${Math.max(0, Math.min(100, cy))}%`);
-  });
-}
-
-document.querySelector(".footer-form")?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const button = event.currentTarget.querySelector("button");
-  const originalText = button.textContent;
-
-  button.textContent = "Sent";
-  window.setTimeout(() => {
-    button.textContent = originalText;
-  }, 1800);
-});
-
+      document.querySelector(".footer-form")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const button = event.currentTarget.querySelector("button");
+        const originalText = button.textContent;
+        button.textContent = "Sent";
+        window.setTimeout(() => {
+          button.textContent = originalText;
+        }, 1800);
+      });
     </script>
   </body>
 </html>
-
