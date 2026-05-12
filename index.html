@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TravelX Agency | Active Holidays, Bike Tours & Curated Adventures</title>
-    <meta name="description" content="TravelX Agency plans premium India holidays across Kerala, Goa, Rajasthan, Ladakh, and curated private destinations.">
+    <title>TravelX India | Premium Destination-Based Holidays</title>
+    <meta name="description" content="TravelX curates premium India-only private holidays across Kerala, Goa, Rajasthan, Sikkim, Himachal, Uttarakhand, and Kashmir.">
     <link rel="preconnect" href="https://images.unsplash.com">
     <style>
       :root {
-        --ink: #22302f;
-        --muted: #65716f;
+        --ink: #172522;
+        --muted: #64716e;
         --paper: #fffdf8;
         --surface: #ffffff;
         --line: #dfe6df;
         --forest: #1f5d50;
-        --forest-dark: #123e37;
+        --forest-dark: #0b2522;
         --clay: #c5653d;
         --gold: #d99d34;
-        --sky: #d7edf1;
-        --shadow: 0 16px 45px rgba(30, 48, 44, 0.14);
+        --mist: #d7edf1;
+        --shadow: 0 22px 60px rgba(14, 36, 32, 0.14);
       }
 
       * {
@@ -44,7 +44,7 @@
         z-index: 999;
         pointer-events: none;
         background: var(--paper);
-        animation: pageCurtain 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation: curtain 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
 
       img {
@@ -57,10 +57,15 @@
         text-decoration: none;
       }
 
-      button,
-      input,
-      select {
+      button {
         font: inherit;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
       }
 
       .sr-only {
@@ -78,53 +83,36 @@
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 20;
-        background: rgba(255, 253, 248, 0.94);
-        border-bottom: 1px solid rgba(34, 48, 47, 0.1);
+        z-index: 30;
+        background: rgba(255, 253, 248, 0.9);
+        border-bottom: 1px solid rgba(23, 37, 34, 0.1);
         backdrop-filter: blur(16px);
-        animation: headerDrop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       .main-nav,
       .section,
-      .collections,
-      .why-section,
-      .about,
-      .destinations,
-      .footer {
+      .dest-detail,
+      .footer-inner {
         max-width: 1200px;
         margin: 0 auto;
         padding-inline: 24px;
-      }
-
-      .brand,
-      .nav-cta,
-      .hero-call,
-      .search-button,
-      .footer-whatsapp {
-        display: inline-flex;
-        align-items: center;
-      }
-
-      .stars,
-      .testimonial-rating {
-        color: var(--gold);
-        letter-spacing: 1px;
       }
 
       .main-nav {
         display: grid;
         grid-template-columns: auto 1fr auto;
         align-items: center;
-        min-height: 72px;
-        gap: 26px;
+        min-height: 76px;
+        gap: 24px;
       }
 
       .brand {
+        display: inline-flex;
+        align-items: center;
         gap: 10px;
         color: var(--forest-dark);
-        font-weight: 800;
         font-size: 1.45rem;
+        font-weight: 850;
       }
 
       .brand-mark {
@@ -141,18 +129,15 @@
       .nav-menu {
         position: relative;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        justify-self: center;
         width: fit-content;
-        gap: 0;
         padding: 4px;
         color: rgba(255, 255, 255, 0.86);
         background: rgba(18, 62, 55, 0.94);
         border: 1px solid rgba(217, 157, 52, 0.22);
         border-radius: 999px;
-        backdrop-filter: blur(14px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 42px rgba(18, 62, 55, 0.14);
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         font-weight: 800;
         letter-spacing: 0.05em;
         text-transform: uppercase;
@@ -165,16 +150,15 @@
         position: absolute;
         left: 50%;
         z-index: 0;
-        width: 78%;
+        width: 76%;
         height: 1px;
         pointer-events: none;
         transform: translateX(-50%);
-        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.78), rgba(215, 237, 241, 0.46), transparent);
+        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.74), rgba(215, 237, 241, 0.4), transparent);
       }
 
       .nav-menu::before {
         top: -1px;
-        opacity: 0.82;
       }
 
       .nav-menu::after {
@@ -187,129 +171,63 @@
         z-index: 1;
         padding: 9px 12px;
         border-radius: 999px;
+        transition: color 160ms ease;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a:focus-visible {
+        color: var(--gold);
       }
 
       .nav-cursor {
         position: absolute;
         z-index: 0;
-        left: var(--nav-cursor-left, 0);
         top: 50%;
+        left: var(--nav-cursor-left, 0);
         width: var(--nav-cursor-width, 0);
         height: 34px;
-        pointer-events: none;
         opacity: var(--nav-cursor-opacity, 0);
-        border: 1px solid rgba(217, 157, 52, 0.5);
+        pointer-events: none;
+        border: 1px solid rgba(217, 157, 52, 0.46);
         border-radius: 999px;
         background: rgba(255, 253, 248, 0.1);
-        box-shadow: inset 0 0 0 1px rgba(215, 237, 241, 0.16), 0 12px 26px rgba(8, 32, 29, 0.18);
         transform: translateY(-50%);
-        transition: left 260ms ease, width 260ms ease, opacity 180ms ease;
-      }
-
-      .nav-menu a,
-      .footer-column a {
-        transition: color 160ms ease;
-      }
-
-      .nav-menu a:hover,
-      .footer-column a:hover {
-        color: var(--gold);
+        transition: left 240ms ease, width 240ms ease, opacity 180ms ease;
       }
 
       .nav-cta,
-      .hero-call,
-      .search-button,
-      .footer-whatsapp,
-      .footer-form button {
+      .primary-cta,
+      .ghost-cta,
+      .inquiry-button {
         position: relative;
-        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
         justify-content: center;
         gap: 8px;
-        border: 0;
+        min-height: 46px;
+        padding: 0 18px;
+        overflow: hidden;
         color: #fff;
         background: var(--clay);
-        border-radius: 6px;
-        font-weight: 750;
+        border: 0;
+        border-radius: 7px;
+        font-weight: 800;
         cursor: pointer;
         transition: transform 160ms ease, background 160ms ease;
       }
 
-      .nav-cta::before,
-      .hero-call::before,
-      .search-button::before,
-      .footer-whatsapp::before,
-      .footer-form button::before,
-      .nav-cta::after,
-      .hero-call::after,
-      .search-button::after,
-      .footer-whatsapp::after,
-      .footer-form button::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        width: 76%;
-        height: 1px;
-        pointer-events: none;
-        opacity: 0;
-        transform: translateX(-50%);
-        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.9), rgba(215, 237, 241, 0.78), transparent);
-        transition: opacity 500ms ease-in-out;
-      }
-
-      .nav-cta::before,
-      .hero-call::before,
-      .search-button::before,
-      .footer-whatsapp::before,
-      .footer-form button::before {
-        top: 0;
-      }
-
-      .nav-cta::after,
-      .hero-call::after,
-      .search-button::after,
-      .footer-whatsapp::after,
-      .footer-form button::after {
-        bottom: 0;
-      }
-
-      .nav-cta:hover::before,
-      .hero-call:hover::before,
-      .search-button:hover::before,
-      .footer-whatsapp:hover::before,
-      .footer-form button:hover::before,
-      .nav-cta:focus-visible::before,
-      .hero-call:focus-visible::before,
-      .search-button:focus-visible::before,
-      .footer-whatsapp:focus-visible::before,
-      .footer-form button:focus-visible::before {
-        opacity: 1;
-      }
-
-      .nav-cta:hover::after,
-      .hero-call:hover::after,
-      .search-button:hover::after,
-      .footer-whatsapp:hover::after,
-      .footer-form button:hover::after,
-      .nav-cta:focus-visible::after,
-      .hero-call:focus-visible::after,
-      .search-button:focus-visible::after,
-      .footer-whatsapp:focus-visible::after,
-      .footer-form button:focus-visible::after {
-        opacity: 0.42;
-      }
-
-      .nav-cta {
-        min-height: 44px;
-        padding: 0 16px;
-      }
-
       .nav-cta:hover,
-      .hero-call:hover,
-      .search-button:hover,
-      .footer-whatsapp:hover,
-      .footer-form button:hover {
+      .primary-cta:hover,
+      .ghost-cta:hover,
+      .inquiry-button:hover {
         background: #a84e2c;
         transform: translateY(-1px);
+      }
+
+      .ghost-cta {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
       }
 
       .menu-toggle {
@@ -317,27 +235,36 @@
         width: 44px;
         height: 44px;
         border: 1px solid var(--line);
-        border-radius: 6px;
+        border-radius: 7px;
         background: #fff;
         color: var(--ink);
       }
 
+      .view {
+        display: block;
+      }
+
+      .view[hidden] {
+        display: none;
+      }
+
       .hero {
         position: relative;
-        min-height: 690px;
+        min-height: 720px;
         display: grid;
         align-items: end;
         overflow: hidden;
+        color: #fff;
       }
 
-      .hero-media {
+      .hero::before {
+        content: "";
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, rgba(10, 28, 26, 0.78), rgba(10, 28, 26, 0.35), rgba(10, 28, 26, 0.1)),
-          url("https://images.unsplash.com/photo-1475688621402-4257c812d6db?auto=format&fit=crop&w=1800&q=82") center / cover;
-        animation: heroKenBurns 18s ease-in-out infinite alternate;
-        transform-origin: center;
+          linear-gradient(90deg, rgba(7, 23, 22, 0.82), rgba(7, 23, 22, 0.34), rgba(7, 23, 22, 0.08)),
+          url("https://images.unsplash.com/photo-1622308644420-b20142dc993c?auto=format&fit=crop&w=1800&q=84") center / cover;
+        animation: slowZoom 20s ease-in-out infinite alternate;
       }
 
       .hero-content {
@@ -345,38 +272,11 @@
         z-index: 1;
         width: min(1160px, calc(100% - 48px));
         margin: 0 auto;
-        padding: 96px 0 46px;
-        color: #fff;
-      }
-
-      .hero .eyebrow,
-      .hero h1,
-      .hero-copy,
-      .hero-actions,
-      .search-panel {
-        opacity: 0;
-        transform: translateY(26px);
-        animation: heroContentRise 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-
-      .hero h1 {
-        animation-delay: 90ms;
-      }
-
-      .hero-copy {
-        animation-delay: 180ms;
-      }
-
-      .hero-actions {
-        animation-delay: 270ms;
-      }
-
-      .search-panel {
-        animation-delay: 380ms;
+        padding: 120px 0 54px;
       }
 
       .eyebrow {
-        margin: 0 0 10px;
+        margin: 0 0 12px;
         color: var(--clay);
         font-size: 0.78rem;
         font-weight: 850;
@@ -384,422 +284,244 @@
         text-transform: uppercase;
       }
 
-      .hero .eyebrow {
+      .hero .eyebrow,
+      .dark .eyebrow,
+      .dest-hero .eyebrow {
         color: #ffd38e;
       }
 
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
-      }
-
       h1 {
-        max-width: 740px;
-        margin-bottom: 16px;
-        font-size: clamp(3.4rem, 9vw, 7.4rem);
+        max-width: 840px;
+        margin-bottom: 18px;
+        font-size: clamp(3.35rem, 8vw, 7.15rem);
         line-height: 0.92;
-        letter-spacing: 0;
       }
 
       h2 {
         margin-bottom: 0;
-        font-size: clamp(2rem, 4vw, 3.4rem);
+        font-size: clamp(2rem, 4vw, 3.45rem);
         line-height: 1.02;
-        letter-spacing: 0;
       }
 
       .hero-copy {
-        max-width: 630px;
-        margin-bottom: 18px;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.15rem;
+        max-width: 680px;
+        margin-bottom: 24px;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 1.12rem;
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-bottom: 28px;
       }
 
-      .hero-call {
-        min-height: 46px;
-        padding: 0 18px;
-      }
-
-      .search-panel {
-        display: grid;
-        grid-template-columns: minmax(250px, 1.35fr) minmax(170px, 0.8fr) minmax(150px, 0.65fr) auto;
-        gap: 12px;
-        padding: 16px;
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 8px;
-        box-shadow: var(--shadow);
-      }
-
-      label {
-        display: grid;
-        gap: 7px;
-        color: var(--muted);
-        font-size: 0.76rem;
-        font-weight: 750;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      input,
-      select {
-        width: 100%;
-        min-height: 48px;
-        padding: 0 12px;
-        color: var(--ink);
-        background: #f8faf7;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        outline: 0;
-      }
-
-      input:focus,
-      select:focus {
-        border-color: var(--forest);
-        box-shadow: 0 0 0 3px rgba(31, 93, 80, 0.14);
-      }
-
-      .search-button {
-        min-height: 48px;
-        align-self: end;
-        padding: 0 22px;
-      }
-
-      .search-results,
-      .collection-results,
-      .empty-state {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: var(--shadow);
-      }
-
-      .search-results {
-        margin-top: 14px;
-        padding: 18px;
-        color: var(--ink);
-        animation: resultPanelIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-
-      .search-results[hidden],
-      .collection-results[hidden],
-      .tour-card[hidden],
-      .empty-state[hidden] {
-        display: none;
-      }
-
-      .search-results-heading,
-      .collection-results-heading {
-        display: grid;
-        gap: 4px;
-        margin-bottom: 14px;
-      }
-
-      .search-results-heading .eyebrow,
-      .collection-results-heading .eyebrow {
-        margin-bottom: 0;
-      }
-
-      .search-results-heading h2,
-      .collection-results-heading h3 {
-        font-size: clamp(1.35rem, 2.2vw, 2rem);
-        line-height: 1.1;
-      }
-
-      .search-results-heading p:last-child,
-      .collection-results-heading p:last-child {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .search-result-grid,
-      .collection-result-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .search-result-card,
-      .collection-result-card,
-      .tour-card {
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-      }
-
-      .search-result-card {
-        display: grid;
-        grid-template-columns: 112px 1fr;
-        min-height: 124px;
-      }
-
-      .search-result-card img {
-        width: 112px;
-        height: 100%;
-        min-height: 124px;
-        object-fit: cover;
-      }
-
-      .search-result-copy {
-        display: grid;
-        align-content: center;
-        gap: 6px;
-        padding: 12px 12px 12px 14px;
-      }
-
-      .search-result-meta,
-      .collection-result-meta,
-      .tour-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        color: var(--muted);
-        font-size: 0.78rem;
-        font-weight: 750;
-        text-transform: uppercase;
-      }
-
-      .search-result-card h3,
-      .collection-result-card h4 {
-        margin: 0;
-        font-size: 1rem;
-        line-height: 1.2;
-      }
-
-      .search-result-card p,
-      .collection-result-card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      .search-result-card a,
-      .collection-result-card a,
-      .tour-content a {
-        width: fit-content;
-        color: var(--clay);
-        font-weight: 850;
-      }
-
-      .section,
-      .collections,
-      .why-section,
-      .about,
-      .destinations {
-        padding-top: 76px;
-        padding-bottom: 76px;
+      .section {
+        padding-top: 82px;
+        padding-bottom: 82px;
       }
 
       .section-heading {
         display: flex;
         align-items: end;
         justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 26px;
+        gap: 28px;
+        margin-bottom: 28px;
       }
 
-      .collections {
-        display: grid;
-        grid-template-columns: 0.9fr 1.5fr;
-        gap: 52px;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-      }
-
-      .collection-intro p:last-child {
-        margin: 18px 0 0;
+      .section-heading p:last-child {
+        max-width: 470px;
+        margin: 0;
         color: var(--muted);
       }
 
-      .collection-list,
-      .destination-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-content: start;
-      }
-
-      .collection-list button,
-      .destination-list a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-        padding: 0 16px;
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        color: var(--forest-dark);
-        cursor: pointer;
-        font-weight: 750;
-        box-shadow: 0 8px 22px rgba(30, 48, 44, 0.06);
-        transition: transform 220ms ease, border-color 220ms ease, color 220ms ease, background 220ms ease;
-      }
-
-      .collection-list button:hover,
-      .destination-list a:hover {
-        border-color: var(--clay);
-        color: var(--clay);
-        transform: translateY(-2px);
-      }
-
-      .collection-list button.is-active {
-        color: #fff;
-        background: var(--forest);
-        border-color: var(--forest);
-      }
-
-      .collection-results {
-        grid-column: 1 / -1;
+      .collections-grid {
         display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
+      }
+
+      .collection-card,
+      .destination-card,
+      .tour-card,
+      .highlight-card {
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        box-shadow: 0 14px 34px rgba(30, 48, 44, 0.08);
+        transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+      }
+
+      .collection-card {
+        min-height: 210px;
         padding: 24px;
       }
 
-      .collection-result-card img {
-        height: 190px;
-        object-fit: cover;
-      }
-
-      .collection-result-copy {
-        padding: 16px;
-      }
-
-      .with-action {
-        align-items: center;
-      }
-
-      .sort-control {
-        min-width: 190px;
-      }
-
-      .tour-grid {
+      .collection-card i {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        margin-bottom: 22px;
+        color: var(--gold);
+        background: rgba(217, 157, 52, 0.1);
+        border: 1px solid rgba(217, 157, 52, 0.16);
+        border-radius: 999px;
       }
 
-      .tour-card {
-        box-shadow: 0 16px 34px rgba(30, 48, 44, 0.09);
+      .collection-card h3,
+      .destination-card h3,
+      .tour-card h3 {
+        margin-bottom: 9px;
+        line-height: 1.16;
       }
 
-      .tour-card img {
-        height: 245px;
+      .collection-card p,
+      .destination-card p,
+      .tour-card p,
+      .highlight-card p {
+        color: var(--muted);
+      }
+
+      .collection-card:hover,
+      .destination-card:hover,
+      .tour-card:hover {
+        border-color: rgba(197, 101, 61, 0.26);
+        box-shadow: 0 24px 58px rgba(30, 48, 44, 0.14);
+        transform: translateY(-5px);
+      }
+
+      .destinations-section {
+        background: linear-gradient(180deg, rgba(215, 237, 241, 0.36), rgba(255, 253, 248, 0));
+      }
+
+      .destination-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .destination-card {
+        display: grid;
+        min-height: 430px;
+        color: #fff;
+        background: var(--forest-dark);
+      }
+
+      .destination-card figure {
+        position: relative;
+        min-height: 250px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .destination-card img {
+        height: 100%;
+        min-height: 250px;
         object-fit: cover;
         transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      .tour-card:hover,
-      .collection-result-card:hover,
-      .search-result-card:hover {
-        border-color: rgba(197, 101, 61, 0.3);
-        box-shadow: 0 22px 48px rgba(30, 48, 44, 0.14);
-        transform: translateY(-4px);
+      .destination-card:hover img {
+        transform: scale(1.06);
       }
 
-      .tour-card:hover img,
-      .collection-result-card:hover img,
-      .search-result-card:hover img {
-        transform: scale(1.055);
+      .destination-badge {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        padding: 7px 10px;
+        color: #ffd38e;
+        background: rgba(7, 23, 22, 0.62);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        font-size: 0.76rem;
+        font-weight: 850;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
       }
 
-      .tour-content {
-        padding: 18px;
+      .destination-copy {
+        padding: 20px;
+        background: linear-gradient(135deg, #0b2522, #123e37);
       }
 
-      .tour-meta {
-        justify-content: space-between;
-        margin-bottom: 10px;
+      .destination-copy p {
+        margin-bottom: 16px;
+        color: rgba(255, 255, 255, 0.7);
       }
 
-      .tour-meta span:last-child {
-        color: var(--forest);
+      .destination-link {
+        color: #ffd38e;
+        font-weight: 850;
       }
 
-      .tour-content h3 {
-        margin-bottom: 9px;
-        font-size: 1.24rem;
-        line-height: 1.2;
+      .trust-band {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        color: #fff;
+        background: rgba(217, 157, 52, 0.2);
+        border-radius: 12px;
       }
 
-      .tour-content p,
-      .about p,
-      .footer p {
-        color: var(--muted);
+      .trust-band div {
+        padding: 22px;
+        background: linear-gradient(135deg, #0b2522, #123e37);
       }
 
-      .empty-state {
-        margin: 24px 0 0;
-        padding: 18px;
-        color: var(--muted);
+      .trust-band strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #ffd38e;
+        font-size: 1.65rem;
       }
 
-      .scroll-showcase {
+      .trust-band span {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.9rem;
+      }
+
+      .explore-strip {
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(255, 253, 248, 0), rgba(215, 237, 241, 0.34) 48%, rgba(255, 253, 248, 0));
+      }
+
+      .explore-track-wrap {
+        position: relative;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 82px 24px;
-        overflow: hidden;
-        background:
-          linear-gradient(180deg, rgba(255, 253, 248, 0), rgba(215, 237, 241, 0.36) 48%, rgba(255, 253, 248, 0));
       }
 
-      .scroll-showcase-heading {
-        display: grid;
-        grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.62fr);
-        align-items: end;
-        gap: 32px;
-        margin-bottom: 28px;
-      }
-
-      .scroll-showcase-heading p:last-child {
-        margin: 0;
-        color: var(--muted);
-        font-size: 1.02rem;
-      }
-
-      .scroll-track-wrap {
-        position: relative;
-        margin-inline: -24px;
-      }
-
-      .scroll-track-wrap::before,
-      .scroll-track-wrap::after {
+      .explore-track-wrap::before,
+      .explore-track-wrap::after {
         content: "";
         position: absolute;
         top: 0;
-        bottom: 0;
+        bottom: 18px;
         z-index: 2;
-        width: 72px;
+        width: 70px;
         pointer-events: none;
       }
 
-      .scroll-track-wrap::before {
+      .explore-track-wrap::before {
         left: 0;
         background: linear-gradient(90deg, var(--paper), rgba(255, 253, 248, 0));
       }
 
-      .scroll-track-wrap::after {
+      .explore-track-wrap::after {
         right: 0;
         background: linear-gradient(270deg, var(--paper), rgba(255, 253, 248, 0));
       }
 
-      .scroll-track {
+      .explore-track {
         display: grid;
         grid-auto-flow: column;
         grid-auto-columns: minmax(320px, 43%);
         gap: 18px;
         overflow-x: auto;
-        overscroll-behavior-inline: contain;
         padding: 4px 24px 18px;
         scroll-behavior: smooth;
         scroll-padding-inline: 24px;
@@ -808,21 +530,7 @@
         scrollbar-color: rgba(197, 101, 61, 0.48) rgba(18, 62, 55, 0.08);
       }
 
-      .scroll-track::-webkit-scrollbar {
-        height: 9px;
-      }
-
-      .scroll-track::-webkit-scrollbar-track {
-        background: rgba(18, 62, 55, 0.08);
-        border-radius: 999px;
-      }
-
-      .scroll-track::-webkit-scrollbar-thumb {
-        background: linear-gradient(90deg, rgba(197, 101, 61, 0.72), rgba(217, 157, 52, 0.66));
-        border-radius: 999px;
-      }
-
-      .scroll-card {
+      .explore-card {
         position: relative;
         min-height: 430px;
         overflow: hidden;
@@ -835,8 +543,8 @@
         isolation: isolate;
       }
 
-      .scroll-card::before,
-      .scroll-card::after {
+      .explore-card::before,
+      .explore-card::after {
         content: "";
         position: absolute;
         left: 50%;
@@ -848,29 +556,30 @@
         background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.72), rgba(215, 237, 241, 0.4), transparent);
       }
 
-      .scroll-card::before {
+      .explore-card::before {
         top: 0;
       }
 
-      .scroll-card::after {
+      .explore-card::after {
         bottom: 0;
         opacity: 0.34;
       }
 
-      .scroll-card img {
+      .explore-card img {
         position: absolute;
         inset: 0;
         height: 100%;
         object-fit: cover;
-        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
         z-index: -2;
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
       }
 
-      .scroll-card::marker {
-        display: none;
+      .explore-card:hover img {
+        filter: saturate(1.06) contrast(1.03);
+        transform: scale(1.055);
       }
 
-      .scroll-card-overlay {
+      .explore-card-overlay {
         position: absolute;
         inset: 0;
         z-index: -1;
@@ -879,7 +588,7 @@
           linear-gradient(90deg, rgba(7, 23, 22, 0.58), rgba(7, 23, 22, 0.12));
       }
 
-      .scroll-card-copy {
+      .explore-card-copy {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -887,7 +596,7 @@
         padding: 28px;
       }
 
-      .scroll-card-kicker {
+      .explore-card-kicker {
         width: fit-content;
         margin-bottom: 12px;
         padding: 7px 10px;
@@ -900,7 +609,7 @@
         text-transform: uppercase;
       }
 
-      .scroll-card h3 {
+      .explore-card h3 {
         max-width: 440px;
         margin-bottom: 10px;
         color: #fff;
@@ -908,15 +617,10 @@
         line-height: 1;
       }
 
-      .scroll-card p {
+      .explore-card p {
         max-width: 430px;
         margin: 0;
         color: rgba(255, 255, 255, 0.78);
-      }
-
-      .scroll-card:hover img {
-        filter: saturate(1.06) contrast(1.03);
-        transform: scale(1.055);
       }
 
       .testimonials-luxury {
@@ -968,27 +672,6 @@
         font-size: 1.08rem;
       }
 
-      .testimonial-dots {
-        display: flex;
-        gap: 10px;
-      }
-
-      .testimonial-dot {
-        width: 10px;
-        height: 10px;
-        padding: 0;
-        border: 0;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.28);
-        cursor: pointer;
-        transition: width 260ms ease, background 260ms ease;
-      }
-
-      .testimonial-dot.is-active {
-        width: 42px;
-        background: var(--clay);
-      }
-
       .testimonial-stage {
         position: relative;
         min-height: 420px;
@@ -1000,52 +683,28 @@
         display: flex;
         flex-direction: column;
         padding: 32px;
+        color: var(--ink);
         background: rgba(255, 255, 255, 0.96);
         border: 1px solid rgba(217, 157, 52, 0.18);
         border-radius: 12px;
         box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
-        color: var(--ink);
         opacity: 0;
-        transform: translateX(80px) scale(0.94);
         pointer-events: none;
+        transform: translateX(80px) scale(0.94);
         transition: opacity 480ms ease, transform 480ms ease;
       }
 
-      .testimonial-card::before,
-      .testimonial-card::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        width: 78%;
-        height: 1px;
-        pointer-events: none;
-        opacity: 0;
-        transform: translateX(-50%);
-        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.78), rgba(197, 101, 61, 0.5), transparent);
-        transition: opacity 500ms ease-in-out;
-      }
-
-      .testimonial-card::before {
-        top: -1px;
-      }
-
-      .testimonial-card::after {
-        bottom: -1px;
-      }
-
       .testimonial-card.is-active {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-        pointer-events: auto;
         z-index: 2;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0) scale(1);
       }
 
-      .testimonial-card.is-active::before {
-        opacity: 0.88;
-      }
-
-      .testimonial-card.is-active::after {
-        opacity: 0.28;
+      .testimonial-rating {
+        margin-bottom: 22px;
+        color: var(--gold);
+        letter-spacing: 0.12em;
       }
 
       .testimonial-quote {
@@ -1084,426 +743,228 @@
         font-size: 1rem;
       }
 
-      .trusted-destinations {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 24px 88px;
-        text-align: center;
+      .testimonial-author p {
+        margin: 0;
+        color: var(--muted);
       }
 
-      .trusted-destinations h3 {
-        margin-bottom: 24px;
-        color: rgba(255, 255, 255, 0.62);
-        font-size: 0.9rem;
-      }
-
-      .trusted-destinations div {
+      .testimonial-dots {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 22px 44px;
-      }
-
-      .trusted-destinations span {
-        color: rgba(255, 255, 255, 0.42);
-        font-size: clamp(1.15rem, 3vw, 1.8rem);
-        font-weight: 850;
-      }
-
-      .why-section {
-        display: grid;
-        grid-template-columns: 0.85fr 1fr;
-        gap: 52px;
-        align-items: stretch;
-        background: var(--sky);
-      }
-
-      .why-image {
-        min-height: 620px;
-        border-radius: 8px;
-        background:
-          linear-gradient(180deg, rgba(18, 62, 55, 0.05), rgba(18, 62, 55, 0.2)),
-          url("https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=82") center / cover;
-      }
-
-      .why-copy {
-        align-self: center;
-      }
-
-      .principle {
-        padding: 22px 0;
-        border-bottom: 1px solid rgba(18, 62, 55, 0.18);
-      }
-
-      .principle h3 {
-        margin-bottom: 8px;
-        font-size: 1.3rem;
-      }
-
-      .about {
-        position: relative;
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
-        gap: 46px;
-        align-items: stretch;
-        overflow: hidden;
-        color: rgba(255, 255, 255, 0.8);
-        background:
-          linear-gradient(135deg, rgba(8, 32, 29, 0.98), rgba(18, 62, 55, 0.96) 54%, rgba(7, 23, 22, 0.98)),
-          #0f1715;
-        border-top: 1px solid rgba(217, 157, 52, 0.18);
-        border-bottom: 1px solid rgba(217, 157, 52, 0.18);
-      }
-
-      .about::before,
-      .about::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        width: min(76%, 820px);
-        height: 1px;
-        pointer-events: none;
-        transform: translateX(-50%);
-        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.72), rgba(215, 237, 241, 0.34), transparent);
-      }
-
-      .about::before {
-        top: 0;
-      }
-
-      .about::after {
-        bottom: 0;
-        opacity: 0.34;
-      }
-
-      .about-intro,
-      .about-panel {
-        position: relative;
-        z-index: 1;
-      }
-
-      .about .eyebrow {
-        color: #ffd38e;
-      }
-
-      .about h2 {
-        max-width: 620px;
-        color: #fff;
-        font-size: clamp(2.4rem, 5vw, 4.65rem);
-        line-height: 0.96;
-      }
-
-      .about-lede {
-        max-width: 620px;
-        margin: 22px 0 0;
-        color: rgba(255, 255, 255, 0.74);
-        font-size: 1.08rem;
-      }
-
-      .about-signature {
-        display: flex;
-        flex-wrap: wrap;
         gap: 10px;
-        margin-top: 28px;
       }
 
-      .about-signature span {
-        display: inline-flex;
-        align-items: center;
-        min-height: 36px;
-        padding: 0 12px;
-        color: rgba(255, 255, 255, 0.78);
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.11);
-        border-radius: 999px;
-        font-size: 0.82rem;
-        font-weight: 760;
-      }
-
-      .about-panel {
-        display: grid;
-        gap: 18px;
-        padding: 30px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 12px;
-        box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
-        backdrop-filter: blur(14px);
-      }
-
-      .about-panel > p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.76);
-        font-size: 1.05rem;
-      }
-
-      .about-proof-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .about-proof {
-        min-height: 118px;
-        padding: 16px;
-        background: rgba(7, 23, 22, 0.36);
-        border: 1px solid rgba(217, 157, 52, 0.16);
-        border-radius: 8px;
-      }
-
-      .about-proof strong {
-        display: block;
-        margin-bottom: 7px;
-        color: #ffd38e;
-        font-size: clamp(1.5rem, 3vw, 2.05rem);
-        line-height: 1;
-      }
-
-      .about-proof span {
-        display: block;
-        color: rgba(255, 255, 255, 0.68);
-        font-size: 0.86rem;
-        font-weight: 650;
-        line-height: 1.35;
-      }
-
-      .about-promise {
-        display: grid;
-        gap: 14px;
-        padding-top: 4px;
-      }
-
-      .about-promise > div {
-        display: grid;
-        grid-template-columns: 28px 1fr;
-        gap: 12px;
-        align-items: start;
-      }
-
-      .about-promise > div > div {
-        display: block;
-        min-width: 0;
-      }
-
-      .about-promise i {
-        display: grid;
-        place-items: center;
-        width: 28px;
-        height: 28px;
-        color: var(--gold);
-        background: rgba(217, 157, 52, 0.12);
-        border: 1px solid rgba(217, 157, 52, 0.18);
-        border-radius: 999px;
-      }
-
-      .about-promise h3 {
-        margin: 0 0 3px;
-        color: #fff;
-        font-size: 1rem;
-      }
-
-      .about-promise p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.64);
-        font-size: 0.94rem;
-      }
-
-      .destinations {
-        padding-bottom: 96px;
-      }
-
-      .footer {
-        position: relative;
-        display: block;
-        width: min(100%, 1200px);
-        margin-top: 28px;
-        margin-bottom: 28px;
+      .testimonial-dot {
+        width: 10px;
+        height: 10px;
         padding: 0;
-        overflow: hidden;
-        color: rgba(255, 255, 255, 0.78);
-        background: #0f1715;
-        border-radius: 28px;
-        box-shadow: 0 24px 70px rgba(9, 29, 25, 0.22);
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.28);
+        cursor: pointer;
+        transition: width 260ms ease, background 260ms ease;
       }
 
-      .footer::before,
-      .footer::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        z-index: 1;
-        width: min(74%, 820px);
-        height: 1px;
-        pointer-events: none;
-        transform: translateX(-50%);
-        background: linear-gradient(90deg, transparent, rgba(217, 157, 52, 0.7), rgba(215, 237, 241, 0.38), transparent);
-      }
-
-      .footer::before {
-        top: 0;
-        opacity: 0.78;
-      }
-
-      .footer::after {
-        bottom: 0;
-        opacity: 0.32;
-      }
-
-      .footer,
-      .footer * {
-        min-width: 0;
-      }
-
-      .footer-gradient {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background:
-          radial-gradient(125% 125% at 50% 10%, rgba(15, 17, 17, 0.38) 48%, rgba(31, 93, 80, 0.24) 76%, rgba(217, 157, 52, 0.22) 100%),
-          linear-gradient(135deg, rgba(9, 33, 29, 0.98), rgba(18, 62, 55, 0.96) 52%, rgba(10, 24, 22, 0.98));
-      }
-
-      .footer-content {
-        position: relative;
-        z-index: 2;
-        padding: clamp(38px, 4.8vw, 56px) clamp(28px, 4.8vw, 56px);
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: minmax(260px, 1.25fr) minmax(130px, 0.72fr) minmax(150px, 0.8fr) minmax(250px, 1.05fr);
-        gap: clamp(28px, 3.6vw, 44px);
-        padding-bottom: 36px;
-      }
-
-      .footer .brand,
-      .footer-column h3,
-      .footer-contact h3 {
-        color: #fff;
-      }
-
-      .footer .brand-mark {
+      .testimonial-dot.is-active {
+        width: 42px;
         background: var(--clay);
       }
 
-      .footer-brand-block {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
+      .dark {
+        color: #fff;
+        background: linear-gradient(135deg, #071716, #123e37 55%, #071716);
       }
 
-      .footer-brand-block p {
-        max-width: 330px;
-        margin: 0;
-        color: rgba(255, 255, 255, 0.74);
+      .dark .section-heading p:last-child {
+        color: rgba(255, 255, 255, 0.72);
       }
 
-      .footer-column ul,
-      .footer-contact ul {
+      .footer {
+        margin-top: 36px;
+        color: rgba(255, 255, 255, 0.76);
+        background:
+          radial-gradient(125% 125% at 50% 10%, rgba(15, 17, 17, 0.38) 48%, rgba(31, 93, 80, 0.24) 76%, rgba(217, 157, 52, 0.18) 100%),
+          linear-gradient(135deg, rgba(9, 33, 29, 0.98), rgba(18, 62, 55, 0.96) 52%, rgba(10, 24, 22, 0.98));
+      }
+
+      .footer-inner {
         display: grid;
-        gap: 12px;
+        grid-template-columns: 1.1fr repeat(3, 0.75fr);
+        gap: 32px;
+        padding-top: 54px;
+        padding-bottom: 54px;
+      }
+
+      .footer h3,
+      .footer .brand {
+        color: #fff;
+      }
+
+      .footer p {
+        color: rgba(255, 255, 255, 0.66);
+      }
+
+      .footer ul {
+        display: grid;
+        gap: 10px;
         padding: 0;
         margin: 0;
         list-style: none;
       }
 
-      .footer-contact li {
-        display: grid;
-        grid-template-columns: 20px 1fr;
-        gap: 12px;
+      #footerDestinations {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 18px;
       }
 
-      .footer-contact svg {
+      .footer a:hover {
         color: var(--gold);
-        margin-top: 2px;
-      }
-
-      .footer-whatsapp {
-        width: fit-content;
-        min-height: 44px;
-        padding: 0 16px;
-        background: linear-gradient(135deg, #c5653d, #d99d34);
-        white-space: nowrap;
-      }
-
-      .footer-form {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
-        align-items: center;
-        gap: 24px;
-        padding: 26px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .footer-form label {
-        color: rgba(255, 255, 255, 0.82);
-      }
-
-      .footer-form div {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 10px;
-      }
-
-      .footer-form input {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.16);
-        color: #fff;
-      }
-
-      .footer-form button {
-        min-height: 48px;
-        padding: 0 18px;
-        white-space: nowrap;
       }
 
       .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        padding-top: 26px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px 28px;
+        color: rgba(255, 255, 255, 0.56);
         font-size: 0.92rem;
       }
 
-      .footer-bottom p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.58);
-      }
-
-      .footer-socials {
-        display: flex;
-        gap: 14px;
-      }
-
-      .footer-socials a {
+      .dest-hero {
+        position: relative;
+        min-height: 620px;
         display: grid;
-        place-items: center;
-        width: 40px;
-        height: 40px;
-        color: rgba(255, 255, 255, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
+        align-items: end;
+        overflow: hidden;
+        color: #fff;
+        background: #071716;
+      }
+
+      .dest-hero img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .dest-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(7, 23, 22, 0.86), rgba(7, 23, 22, 0.46), rgba(7, 23, 22, 0.12)),
+          linear-gradient(180deg, rgba(7, 23, 22, 0), rgba(7, 23, 22, 0.76));
+      }
+
+      .dest-hero-content {
+        position: relative;
+        z-index: 1;
+        width: min(1160px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 120px 0 54px;
+      }
+
+      .dest-hero p:not(.eyebrow) {
+        max-width: 680px;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 1.1rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        color: #ffd38e;
+        font-weight: 800;
+      }
+
+      .dest-detail {
+        padding-top: 78px;
+        padding-bottom: 88px;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.55fr);
+        gap: 46px;
+        align-items: start;
+      }
+
+      .detail-prose {
+        display: grid;
+        gap: 30px;
+      }
+
+      .detail-prose h2 {
+        margin-bottom: 14px;
+      }
+
+      .detail-prose p {
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .highlight-grid,
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .highlight-card,
+      .tour-card {
+        padding: 18px;
+      }
+
+      .highlight-card h3,
+      .tour-card h3 {
+        margin-bottom: 6px;
+      }
+
+      .sidebar-card {
+        position: sticky;
+        top: 100px;
+        padding: 24px;
+        color: #fff;
+        background: linear-gradient(135deg, #0b2522, #123e37);
+        border: 1px solid rgba(217, 157, 52, 0.2);
+        border-radius: 12px;
+        box-shadow: 0 24px 70px rgba(7, 23, 22, 0.18);
+      }
+
+      .sidebar-card p {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .quick-list {
+        display: grid;
+        gap: 10px;
+        padding: 0;
+        margin: 18px 0 22px;
+        list-style: none;
+      }
+
+      .quick-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 10px;
+        color: rgba(255, 255, 255, 0.74);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .quick-list strong {
+        color: #fff;
       }
 
       .motion-reveal {
         opacity: 0;
-        transform: translateY(34px);
-        transition: opacity 760ms cubic-bezier(0.22, 1, 0.36, 1), transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
-        transition-delay: var(--reveal-delay, 0ms);
+        transform: translateY(30px);
+        transition: opacity 740ms cubic-bezier(0.22, 1, 0.36, 1), transform 740ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      .motion-reveal.is-visible,
-      .motion-fade {
+      .motion-reveal.is-visible {
         opacity: 1;
         transform: translateY(0);
-      }
-
-      .motion-fade {
-        animation: softRise 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
 
       svg {
@@ -1512,63 +973,20 @@
         stroke-width: 2.2;
       }
 
-      @keyframes pageCurtain {
+      @keyframes curtain {
         to {
           opacity: 0;
           visibility: hidden;
         }
       }
 
-      @keyframes headerDrop {
-        from {
-          opacity: 0;
-          transform: translateY(-18px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes heroKenBurns {
+      @keyframes slowZoom {
         to {
           transform: scale(1.08);
         }
       }
 
-      @keyframes heroContentRise {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes softRise {
-        from {
-          opacity: 0;
-          transform: translateY(18px) scale(0.985);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-
-      @keyframes resultPanelIn {
-        from {
-          opacity: 0;
-          transform: translateY(12px) scale(0.985);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-
-      @media (max-width: 980px) {
+      @media (max-width: 1040px) {
         .main-nav {
           grid-template-columns: auto auto;
           justify-content: space-between;
@@ -1588,18 +1006,12 @@
           grid-column: 1 / -1;
           display: grid;
           width: 100%;
+          justify-self: stretch;
           justify-items: start;
           gap: 8px;
           padding: 14px;
           background: rgba(18, 62, 55, 0.96);
-          border: 1px solid rgba(217, 157, 52, 0.18);
           border-radius: 14px;
-          box-shadow: 0 18px 40px rgba(18, 62, 55, 0.14);
-        }
-
-        .main-nav.is-open .nav-menu::before,
-        .main-nav.is-open .nav-menu::after {
-          width: calc(100% - 28px);
         }
 
         .main-nav.is-open .nav-menu a {
@@ -1611,149 +1023,99 @@
           grid-column: 1 / -1;
           display: inline-flex;
           width: 100%;
-          min-height: 48px;
         }
 
         .nav-cursor {
           display: none;
         }
 
-        .search-panel {
-          grid-template-columns: 1fr 1fr;
+        .collections-grid,
+        .destination-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .search-button {
-          grid-column: 1 / -1;
-        }
-
-        .search-result-grid,
-        .collection-result-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .tour-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .scroll-showcase-heading {
-          grid-template-columns: 1fr;
-          align-items: start;
-        }
-
-        .scroll-track {
+        .explore-track {
           grid-auto-columns: minmax(300px, 62%);
         }
 
-        .testimonials-inner,
-        .collections,
-        .why-section,
-        .about {
+        .testimonials-inner {
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .detail-grid,
+        .footer-inner {
           grid-template-columns: 1fr;
         }
 
-        .about {
-          gap: 32px;
-        }
-
-        .footer-grid {
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        }
-
-        .footer-brand-block,
-        .footer-contact {
-          grid-column: 1 / -1;
-        }
-
-        .footer-form {
-          grid-template-columns: 1fr;
-        }
-
-        .why-image {
-          min-height: 390px;
+        .sidebar-card {
+          position: static;
         }
       }
 
-      @media (max-width: 680px) {
+      @media (max-width: 700px) {
         .main-nav,
         .section,
-        .collections,
-        .why-section,
-        .about,
-        .destinations {
+        .dest-detail,
+        .footer-inner {
           padding-inline: 18px;
         }
 
-        .footer {
-          margin: 0 14px 24px;
-          border-radius: 22px;
+        .hero,
+        .dest-hero {
+          min-height: 660px;
         }
 
-        .hero {
-          min-height: 920px;
-        }
-
-        .hero-content {
+        .hero-content,
+        .dest-hero-content {
           width: calc(100% - 36px);
-          padding-bottom: 28px;
+          padding-bottom: 38px;
         }
 
         h1 {
-          font-size: clamp(3.1rem, 16vw, 4.8rem);
+          font-size: clamp(3rem, 15vw, 4.6rem);
         }
 
-        .search-panel,
-        .collection-result-grid,
-        .tour-grid,
-        .footer-grid,
-        .footer-form div {
+        .section {
+          padding-top: 64px;
+          padding-bottom: 64px;
+        }
+
+        .section-heading {
+          display: grid;
+          align-items: start;
+        }
+
+        .collections-grid,
+        .destination-grid,
+        .trust-band,
+        .highlight-grid,
+        .related-grid {
           grid-template-columns: 1fr;
         }
 
-        .scroll-showcase {
-          padding: 68px 18px;
-        }
-
-        .scroll-track-wrap {
-          margin-inline: -18px;
-        }
-
-        .scroll-track-wrap::before,
-        .scroll-track-wrap::after {
+        .explore-track-wrap::before,
+        .explore-track-wrap::after {
           width: 36px;
         }
 
-        .scroll-track {
+        .explore-track {
           grid-auto-columns: minmax(278px, 86%);
           padding-inline: 18px;
           scroll-padding-inline: 18px;
         }
 
-        .scroll-card,
-        .scroll-card-copy {
+        .explore-card,
+        .explore-card-copy {
           min-height: 390px;
         }
 
-        .scroll-card-copy {
+        .explore-card-copy {
           padding: 22px;
         }
 
-        .about {
-          padding-top: 68px;
-          padding-bottom: 68px;
-        }
-
-        .about-panel {
-          padding: 22px;
-        }
-
-        .about-proof-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .section-heading,
-        .with-action {
-          display: grid;
-          align-items: start;
+        .testimonials-inner {
+          padding: 72px 18px 56px;
         }
 
         .testimonial-stage {
@@ -1764,18 +1126,17 @@
           padding: 24px;
         }
 
-        .footer-content {
-          padding: 34px 22px;
+        .destination-card {
+          min-height: 390px;
         }
 
-        .footer-whatsapp,
-        .footer-form button {
-          width: 100%;
+        #footerDestinations {
+          grid-template-columns: 1fr;
         }
 
-        .footer-bottom {
-          align-items: flex-start;
-          flex-direction: column;
+        .destination-card figure,
+        .destination-card img {
+          min-height: 220px;
         }
       }
 
@@ -1794,7 +1155,7 @@
   <body>
     <header class="site-header">
       <div class="main-nav">
-        <a class="brand" href="#" aria-label="TravelX home">
+        <a class="brand" href="#home" aria-label="TravelX home">
           <span class="brand-mark">TX</span>
           <span>TravelX</span>
         </a>
@@ -1803,11 +1164,11 @@
           <span class="sr-only">Open menu</span>
         </button>
         <nav id="nav-menu" class="nav-menu" aria-label="Primary navigation">
+          <a href="#home">Home</a>
           <a href="#destinations">Destinations</a>
-          <a href="#featured">Packages</a>
-          <a href="#why-travelx">Why Us</a>
-          <a href="#about">About Us</a>
+          <a href="#explore">Explore</a>
           <a href="#testimonials">Testimonials</a>
+          <a href="#why">Why TravelX</a>
           <a href="#contact">Contact</a>
           <span class="nav-cursor" aria-hidden="true"></span>
         </nav>
@@ -1819,612 +1180,266 @@
     </header>
 
     <main>
-      <section class="hero" aria-label="Find your next active holiday">
-        <div class="hero-media" role="img" aria-label="Cyclists riding along a mountain road at sunrise"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Active travel, crafted personally</p>
-          <h1>TravelX active holidays</h1>
-          <p class="hero-copy">Bike, hike, cruise, and wander through handpicked journeys with local specialists, flexible dates, and friendly planning from the first call.</p>
-          <div class="hero-actions">
-            <a class="hero-call" href="tel:+919451100275">
-              <i data-lucide="phone-call"></i>
-              Call now
-            </a>
-          </div>
-
-          <form class="search-panel" aria-label="Search TravelX tours">
-            <label>
-              <span>Destination or keyword</span>
-              <input type="search" id="searchInput" placeholder="Kerala, Goa, Rajasthan, Ladakh">
-            </label>
-            <label>
-              <span>Travel style</span>
-              <select id="styleSelect">
-                <option value="all">Any style</option>
-                <option value="wellness">Wellness</option>
-                <option value="beach">Beach</option>
-                <option value="culture">Culture</option>
-                <option value="adventure">Adventure</option>
-                <option value="wildlife">Wildlife</option>
-              </select>
-            </label>
-            <label>
-              <span>Month</span>
-              <select id="monthSelect">
-                <option value="any">Any month</option>
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
-              </select>
-            </label>
-            <button class="search-button" type="submit">
-              <i data-lucide="search"></i>
-              Find tours
-            </button>
-          </form>
-          <div class="search-results" id="searchResults" hidden aria-live="polite">
-            <div class="search-results-heading">
-              <p class="eyebrow">Search results</p>
-              <h2 id="searchResultsTitle">Matching TravelX tours</h2>
-              <p id="searchResultsMessage">Curated India journeys matched to your search.</p>
-            </div>
-            <div class="search-result-grid" id="searchResultGrid"></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="collections" class="collections">
-        <div class="collection-intro">
-          <p class="eyebrow">Collections</p>
-          <h2>Find the trip that fits your season</h2>
-          <p>TravelX advisors group trips by interest, comfort level, and travel mood so planning feels simple instead of endless.</p>
-        </div>
-        <div class="collection-list" aria-label="Travel collections">
-          <button type="button" class="collection-chip" data-collection="new" aria-pressed="false">New tours</button>
-          <button type="button" class="collection-chip" data-collection="family" aria-pressed="false">Family friendly</button>
-          <button type="button" class="collection-chip" data-collection="luxury" aria-pressed="false">Luxury escapes</button>
-          <button type="button" class="collection-chip" data-collection="food-culture" aria-pressed="false">Food + culture</button>
-          <button type="button" class="collection-chip" data-collection="private" aria-pressed="false">Private + tailor-made</button>
-          <button type="button" class="collection-chip" data-collection="ebike" aria-pressed="false">Electric bike tours</button>
-          <button type="button" class="collection-chip" data-collection="wildlife" aria-pressed="false">Wildlife journeys</button>
-          <button type="button" class="collection-chip" data-collection="weekend" aria-pressed="false">Weekend breaks</button>
-        </div>
-        <div class="collection-results" id="collectionResults" hidden aria-live="polite">
-          <div class="collection-results-heading">
-            <p class="eyebrow">Selected collection</p>
-            <h3 id="collectionResultsTitle">TravelX collection results</h3>
-            <p id="collectionResultsMessage">Choose a collection to see curated journeys.</p>
-          </div>
-          <div class="collection-result-grid" id="collectionResultGrid"></div>
-        </div>
-      </section>
-
-      <section id="featured" class="section featured">
-        <div class="section-heading with-action">
-          <div>
-            <p class="eyebrow">Premium India tours</p>
-            <h2>Curated journeys from TravelX</h2>
-          </div>
-          <div class="sort-control">
-            <label for="sortSelect">Sort by</label>
-            <select id="sortSelect">
-              <option value="popular">Popular first</option>
-              <option value="price-low">Price low to high</option>
-              <option value="days">Length</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="tour-grid" id="tourGrid">
-          <article class="tour-card" data-destination="kerala" data-style="wellness" data-collections="new,luxury,private,family" data-months="january,february,march,april,october,november,december" data-keywords="kerala alleppey kochi kumarakom ayurveda backwaters houseboat wellness private luxury family new" data-title="Kerala Backwaters Private Wellness Escape" data-price="78900" data-days="7">
-            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80" alt="Kerala backwaters with palms and boats">
-            <div class="tour-content">
-              <div class="tour-meta"><span>7 days from INR 78,900</span><span>4.9</span></div>
-              <h3>Kerala Backwaters Private Wellness Escape</h3>
-              <p>Private houseboat night, Ayurveda spa time, spice-garden dining, and boutique waterfront stays.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="kerala" data-style="culture" data-collections="food-culture,luxury,private,family" data-months="january,february,march,april,may,october,november,december" data-keywords="kerala munnar thekkady tea hills houseboat kochi culture luxury food family private" data-title="Kerala Tea Hills & Houseboat Journey" data-price="92500" data-days="8">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Green hills and calm water in Kerala style landscape">
-            <div class="tour-content">
-              <div class="tour-meta"><span>8 days from INR 92,500</span><span>4.8</span></div>
-              <h3>Kerala Tea Hills & Houseboat Journey</h3>
-              <p>Tea estates, forest lodges, Cochin heritage, and a slow private cruise through the backwaters.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="goa" data-style="beach" data-collections="new,food-culture,luxury,private,weekend" data-months="january,february,march,april,november,december" data-keywords="goa beach villa food trail portuguese old goa luxury coastal private weekend new" data-title="Goa Coastal Villa & Food Trail" data-price="64900" data-days="5">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Bright blue coastline and mountains">
-            <div class="tour-content">
-              <div class="tour-meta"><span>5 days from INR 64,900</span><span>5.0</span></div>
-              <h3>Goa Coastal Villa & Food Trail</h3>
-              <p>Private villa stay, chef-led seafood tastings, quiet beaches, and Old Goa heritage walks.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="goa" data-style="wellness" data-collections="luxury,private,weekend,family" data-months="january,february,march,april,november,december" data-keywords="goa wellness beach retreat yoga spa private luxury south goa weekend family" data-title="Goa Wellness Beach Retreat" data-price="84000" data-days="6">
-            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80" alt="Tropical beach with palm trees and clear water">
-            <div class="tour-content">
-              <div class="tour-meta"><span>6 days from INR 84,000</span><span>4.9</span></div>
-              <h3>Goa Wellness Beach Retreat</h3>
-              <p>Sea-facing wellness resort, yoga mornings, spa rituals, and soft-paced coastal dining.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="rajasthan" data-style="culture" data-collections="new,luxury,food-culture,private,family" data-months="january,february,march,october,november,december" data-keywords="rajasthan jaipur udaipur jodhpur jaisalmer palaces desert luxury heritage culture food family private new" data-title="Rajasthan Palaces & Desert Luxury Circuit" data-price="118000" data-days="8">
-            <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=80" alt="Rajasthan palace architecture in warm light">
-            <div class="tour-content">
-              <div class="tour-meta"><span>8 days from INR 1,18,000</span><span>4.9</span></div>
-              <h3>Rajasthan Palaces & Desert Luxury Circuit</h3>
-              <p>Heritage palace hotels, private guides, desert sundowners, craft studios, and royal dining.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="rajasthan" data-style="wildlife" data-collections="wildlife,luxury,private,family" data-months="january,february,march,april,may,october,november,december" data-keywords="rajasthan ranthambore safari tiger udaipur jaipur wildlife luxury lodge family private" data-title="Ranthambore & Royal Rajasthan Safari" data-price="105000" data-days="6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Tiger_at_Ranthambore_National_Park.jpg/1280px-Tiger_at_Ranthambore_National_Park.jpg" alt="Tiger at Ranthambore National Park in Rajasthan">
-            <div class="tour-content">
-              <div class="tour-meta"><span>6 days from INR 1,05,000</span><span>4.8</span></div>
-              <h3>Ranthambore & Royal Rajasthan Safari</h3>
-              <p>Luxury jungle lodge, private safari drives, Jaipur heritage, and relaxed palace-hotel evenings.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="ladakh" data-style="adventure" data-collections="new,luxury,private,ebike" data-months="june,july,august,september" data-keywords="ladakh leh nubra pangong high passes himalaya adventure private expedition luxury camp electric bike ebike e-bike new" data-title="Ladakh High Passes Private Expedition" data-price="142000" data-days="9">
-            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Dramatic mountain road landscape">
-            <div class="tour-content">
-              <div class="tour-meta"><span>9 days from INR 1,42,000</span><span>4.9</span></div>
-              <h3>Ladakh High Passes Private Expedition</h3>
-              <p>Private 4x4 route through Leh, Nubra, Pangong, curated camps, and expert acclimatization.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-
-          <article class="tour-card" data-destination="ladakh" data-style="culture" data-collections="luxury,private,food-culture,ebike" data-months="june,july,august,september,october" data-keywords="ladakh leh monasteries nubra valley pangong culture himalaya luxury private electric bike ebike e-bike" data-title="Ladakh Monasteries & Nubra Valley Retreat" data-price="128000" data-days="8">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Snowy Himalayan mountains under a clear sky">
-            <div class="tour-content">
-              <div class="tour-meta"><span>8 days from INR 1,28,000</span><span>4.8</span></div>
-              <h3>Ladakh Monasteries & Nubra Valley Retreat</h3>
-              <p>Monastery visits, slow acclimatized drives, boutique Leh stays, and Nubra Valley stargazing.</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-        </div>
-        <p class="empty-state" id="emptyState" hidden>No exact match found, here are similar tours.</p>
-      </section>
-
-      <section class="scroll-showcase" aria-label="Premium TravelX travel moments">
-        <div class="scroll-showcase-heading">
-          <div>
-            <p class="eyebrow">Travel moments</p>
-            <h2>Cinematic routes, paced beautifully</h2>
-          </div>
-          <p>Swipe or scroll through signature TravelX experiences shaped around scenery, comfort, and the quiet rhythm of private travel.</p>
-        </div>
-
-        <div class="scroll-track-wrap">
-          <div class="scroll-track" tabindex="0" aria-label="Scrollable TravelX experience cards">
-            <article class="scroll-card">
-              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=82" alt="High mountain road through dramatic Himalayan scenery">
-              <div class="scroll-card-overlay"></div>
-              <div class="scroll-card-copy">
-                <span class="scroll-card-kicker">Ladakh</span>
-                <h3>High passes with calm private support</h3>
-                <p>Acclimatized routes, expert drivers, boutique Leh stays, and slow days between the big landscapes.</p>
-              </div>
-            </article>
-
-            <article class="scroll-card">
-              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=82" alt="Kerala backwaters lined with coconut palms">
-              <div class="scroll-card-overlay"></div>
-              <div class="scroll-card-copy">
-                <span class="scroll-card-kicker">Kerala</span>
-                <h3>Backwater evenings and wellness mornings</h3>
-                <p>Houseboat nights, Ayurveda rituals, spice-garden meals, and soft transfers between water and tea country.</p>
-              </div>
-            </article>
-
-            <article class="scroll-card">
-              <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=82" alt="Rajasthan palace architecture glowing in warm light">
-              <div class="scroll-card-overlay"></div>
-              <div class="scroll-card-copy">
-                <span class="scroll-card-kicker">Rajasthan</span>
-                <h3>Palace stays with desert light</h3>
-                <p>Private guides, craft studios, heritage hotels, and evenings designed for unhurried arrival.</p>
-              </div>
-            </article>
-
-            <article class="scroll-card">
-              <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=82" alt="Goa beach with palm trees and clear tropical water">
-              <div class="scroll-card-overlay"></div>
-              <div class="scroll-card-copy">
-                <span class="scroll-card-kicker">Goa</span>
-                <h3>Coastal villas beyond the usual beach plan</h3>
-                <p>Quiet stays, seafood-led dining, Old Goa walks, and room in the schedule for doing very little.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="testimonials" class="testimonials-luxury" aria-label="TravelX client testimonials">
-        <div class="testimonials-inner">
-          <div class="testimonials-copy">
-            <div class="testimonial-badge"><i data-lucide="star"></i> Trusted by private travelers</div>
-            <h2>Journeys remembered long after checkout</h2>
-            <p>Real TravelX guests on private India escapes shaped around comfort, pacing, and the kind of details that make a trip feel quietly exceptional.</p>
-            <div class="testimonial-dots" aria-label="Choose testimonial">
-              <button type="button" class="testimonial-dot is-active" data-testimonial-index="0" aria-label="View Kashmir testimonial"></button>
-              <button type="button" class="testimonial-dot" data-testimonial-index="1" aria-label="View Kerala testimonial"></button>
-              <button type="button" class="testimonial-dot" data-testimonial-index="2" aria-label="View Goa testimonial"></button>
-              <button type="button" class="testimonial-dot" data-testimonial-index="3" aria-label="View Rajasthan testimonial"></button>
+      <div id="homeView" class="view">
+        <section id="home" class="hero" aria-label="TravelX premium India holidays">
+          <div class="hero-content">
+            <p class="eyebrow">India-only private journeys</p>
+            <h1>Premium destination holidays across India</h1>
+            <p class="hero-copy">TravelX designs private, deeply researched India trips across beaches, backwaters, palaces, forests, valleys, and Himalayan routes with trusted local support.</p>
+            <div class="hero-actions">
+              <a class="primary-cta" href="#destinations"><i data-lucide="compass"></i>Explore destinations</a>
+              <a class="ghost-cta" href="https://wa.me/919451100275"><i data-lucide="message-circle"></i>Plan My Trip</a>
             </div>
           </div>
+        </section>
 
-          <div class="testimonial-stage">
-            <article class="testimonial-card is-active">
-              <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote"><p>The Kashmir itinerary felt incredibly considered. Every handoff was calm and polished.</p></div>
-              <div class="testimonial-separator"></div>
-              <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=200&q=80" alt="Aman Verma travel portrait">
-                <div><h3>Aman Verma</h3><p>Delhi, Kashmir private escape</p></div>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote"><p>Kerala was slow in the best way. TravelX balanced the Ayurveda resort, backwater cruise, and tea hills beautifully.</p></div>
-              <div class="testimonial-separator"></div>
-              <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80" alt="Riya Kapoor travel portrait">
-                <div><h3>Riya Kapoor</h3><p>Mumbai, Kerala wellness journey</p></div>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote"><p>Our Goa weekend was not the usual crowded beach plan. Private villa, excellent seafood, and no rushed schedule.</p></div>
-              <div class="testimonial-separator"></div>
-              <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1492447166138-50c3889fccb1?auto=format&fit=crop&w=200&q=80" alt="Arjun Mehta travel portrait">
-                <div><h3>Arjun Mehta</h3><p>Bangalore, Goa coastal villa stay</p></div>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
-              <div class="testimonial-quote"><p>Rajasthan felt cinematic. Palace hotels, craft ateliers, and guides who knew when to let the place speak.</p></div>
-              <div class="testimonial-separator"></div>
-              <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=200&q=80" alt="Naina Sethi travel portrait">
-                <div><h3>Naina Sethi</h3><p>Pune, Rajasthan palace circuit</p></div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="trusted-destinations">
-          <h3>Trusted for premium India journeys</h3>
-          <div>
-            <span>Kashmir</span>
-            <span>Kerala</span>
-            <span>Goa</span>
-            <span>Rajasthan</span>
-            <span>Ladakh</span>
-            <span>Andaman</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="why-travelx" class="why-section">
-        <div class="why-image" role="img" aria-label="Travelers on a scenic overlook"></div>
-        <div class="why-copy">
-          <p class="eyebrow">Why TravelX</p>
-          <h2>Travel should feel personal before it feels premium</h2>
-          <div class="principle">
-            <h3>Passion for Travel</h3>
-            <p>We design trips for people who want to engage with places, not just pass through them.</p>
-          </div>
-          <div class="principle">
-            <h3>Quality partners</h3>
-            <p>Our local operators balance good value with dependable stays, clear routes, thoughtful pacing, and real support.</p>
-          </div>
-          <div class="principle">
-            <h3>Human service</h3>
-            <p>TravelX advisors help you compare routes, plan dates, tune difficulty, and smooth out the details before departure.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="about">
-        <div class="about-intro">
-          <p class="eyebrow">About us</p>
-          <h2>India journeys designed with quiet precision</h2>
-          <p class="about-lede">TravelX curates private holidays for travelers who want India to feel effortless, deeply personal, and beautifully paced from the first conversation to the final checkout.</p>
-          <div class="about-signature" aria-label="TravelX service highlights">
-            <span>Private-first planning</span>
-            <span>Premium stays</span>
-            <span>Local specialists</span>
-          </div>
-        </div>
-        <div class="about-panel">
-          <p>We build high-touch India itineraries across Kerala, Goa, Rajasthan, Ladakh, Kashmir, Andaman, wildlife reserves, and culture-rich city routes. Every journey is shaped around comfort, season, transfer rhythm, trusted partners, and the moments that make a destination feel alive without making the trip feel busy.</p>
-          <div class="about-proof-grid" aria-label="TravelX trust markers">
-            <div class="about-proof">
-              <strong>15+</strong>
-              <span>signature India destinations curated for private travel</span>
-            </div>
-            <div class="about-proof">
-              <strong>24/7</strong>
-              <span>on-trip coordination through dependable local partners</span>
-            </div>
-            <div class="about-proof">
-              <strong>1:1</strong>
-              <span>advisor-led planning for pace, comfort, and style</span>
-            </div>
-          </div>
-          <div class="about-promise">
+        <section id="destinations" class="section destinations-section">
+          <div class="section-heading motion-reveal">
             <div>
-              <i data-lucide="shield-check"></i>
-              <div>
-                <h3>Trusted ground network</h3>
-                <p>Hotels, drivers, guides, and experience partners are chosen for reliability, discretion, and destination knowledge.</p>
-              </div>
+              <p class="eyebrow">Destinations</p>
+              <h2>Explore India through deep destination pages</h2>
             </div>
+            <p>From heritage cities and spiritual corridors to Himalayan valleys, beaches, islands, and culture-rich regions, every TravelX card opens into a dedicated planning page.</p>
+          </div>
+          <div id="destinationGrid" class="destination-grid"></div>
+        </section>
+
+        <section id="why" class="section dark">
+          <div class="section-heading motion-reveal">
             <div>
-              <i data-lucide="route"></i>
-              <div>
-                <h3>Itineraries that breathe</h3>
-                <p>We balance headline experiences with quieter windows, smooth transfers, and enough space to actually enjoy the place.</p>
-              </div>
+              <p class="eyebrow">Why TravelX</p>
+              <h2>Private India travel, planned with care</h2>
+            </div>
+            <p>We combine destination knowledge, premium stay selection, local operators, and human planning so each route feels personal rather than packaged.</p>
+          </div>
+          <div class="trust-band motion-reveal">
+            <div><strong>24</strong><span>India-only destination pages</span></div>
+            <div><strong>1:1</strong><span>advisor-led trip planning</span></div>
+            <div><strong>24/7</strong><span>on-trip local coordination</span></div>
+            <div><strong>100%</strong><span>private, flexible India journeys</span></div>
+          </div>
+        </section>
+
+        <section id="explore" class="section explore-strip">
+          <div class="section-heading motion-reveal">
+            <div>
+              <p class="eyebrow">Explore TravelX</p>
+              <h2>Cinematic India routes, paced beautifully</h2>
+            </div>
+            <p>Swipe through premium TravelX travel moods built around scenery, comfort, destination depth, and private planning.</p>
+          </div>
+          <div class="explore-track-wrap">
+            <div class="explore-track" tabindex="0" aria-label="Scrollable TravelX explore cards">
+              <article class="explore-card motion-reveal">
+                <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=82" alt="High mountain road through dramatic Himalayan scenery">
+                <div class="explore-card-overlay"></div>
+                <div class="explore-card-copy">
+                  <span class="explore-card-kicker">Himalayan routes</span>
+                  <h3>High valleys with calm private support</h3>
+                  <p>Sikkim, Himachal, Uttarakhand, and Kashmir planned around road rhythm, season, altitude, and stay quality.</p>
+                </div>
+              </article>
+
+              <article class="explore-card motion-reveal">
+                <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=82" alt="Kerala backwaters lined with coconut palms">
+                <div class="explore-card-overlay"></div>
+                <div class="explore-card-copy">
+                  <span class="explore-card-kicker">Slow India</span>
+                  <h3>Backwater evenings and wellness mornings</h3>
+                  <p>Kerala journeys with houseboats, Ayurveda, spice meals, boutique stays, and unhurried waterfront days.</p>
+                </div>
+              </article>
+
+              <article class="explore-card motion-reveal">
+                <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=82" alt="Rajasthan palace architecture glowing in warm light">
+                <div class="explore-card-overlay"></div>
+                <div class="explore-card-copy">
+                  <span class="explore-card-kicker">Heritage India</span>
+                  <h3>Palace stays, craft studios, desert light</h3>
+                  <p>Rajasthan routes with private guides, atmospheric hotels, royal kitchens, and golden-hour desert moments.</p>
+                </div>
+              </article>
+
+              <article class="explore-card motion-reveal">
+                <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=82" alt="Goa beach with palm trees and clear tropical water">
+                <div class="explore-card-overlay"></div>
+                <div class="explore-card-copy">
+                  <span class="explore-card-kicker">Coastal escapes</span>
+                  <h3>Private villas beyond the usual beach plan</h3>
+                  <p>Goa stays with quiet beaches, coastal food, Old Goa walks, and space in the schedule to simply pause.</p>
+                </div>
+              </article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="destinations" class="destinations">
-        <div class="section-heading">
-          <p class="eyebrow">Destinations</p>
-          <h2>Where TravelX goes</h2>
-        </div>
-        <div class="destination-list">
-          <a href="#featured">Kerala</a>
-          <a href="#featured">Goa</a>
-          <a href="#featured">Rajasthan</a>
-          <a href="#featured">Ladakh</a>
-          <a href="#featured">Sikkim</a>
-          <a href="#featured">Himachal</a>
-          <a href="#featured">Uttarakhand</a>
-          <a href="#featured">Kashmir</a>
-          <a href="#featured">Andaman Islands</a>
-          <a href="#featured">Varanasi</a>
-          <a href="#featured">Rann of Kutch</a>
-          <a href="#featured">Ranthambore</a>
-          <a href="#featured">Hampi</a>
-          <a href="#featured">Meghalaya</a>
-          <a href="#featured">Coorg</a>
-        </div>
-      </section>
+        <section id="testimonials" class="testimonials-luxury" aria-label="TravelX client testimonials">
+          <div class="testimonials-inner">
+            <div class="testimonials-copy">
+              <div class="testimonial-badge"><i data-lucide="star"></i> Trusted by private travelers</div>
+              <h2>Journeys remembered long after checkout</h2>
+              <p>Real TravelX guests on private India escapes shaped around comfort, pacing, and thoughtful details.</p>
+              <div class="testimonial-dots" aria-label="Choose testimonial">
+                <button type="button" class="testimonial-dot is-active" data-testimonial-index="0" aria-label="View Kashmir testimonial"></button>
+                <button type="button" class="testimonial-dot" data-testimonial-index="1" aria-label="View Kerala testimonial"></button>
+                <button type="button" class="testimonial-dot" data-testimonial-index="2" aria-label="View Goa testimonial"></button>
+                <button type="button" class="testimonial-dot" data-testimonial-index="3" aria-label="View Rajasthan testimonial"></button>
+              </div>
+            </div>
+
+            <div class="testimonial-stage">
+              <article class="testimonial-card is-active">
+                <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
+                <div class="testimonial-quote"><p>The Kashmir route felt incredibly considered. Every handoff was calm, the driver was dependable, and the lake evening was beautifully paced.</p></div>
+                <div class="testimonial-separator"></div>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=200&q=80" alt="Aman Verma travel portrait">
+                  <div><h3>Aman Verma</h3><p>Delhi, Kashmir private escape</p></div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
+                <div class="testimonial-quote"><p>Kerala was slow in the best way. TravelX balanced the Ayurveda resort, backwater cruise, and tea hills beautifully.</p></div>
+                <div class="testimonial-separator"></div>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80" alt="Riya Kapoor travel portrait">
+                  <div><h3>Riya Kapoor</h3><p>Mumbai, Kerala wellness journey</p></div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
+                <div class="testimonial-quote"><p>Our Goa weekend was not the usual crowded beach plan. Private villa, excellent seafood, and no rushed schedule.</p></div>
+                <div class="testimonial-separator"></div>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1492447166138-50c3889fccb1?auto=format&fit=crop&w=200&q=80" alt="Arjun Mehta travel portrait">
+                  <div><h3>Arjun Mehta</h3><p>Bangalore, Goa coastal villa stay</p></div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="testimonial-rating" aria-label="5 star rating">â˜…â˜…â˜…â˜…â˜…</div>
+                <div class="testimonial-quote"><p>Rajasthan felt cinematic. Palace hotels, craft ateliers, and guides who knew when to let the place speak.</p></div>
+                <div class="testimonial-separator"></div>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=200&q=80" alt="Naina Sethi travel portrait">
+                  <div><h3>Naina Sethi</h3><p>Pune, Rajasthan palace circuit</p></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="destinationView" class="view" hidden></div>
     </main>
 
-    <footer id="contact" class="footer" aria-label="TravelX footer">
-      <div class="footer-gradient" aria-hidden="true"></div>
-      <div class="footer-content">
-        <div class="footer-grid">
-          <div class="footer-brand-block">
-            <a class="brand footer-brand" href="#" aria-label="TravelX home">
-              <span class="brand-mark">TX</span>
-              <span>TravelX</span>
-            </a>
-            <p>Private India journeys shaped with quiet luxury, thoughtful pacing, and dependable local support from first call to final checkout.</p>
-            <a class="footer-whatsapp" href="https://wa.me/919451100275" aria-label="Chat with TravelX on WhatsApp">
-              <i data-lucide="message-circle"></i>
-              WhatsApp TravelX
-            </a>
-          </div>
-
-          <div class="footer-column">
-            <h3>Explore</h3>
-            <ul>
-              <li><a href="#destinations">Destinations</a></li>
-              <li><a href="#featured">Packages</a></li>
-              <li><a href="#collections">Collections</a></li>
-              <li><a href="#testimonials">Guest Stories</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>TravelX</h3>
-            <ul>
-              <li><a href="#why-travelx">Why Us</a></li>
-              <li><a href="#featured">Luxury Escapes</a></li>
-              <li><a href="#collections">Tailor-made Trips</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-contact">
-            <h3>Contact</h3>
-            <ul>
-              <li><i data-lucide="mail"></i><a href="mailto:info.travelxindia@gmail.com">info.travelxindia@gmail.com</a></li>
-              <li><i data-lucide="map-pin"></i><span>India private tours, crafted nationwide</span></li>
-              <li><i data-lucide="sparkles"></i><span>Kashmir, Kerala, Goa, Rajasthan, Ladakh, Andaman</span></li>
-            </ul>
-          </div>
+    <footer id="contact" class="footer">
+      <div class="footer-inner">
+        <div>
+          <a class="brand" href="#home" aria-label="TravelX home">
+            <span class="brand-mark">TX</span>
+            <span>TravelX</span>
+          </a>
+          <p>Premium private holidays across India, shaped with thoughtful pacing, dependable partners, and destination depth from first call to final checkout.</p>
+          <a class="primary-cta" href="https://wa.me/919451100275"><i data-lucide="message-circle"></i>WhatsApp TravelX</a>
         </div>
-
-        <form class="footer-form" aria-label="Request a trip plan">
-          <label for="email">Get a polished trip idea in your inbox</label>
-          <div>
-            <input id="email" type="email" placeholder="you@example.com">
-            <button type="submit">Send</button>
-          </div>
-        </form>
-
-        <div class="footer-bottom">
-          <div class="footer-socials" aria-label="TravelX social links">
-            <a href="#" aria-label="TravelX travel gallery"><i data-lucide="camera"></i></a>
-            <a href="#" aria-label="TravelX updates"><i data-lucide="send"></i></a>
-            <a href="#" aria-label="TravelX stories"><i data-lucide="messages-square"></i></a>
-            <a href="#" aria-label="TravelX website"><i data-lucide="globe-2"></i></a>
-          </div>
-          <p>&copy; 2026 TravelX India. Crafted for premium private travel.</p>
+        <div>
+          <h3>Destinations</h3>
+          <ul id="footerDestinations"></ul>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="#destinations">Destination pages</a></li>
+            <li><a href="#explore">Explore area</a></li>
+            <li><a href="#testimonials">Guest stories</a></li>
+            <li><a href="#why">Why TravelX</a></li>
+            <li><a href="https://wa.me/919451100275">Plan My Trip</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="mailto:info.travelxindia@gmail.com">info.travelxindia@gmail.com</a></li>
+            <li><a href="https://wa.me/919451100275">WhatsApp TravelX</a></li>
+            <li>India private tours, crafted nationwide</li>
+          </ul>
         </div>
       </div>
+      <div class="footer-bottom">&copy; 2026 TravelX India. Premium India destination journeys, crafted for private travel.</div>
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>
+      function makeDestination(title, region, bestFor, ideal, image, card, intro, highlights) {
+        return {
+          title,
+          region,
+          bestFor,
+          ideal,
+          image,
+          card,
+          intro,
+          description: `${title} rewards travelers who want more than a quick stop. TravelX shapes the destination around premium stays, private transfers, expert local interpretation, and unhurried pacing so the experience feels polished, personal, and rooted in place. The route can be tuned for culture, food, photography, family comfort, wellness, or slow luxury depending on the way you like to travel.`,
+          highlights,
+          cultural: [
+            "Private local interpretation with destination-aware guides",
+            "Curated food, craft, market, or heritage experiences",
+            "Flexible pacing with premium stays and comfortable transfers",
+            "Golden-hour viewpoints, quiet walks, and meaningful local context"
+          ],
+          tours: [
+            `${title} Private Signature Journey`,
+            `${title} Heritage, Culture & Comfort Route`,
+            `${title} Premium India Weekend Extension`
+          ],
+          premium: `TravelX can elevate ${title} with handpicked hotels, private vehicles, curated local experiences, flexible daily pacing, and a dedicated inquiry-led planning process.`
+        };
+      }
+
+      const destinations = {
+        kolkata: makeDestination("Kolkata", "Colonial avenues, riverfront culture, literature", "Culture, food and heritage", "3-5 days", "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=900&q=82", "Kolkata is a layered cultural capital where riverfront rituals, colonial architecture, art, literature, and food create a deeply atmospheric city journey.", ["Victoria Memorial and Maidan", "Howrah Bridge and Hooghly riverfront", "North Kolkata heritage mansions", "Kumartuli artisan quarter", "Park Street dining", "Dakshineswar and Belur Math"]),
+        lucknow: makeDestination("Lucknow", "Nawabi heritage, cuisine, architecture", "Refined culture and cuisine", "2-4 days", "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?auto=format&fit=crop&w=900&q=82", "Lucknow brings elegant Indo-Islamic architecture, refined hospitality, slow food traditions, and old-city craft into a graceful private travel experience.", ["Bara Imambara", "Rumi Darwaza", "Chota Imambara", "Hazratganj", "Chowk food and craft lanes", "Residency heritage area"]),
+        ayodhya: makeDestination("Ayodhya", "Sacred ghats, temples, devotional routes", "Spiritual India journey", "2-3 days", "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=900&q=82", "Ayodhya is a sacred destination shaped by temple traditions, river rituals, devotional walks, and a fast-evolving spiritual travel landscape.", ["Ram Mandir precinct", "Saryu river ghats", "Hanuman Garhi", "Kanak Bhawan", "Ram Ki Paidi", "Evening aarti experiences"]),
+        varanasi: makeDestination("Varanasi", "Ghats, Ganga aarti, sacred lanes", "Spiritual depth and heritage", "3-5 days", "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=900&q=82", "Varanasi is India's timeless river city, where dawn boat rides, temple bells, silk lanes, and Ganga rituals create an unforgettable spiritual journey.", ["Dashashwamedh Ghat", "Assi Ghat sunrise", "Kashi Vishwanath corridor", "Sarnath", "Banarasi silk workshops", "Evening Ganga aarti"]),
+        jaipur: makeDestination("Jaipur", "Forts, palaces, bazaars, design", "Royal heritage and shopping", "3-5 days", "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=82", "Jaipur combines royal architecture, design-led hotels, craft bazaars, private museum moments, and grand fort views in a polished Rajasthan city stay.", ["Amber Fort", "City Palace", "Hawa Mahal", "Jantar Mantar", "Johari and Bapu bazaars", "Block printing studios"]),
+        udaipur: makeDestination("Udaipur", "Lakes, palaces, romance, crafts", "Romantic palace stays", "3-5 days", "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=82", "Udaipur is Rajasthan at its most romantic: lake palaces, rooftop evenings, art studios, boat rides, and atmospheric heritage stays.", ["Lake Pichola", "City Palace Udaipur", "Jag Mandir", "Saheliyon Ki Bari", "Bagore Ki Haveli", "Miniature painting studios"]),
+        goa: makeDestination("Goa", "Beaches, villas, food, Portuguese heritage", "Beach villas and relaxed dining", "4-6 days", "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=82", "Goa is ideal for travelers who want coastal ease without losing character: quiet beaches, Portuguese-era lanes, villa stays, and memorable meals.", ["Old Goa churches", "Panjim Latin Quarter", "South Goa beaches", "Private villa stays", "Spice plantations", "Seafood trails"]),
+        kerala: makeDestination("Kerala", "Backwaters, tea hills, Ayurveda", "Wellness and slow luxury", "6-9 days", "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=82", "Kerala is TravelX's signature slow-travel destination, where backwaters, spice country, Ayurveda, and tea estates come together in a calm private journey.", ["Fort Kochi", "Munnar tea estates", "Kumarakom lake stays", "Alleppey houseboats", "Periyar spice country", "Ayurveda retreats"]),
+        kashmir: makeDestination("Kashmir", "Valleys, lakes, gardens, alpine meadows", "Romantic scenic holidays", "5-8 days", "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=900&q=82", "Kashmir is a luminous private holiday destination with lake stays, alpine meadows, gardens, mountain drives, and quietly dramatic scenery.", ["Dal Lake", "Mughal gardens", "Gulmarg", "Pahalgam", "Sonamarg", "Private shikara evening"]),
+        ladakh: makeDestination("Ladakh", "High passes, monasteries, Pangong, Nubra", "High Himalayan adventure", "7-10 days", "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=82", "Ladakh is a dramatic high-altitude journey through stark landscapes, ancient monasteries, blue lakes, and private expedition-style routes.", ["Leh town", "Thiksey Monastery", "Nubra Valley", "Pangong Lake", "Khardung La", "Hemis Monastery"]),
+        himachal: makeDestination("Himachal", "Mountain towns, valleys, forests", "Scenic road holidays", "6-10 days", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=900&q=82", "Himachal offers pine forests, mountain roads, apple valleys, colonial echoes, and high-altitude landscapes for relaxed private travel.", ["Shimla", "Kasauli", "Manali", "Dharamshala", "Tirthan Valley", "Spiti route"]),
+        uttarakhand: makeDestination("Uttarakhand", "Rivers, forests, yoga, mountain lakes", "Nature and spiritual calm", "5-9 days", "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?auto=format&fit=crop&w=900&q=82", "Uttarakhand blends river valleys, forest reserves, yoga towns, hill stations, and Himalayan views into a grounded India journey.", ["Rishikesh", "Jim Corbett", "Nainital", "Mussoorie", "Binsar", "Kumaon villages"]),
+        sikkim: makeDestination("Sikkim", "Monasteries, valleys, Kanchenjunga views", "Quiet Himalayan culture", "6-9 days", "https://images.unsplash.com/photo-1622308644420-b20142dc993c?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1622308644420-b20142dc993c?auto=format&fit=crop&w=900&q=82", "Sikkim is a refined Himalayan escape with monasteries, mountain views, village stays, rhododendron landscapes, and a gentle cultural rhythm.", ["Gangtok", "Rumtek Monastery", "Pelling", "Ravangla", "Yumthang Valley", "Kanchenjunga viewpoints"]),
+        rishikesh: makeDestination("Rishikesh", "Ganga, yoga, retreats, river experiences", "Wellness and soft adventure", "3-5 days", "https://images.unsplash.com/photo-1588416936097-41850ab3d86d?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1588416936097-41850ab3d86d?auto=format&fit=crop&w=900&q=82", "Rishikesh blends spiritual calm, river scenery, yoga retreats, cafes, and soft adventure in the Himalayan foothills.", ["Ganga ghats", "Parmarth Niketan", "Ram Jhula", "Lakshman Jhula area", "Riverside retreats", "White-water rafting"]),
+        andaman: makeDestination("Andaman", "Islands, beaches, coral, private boat days", "Island luxury and snorkeling", "5-8 days", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=82", "Andaman is an island escape of clear water, quiet beaches, coral life, forested coastlines, and beautifully paced private transfers.", ["Havelock Island", "Radhanagar Beach", "Neil Island", "Port Blair", "Private boat day", "Snorkeling windows"]),
+        darjeeling: makeDestination("Darjeeling", "Tea estates, toy train, mountain views", "Tea country and hill charm", "3-5 days", "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=82", "Darjeeling is a classic hill destination with tea gardens, colonial-era charm, Himalayan viewpoints, and slow mountain mornings.", ["Tiger Hill", "Darjeeling Himalayan Railway", "Tea estates", "Batasia Loop", "Mall Road", "Himalayan Mountaineering Institute"]),
+        mumbai: makeDestination("Mumbai", "Seafront, art, food, cinema, heritage", "Urban India and design", "2-4 days", "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?auto=format&fit=crop&w=900&q=82", "Mumbai is India's cinematic coastal metropolis, pairing sea-facing heritage, galleries, food, design hotels, and fast-moving energy.", ["Gateway of India", "Colaba and Kala Ghoda", "Marine Drive", "Bandra", "Elephanta Caves", "Crawford Market"]),
+        delhi: makeDestination("Delhi", "Historic capitals, food, museums, design", "Gateway heritage city", "2-4 days", "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=900&q=82", "Delhi is a layered gateway into India, where Mughal monuments, colonial avenues, museums, markets, and contemporary dining sit side by side.", ["Humayun's Tomb", "Qutub Minar", "Old Delhi food walk", "India Gate", "Lodhi Art District", "National museums"]),
+        agra: makeDestination("Agra", "Taj Mahal, Mughal gardens, marble craft", "Iconic heritage escape", "1-3 days", "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=82", "Agra is home to India's most iconic monument, but a premium route also reveals Mughal gardens, marble craft, forts, and quiet sunrise moments.", ["Taj Mahal sunrise", "Agra Fort", "Mehtab Bagh", "Itmad-ud-Daulah", "Marble inlay workshops", "Fatehpur Sikri extension"]),
+        jodhpur: makeDestination("Jodhpur", "Blue city, fort views, desert gateways", "Fort city and desert style", "2-4 days", "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=900&q=82", "Jodhpur feels cinematic and grounded, with Mehrangarh Fort, blue lanes, desert gateways, craft markets, and handsome heritage hotels.", ["Mehrangarh Fort", "Jaswant Thada", "Blue city lanes", "Clock Tower market", "Umaid Bhawan views", "Bishnoi village excursion"]),
+        pondicherry: makeDestination("Pondicherry", "French quarter, cafes, coast, Auroville", "Coastal culture and design", "3-5 days", "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=82", "Pondicherry offers a soft coastal break with French-quarter lanes, design stays, cafes, spiritual communities, and Tamil heritage nearby.", ["White Town", "Promenade Beach", "Auroville", "Sri Aurobindo Ashram", "Tamil Quarter", "Paradise Beach"]),
+        meghalaya: makeDestination("Meghalaya", "Cloud forests, waterfalls, living roots", "Rainforest and soft adventure", "5-8 days", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=900&q=82", "Meghalaya is a lush northeast journey of waterfalls, caves, living root bridges, hill drives, and village landscapes.", ["Shillong", "Cherrapunji", "Living root bridges", "Dawki river", "Mawlynnong", "Waterfall circuits"]),
+        ooty: makeDestination("Ooty", "Nilgiri hills, gardens, tea, lakes", "Classic hill station calm", "3-5 days", "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=82", "Ooty is a soft Nilgiri hill escape with tea slopes, colonial gardens, misty roads, lakes, and mountain air.", ["Botanical Garden", "Ooty Lake", "Nilgiri Mountain Railway", "Doddabetta Peak", "Tea estates", "Coonoor extension"]),
+        manali: makeDestination("Manali", "Valleys, rivers, mountain adventure", "Himalayan leisure and adventure", "4-7 days", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1800&q=84", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=900&q=82", "Manali is a Himalayan base for valley stays, river scenery, cafes, apple orchards, and access to higher mountain roads.", ["Old Manali", "Solang Valley", "Naggar Castle", "Atal Tunnel route", "Hadimba Temple", "Apple valley stays"])
+      };
+
+      const destinationOrder = ["kolkata", "lucknow", "ayodhya", "varanasi", "jaipur", "udaipur", "goa", "kerala", "kashmir", "ladakh", "himachal", "uttarakhand", "sikkim", "rishikesh", "andaman", "darjeeling", "mumbai", "delhi", "agra", "jodhpur", "pondicherry", "meghalaya", "ooty", "manali"];
+      const homeView = document.querySelector("#homeView");
+      const destinationView = document.querySelector("#destinationView");
+      const destinationGrid = document.querySelector("#destinationGrid");
+      const footerDestinations = document.querySelector("#footerDestinations");
       const menuButton = document.querySelector(".menu-toggle");
       const mainNav = document.querySelector(".main-nav");
       const navMenu = document.querySelector(".nav-menu");
       const navLinks = Array.from(document.querySelectorAll(".nav-menu a"));
       const navCta = document.querySelector(".nav-cta");
-      const searchForm = document.querySelector(".search-panel");
-      const searchInput = document.querySelector("#searchInput");
-      const styleSelect = document.querySelector("#styleSelect");
-      const monthSelect = document.querySelector("#monthSelect");
-      const searchResults = document.querySelector("#searchResults");
-      const searchResultsTitle = document.querySelector("#searchResultsTitle");
-      const searchResultsMessage = document.querySelector("#searchResultsMessage");
-      const searchResultGrid = document.querySelector("#searchResultGrid");
-      const collectionChips = Array.from(document.querySelectorAll(".collection-chip"));
-      const collectionResults = document.querySelector("#collectionResults");
-      const collectionResultsTitle = document.querySelector("#collectionResultsTitle");
-      const collectionResultsMessage = document.querySelector("#collectionResultsMessage");
-      const collectionResultGrid = document.querySelector("#collectionResultGrid");
       const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
       const testimonialDots = Array.from(document.querySelectorAll(".testimonial-dot"));
-      const sortSelect = document.querySelector("#sortSelect");
-      const tourGrid = document.querySelector("#tourGrid");
-      const emptyState = document.querySelector("#emptyState");
-      let tourCards = Array.from(document.querySelectorAll(".tour-card"));
-      let tourData = [];
-      let hasSearched = false;
       let activeTestimonialIndex = 0;
       let testimonialInterval;
-
-      const styleLabels = {
-        all: "any style",
-        wellness: "wellness",
-        beach: "beach",
-        culture: "culture",
-        adventure: "adventure",
-        wildlife: "wildlife"
-      };
-
-      const collectionLabels = {
-        new: "New tours",
-        family: "Family friendly",
-        luxury: "Luxury escapes",
-        "food-culture": "Food + culture",
-        private: "Private + tailor-made",
-        ebike: "Electric bike tours",
-        wildlife: "Wildlife journeys",
-        weekend: "Weekend breaks"
-      };
-
-      const collectionMessages = {
-        new: "Fresh premium journeys recently added to the TravelX India portfolio.",
-        family: "Comfortable, well-paced itineraries that work across generations.",
-        luxury: "High-touch stays, private guides, premium transfers, and polished destination design.",
-        "food-culture": "Chef-led meals, heritage walks, craft studios, tea estates, and meaningful local culture.",
-        private: "Tailor-made routes with private vehicles, flexible pacing, and advisor-led planning.",
-        ebike: "Smooth active journeys with e-bike friendly routes, scenic roads, and soft-adventure support.",
-        wildlife: "Safari-led journeys with luxury lodges, naturalist support, and unhurried reserve time.",
-        weekend: "Short escapes with strong stays, simple transfers, and a premium long-weekend feel."
-      };
-
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
-
-      const animatedElements = [
-        ...document.querySelectorAll(".collections, .section-heading, .collection-intro, .collection-list, .tour-card, .scroll-showcase, .scroll-card, .why-section, .about, .destinations, .destination-list, .footer, .principle")
-      ];
-
-      animatedElements.forEach((element, index) => {
-        element.classList.add("motion-reveal");
-        element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
-      });
-
-      if ("IntersectionObserver" in window) {
-        const motionObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              motionObserver.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
-
-        animatedElements.forEach((element) => motionObserver.observe(element));
-      } else {
-        animatedElements.forEach((element) => element.classList.add("is-visible"));
-      }
-
-      tourCards.forEach((card, index) => {
-        card.dataset.rank = String(index);
-      });
-
-      menuButton?.addEventListener("click", () => {
-        const isOpen = mainNav.classList.toggle("is-open");
-        menuButton.setAttribute("aria-expanded", String(isOpen));
-      });
-
-      function closeMobileNav() {
-        mainNav?.classList.remove("is-open");
-        menuButton?.setAttribute("aria-expanded", "false");
-      }
-
-      function setNavCursor(link) {
-        if (!navMenu || !link) return;
-
-        navMenu.style.setProperty("--nav-cursor-left", `${link.offsetLeft}px`);
-        navMenu.style.setProperty("--nav-cursor-width", `${link.offsetWidth}px`);
-        navMenu.style.setProperty("--nav-cursor-opacity", "1");
-      }
-
-      navMenu?.addEventListener("mouseleave", () => {
-        navMenu.style.setProperty("--nav-cursor-opacity", "0");
-      });
-
-      navLinks.forEach((link) => {
-        link.addEventListener("mouseenter", () => setNavCursor(link));
-        link.addEventListener("focus", () => setNavCursor(link));
-        link.addEventListener("click", closeMobileNav);
-        link.addEventListener("blur", () => {
-          navMenu?.style.setProperty("--nav-cursor-opacity", "0");
-        });
-      });
-
-      navCta?.addEventListener("click", closeMobileNav);
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeMobileNav();
-        }
-      });
-
-      function normalize(value) {
-        return String(value || "").trim().toLowerCase();
-      }
 
       function escapeHtml(value) {
         return String(value || "")
@@ -2435,235 +1450,230 @@
           .replaceAll("'", "&#039;");
       }
 
-      function refreshTourData() {
-        tourData = tourCards.map((card) => {
-          const image = card.querySelector("img");
-          const title = card.querySelector("h3")?.textContent.trim() || card.dataset.title;
-          const description = card.querySelector(".tour-content p")?.textContent.trim() || "";
-          const priceLine = card.querySelector(".tour-meta span")?.textContent.trim() || "";
-          const rating = card.querySelector(".tour-meta span:last-child")?.textContent.trim() || "";
-          const destination = normalize(card.dataset.destination);
-          const style = normalize(card.dataset.style);
-          const keywords = normalize(card.dataset.keywords);
-          const collections = normalize(card.dataset.collections).split(",").filter(Boolean);
-          const months = normalize(card.dataset.months).split(",").filter(Boolean);
-          const searchable = normalize(`${title} ${description} ${destination} ${style} ${keywords}`);
-
-          return {
-            card,
-            title,
-            description,
-            priceLine,
-            rating,
-            destination,
-            style,
-            keywords,
-            collections,
-            months,
-            searchable,
-            imageSrc: image?.src || "",
-            imageAlt: image?.alt || title
-          };
-        });
+      function destinationHref(slug) {
+        return `#/destination/${slug}`;
       }
 
-      function getFilters() {
-        return {
-          query: normalize(searchInput?.value),
-          style: normalize(styleSelect?.value || "all"),
-          month: normalize(monthSelect?.value || "any")
-        };
-      }
-
-      function hasActiveFilters(filters) {
-        return Boolean(filters.query || filters.style !== "all" || filters.month !== "any");
-      }
-
-      function matchesExact(tour, filters) {
-        const queryTokens = filters.query.split(/\s+/).filter(Boolean);
-        const queryMatch = !queryTokens.length || queryTokens.every((token) => tour.searchable.includes(token));
-        const styleMatch = filters.style === "all" || tour.style === filters.style || tour.keywords.includes(filters.style);
-        const monthMatch = filters.month === "any" || tour.months.includes(filters.month);
-        return queryMatch && styleMatch && monthMatch;
-      }
-
-      function scoreSimilar(tour, filters) {
-        let score = 0;
-        filters.query.split(/\s+/).filter(Boolean).forEach((token) => {
-          if (tour.destination.includes(token)) score += 8;
-          if (normalize(tour.title).includes(token)) score += 5;
-          if (tour.searchable.includes(token)) score += 2;
-        });
-        if (filters.style !== "all" && (tour.style === filters.style || tour.keywords.includes(filters.style))) score += 4;
-        if (filters.month !== "any" && tour.months.includes(filters.month)) score += 3;
-        return score;
-      }
-
-      function getSimilarTours(filters) {
-        const scored = tourData
-          .map((tour) => ({ tour, score: scoreSimilar(tour, filters) }))
-          .filter((item) => item.score > 0)
-          .sort((a, b) => b.score - a.score || Number(a.tour.card.dataset.rank) - Number(b.tour.card.dataset.rank))
-          .map((item) => item.tour);
-        return scored.length ? scored.slice(0, 3) : tourData.slice(0, 3);
-      }
-
-      function monthLabel(value) {
-        return value === "any" ? "any month" : value.charAt(0).toUpperCase() + value.slice(1);
-      }
-
-      function formatFilterSummary(filters) {
-        const parts = [];
-        if (filters.query) parts.push(`"${filters.query}"`);
-        if (filters.style !== "all") parts.push(styleLabels[filters.style] || filters.style);
-        if (filters.month !== "any") parts.push(monthLabel(filters.month));
-        return parts.length ? parts.join(" + ") : "all premium India tours";
-      }
-
-      function renderResultCard(tour) {
-        return `
-          <article class="search-result-card">
-            <img src="${escapeHtml(tour.imageSrc)}" alt="${escapeHtml(tour.imageAlt)}">
-            <div class="search-result-copy">
-              <div class="search-result-meta">
-                <span>${escapeHtml(tour.priceLine)}</span>
-                <span>${escapeHtml(styleLabels[tour.style] || tour.style)}</span>
-                <span>${escapeHtml(tour.rating)}</span>
+      function renderDestinationCards() {
+        destinationGrid.innerHTML = destinationOrder.map((slug) => {
+          const item = destinations[slug];
+          return `
+            <a class="destination-card motion-reveal" href="${destinationHref(slug)}" aria-label="Open ${escapeHtml(item.title)} destination page">
+              <figure>
+                <img src="${escapeHtml(item.card)}" alt="${escapeHtml(item.title)} premium travel landscape">
+                <span class="destination-badge">${escapeHtml(item.bestFor)}</span>
+              </figure>
+              <div class="destination-copy">
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.intro)}</p>
+                <span class="destination-link">Explore ${escapeHtml(item.title)} page</span>
               </div>
-              <h3>${escapeHtml(tour.title)}</h3>
-              <p>${escapeHtml(tour.description)}</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
-            </div>
-          </article>
-        `;
+            </a>
+          `;
+        }).join("");
+
+        footerDestinations.innerHTML = destinationOrder.map((slug) => {
+          const item = destinations[slug];
+          return `<li><a href="${destinationHref(slug)}">${escapeHtml(item.title)}</a></li>`;
+        }).join("");
       }
 
-      function renderSearchResults(tours, filters, exactMatch) {
-        const summary = formatFilterSummary(filters);
-        searchResultsTitle.textContent = exactMatch
-          ? `${tours.length} matching tour${tours.length === 1 ? "" : "s"} found`
-          : "No exact match found";
-        searchResultsMessage.textContent = exactMatch
-          ? `Showing premium TravelX options for ${summary}.`
-          : `No exact match found, here are similar tours for ${summary}.`;
-        searchResultGrid.innerHTML = tours.map(renderResultCard).join("");
-        searchResults.hidden = false;
-      }
-
-      function renderCollectionCard(tour) {
-        return `
-          <article class="collection-result-card">
-            <img src="${escapeHtml(tour.imageSrc)}" alt="${escapeHtml(tour.imageAlt)}">
-            <div class="collection-result-copy">
-              <div class="collection-result-meta">
-                <span>${escapeHtml(tour.priceLine)}</span>
-                <span>${escapeHtml(styleLabels[tour.style] || tour.style)}</span>
-                <span>${escapeHtml(tour.rating)}</span>
+      function renderDestinationPage(slug) {
+        const item = destinations[slug] || destinations.kerala;
+        destinationView.innerHTML = `
+          <section class="dest-hero">
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)} premium destination hero image">
+            <div class="dest-hero-content">
+              <a class="back-link" href="#destinations"><i data-lucide="arrow-left"></i>Back to destinations</a>
+              <p class="eyebrow">TravelX destination guide</p>
+              <h1>${escapeHtml(item.title)}</h1>
+              <p>${escapeHtml(item.intro)}</p>
+              <div class="hero-actions">
+                <a class="primary-cta" href="https://wa.me/919451100275"><i data-lucide="message-circle"></i>Plan ${escapeHtml(item.title)}</a>
               </div>
-              <h4>${escapeHtml(tour.title)}</h4>
-              <p>${escapeHtml(tour.description)}</p>
-              <a href="https://wa.me/919451100275">Plan this trip</a>
             </div>
-          </article>
+          </section>
+
+          <section class="dest-detail">
+            <div class="detail-grid">
+              <div class="detail-prose">
+                <article class="motion-reveal">
+                  <p class="eyebrow">Overview of ${escapeHtml(item.title)}</p>
+                  <h2>A private journey through ${escapeHtml(item.title)}</h2>
+                  <p>${escapeHtml(item.description)}</p>
+                </article>
+
+                <article class="motion-reveal">
+                  <p class="eyebrow">Important places in ${escapeHtml(item.title)}</p>
+                  <h2>Highlights worth building around</h2>
+                  <div class="highlight-grid">
+                    ${item.highlights.map((highlight) => `
+                      <div class="highlight-card">
+                        <h3>${escapeHtml(highlight)}</h3>
+                        <p>TravelX can shape this into the right pace, timing, guide support, and comfort level for your private route.</p>
+                      </div>
+                    `).join("")}
+                  </div>
+                </article>
+
+                <article class="motion-reveal">
+                  <p class="eyebrow">Cultural and travel highlights</p>
+                  <h2>What makes ${escapeHtml(item.title)} feel special</h2>
+                  <div class="highlight-grid">
+                    ${item.cultural.map((highlight) => `
+                      <div class="highlight-card">
+                        <h3>${escapeHtml(highlight)}</h3>
+                        <p>Designed with a premium TravelX rhythm: polished, private, comfortable, and rooted in India-only travel.</p>
+                      </div>
+                    `).join("")}
+                  </div>
+                </article>
+
+                <article class="motion-reveal">
+                  <p class="eyebrow">Related ${escapeHtml(item.title)} tour options</p>
+                  <h2>Curated routes to consider</h2>
+                  <div class="related-grid">
+                    ${item.tours.map((tour) => `
+                      <div class="tour-card">
+                        <h3>${escapeHtml(tour)}</h3>
+                        <p>Private vehicle, selected stays, destination-led pacing, and advisor support from planning to checkout.</p>
+                      </div>
+                    `).join("")}
+                  </div>
+                </article>
+
+                <article class="motion-reveal">
+                  <p class="eyebrow">Premium India tour section</p>
+                  <h2>How TravelX elevates ${escapeHtml(item.title)}</h2>
+                  <p>${escapeHtml(item.premium)}</p>
+                  <a class="inquiry-button" href="https://wa.me/919451100275"><i data-lucide="send"></i>Send inquiry</a>
+                </article>
+              </div>
+
+              <aside class="sidebar-card motion-reveal">
+                <p class="eyebrow">Plan this destination</p>
+                <h2>${escapeHtml(item.title)} at a glance</h2>
+                <p>${escapeHtml(item.region)}</p>
+                <ul class="quick-list">
+                  <li><span>Best for</span><strong>${escapeHtml(item.bestFor)}</strong></li>
+                  <li><span>Ideal length</span><strong>${escapeHtml(item.ideal)}</strong></li>
+                  <li><span>Travel style</span><strong>Private India tour</strong></li>
+                </ul>
+                <a class="inquiry-button" href="https://wa.me/919451100275"><i data-lucide="map"></i>Plan My Trip</a>
+              </aside>
+            </div>
+          </section>
         `;
+
+        if (window.lucide) window.lucide.createIcons();
+        observeReveal();
       }
 
-      function renderCollectionResults(collection) {
-        const label = collectionLabels[collection] || "Selected collection";
-        const tours = tourData.filter((tour) => tour.collections.includes(collection));
-        const visibleTours = tours.length ? tours : tourData.slice(0, 3);
-        collectionResultsTitle.textContent = `${label}: ${visibleTours.length} curated option${visibleTours.length === 1 ? "" : "s"}`;
-        collectionResultsMessage.textContent = collectionMessages[collection] || "Premium TravelX journeys matched to this collection.";
-        collectionResultGrid.innerHTML = visibleTours.map(renderCollectionCard).join("");
-        collectionResults.hidden = false;
+      function showRoute() {
+        const match = window.location.hash.match(/^#\/destination\/([a-z-]+)/);
+        if (match) {
+          homeView.hidden = true;
+          destinationView.hidden = false;
+          renderDestinationPage(match[1]);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          closeMobileNav();
+          return;
+        }
+
+        homeView.hidden = false;
+        destinationView.hidden = true;
+        if (window.location.hash === "#home" || window.location.hash === "") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else if (window.location.hash.startsWith("#/") === false) {
+          document.querySelector(window.location.hash)?.scrollIntoView({ behavior: "smooth" });
+        }
+        closeMobileNav();
+        observeReveal();
       }
 
-      function selectCollection(collection) {
-        collectionChips.forEach((chip) => {
-          const isActive = chip.dataset.collection === collection;
-          chip.classList.toggle("is-active", isActive);
-          chip.setAttribute("aria-pressed", String(isActive));
-        });
-        renderCollectionResults(collection);
+      function observeReveal() {
+        const items = Array.from(document.querySelectorAll(".motion-reveal:not(.is-visible)"));
+        if (!("IntersectionObserver" in window)) {
+          items.forEach((item) => item.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+        items.forEach((item) => observer.observe(item));
+      }
+
+      function setNavCursor(link) {
+        if (!navMenu || !link) return;
+        navMenu.style.setProperty("--nav-cursor-left", `${link.offsetLeft}px`);
+        navMenu.style.setProperty("--nav-cursor-width", `${link.offsetWidth}px`);
+        navMenu.style.setProperty("--nav-cursor-opacity", "1");
+      }
+
+      function closeMobileNav() {
+        mainNav?.classList.remove("is-open");
+        menuButton?.setAttribute("aria-expanded", "false");
       }
 
       function setActiveTestimonial(index) {
         if (!testimonialCards.length) return;
         activeTestimonialIndex = (index + testimonialCards.length) % testimonialCards.length;
-        testimonialCards.forEach((card, cardIndex) => card.classList.toggle("is-active", cardIndex === activeTestimonialIndex));
-        testimonialDots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === activeTestimonialIndex));
+        testimonialCards.forEach((card, cardIndex) => {
+          card.classList.toggle("is-active", cardIndex === activeTestimonialIndex);
+        });
+        testimonialDots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === activeTestimonialIndex);
+        });
       }
 
       function startTestimonialRotation() {
         if (testimonialCards.length <= 1) return;
         window.clearInterval(testimonialInterval);
-        testimonialInterval = window.setInterval(() => setActiveTestimonial(activeTestimonialIndex + 1), 6000);
+        testimonialInterval = window.setInterval(() => {
+          setActiveTestimonial(activeTestimonialIndex + 1);
+        }, 6000);
       }
 
-      function applyFilters({ forceResults = false } = {}) {
-        const filters = getFilters();
-        const active = hasActiveFilters(filters);
-        const exactMatches = tourData.filter((tour) => matchesExact(tour, filters));
-        const exactMatch = !active || exactMatches.length > 0;
-        const visibleTours = exactMatch ? (active ? exactMatches : tourData) : getSimilarTours(filters);
-        const visibleCards = new Set(visibleTours.map((tour) => tour.card));
-
-        tourCards.forEach((card) => {
-          card.hidden = !visibleCards.has(card);
-          if (!card.hidden) {
-            card.classList.remove("motion-fade");
-            window.requestAnimationFrame(() => card.classList.add("motion-fade"));
-          }
-        });
-
-        emptyState.hidden = exactMatch || !active;
-        if (forceResults || active) {
-          renderSearchResults(visibleTours, filters, exactMatch);
-        } else {
-          searchResults.hidden = true;
-          searchResultGrid.innerHTML = "";
-        }
-      }
-
-      function applySort() {
-        tourCards = [...tourCards].sort((a, b) => {
-          if (sortSelect.value === "price-low") return Number(a.dataset.price) - Number(b.dataset.price);
-          if (sortSelect.value === "days") return Number(a.dataset.days) - Number(b.dataset.days);
-          return Number(a.dataset.rank) - Number(b.dataset.rank);
-        });
-        tourCards.forEach((card) => tourGrid.appendChild(card));
-        refreshTourData();
-        applyFilters();
-      }
-
-      refreshTourData();
-      searchForm?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        hasSearched = true;
-        applyFilters({ forceResults: true });
+      menuButton?.addEventListener("click", () => {
+        const isOpen = mainNav.classList.toggle("is-open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
       });
-      searchInput?.addEventListener("input", () => applyFilters());
-      styleSelect?.addEventListener("change", () => applyFilters());
-      monthSelect?.addEventListener("change", () => applyFilters());
-      sortSelect?.addEventListener("change", applySort);
-      collectionChips.forEach((chip) => chip.addEventListener("click", () => selectCollection(chip.dataset.collection)));
+
+      navMenu?.addEventListener("mouseleave", () => {
+        navMenu.style.setProperty("--nav-cursor-opacity", "0");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("mouseenter", () => setNavCursor(link));
+        link.addEventListener("focus", () => setNavCursor(link));
+        link.addEventListener("click", closeMobileNav);
+        link.addEventListener("blur", () => navMenu?.style.setProperty("--nav-cursor-opacity", "0"));
+      });
+
+      navCta?.addEventListener("click", closeMobileNav);
       testimonialDots.forEach((dot) => {
         dot.addEventListener("click", () => {
           setActiveTestimonial(Number(dot.dataset.testimonialIndex));
           startTestimonialRotation();
         });
       });
-      startTestimonialRotation();
-
-      document.querySelector(".footer-form")?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const button = event.currentTarget.querySelector("button");
-        const originalText = button.textContent;
-        button.textContent = "Sent";
-        window.setTimeout(() => {
-          button.textContent = originalText;
-        }, 1800);
+      window.addEventListener("hashchange", showRoute);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMobileNav();
       });
+
+      renderDestinationCards();
+      showRoute();
+      observeReveal();
+      startTestimonialRotation();
+      if (window.lucide) window.lucide.createIcons();
     </script>
   </body>
 </html>
